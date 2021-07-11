@@ -29,6 +29,37 @@ module.exports = {
       indigo: colors.indigo,
       purple: colors.violet,
       pink: colors.pink,
+
+      primary: '#FF6C28',
+      "primary-hover": '#FF9666',
+      "primary-200": '#FF918E',
+      "primary-100": '#FDB3B1',
+
+      secondary: '#142B63',
+      "secondary-hover": '#1E4194',
+      "secondary-800": '#1A387F',
+      "secondary-900": '#142B63',
+
+      succsess: '#8EEA72',
+
+      danger: '#FF5E7B',
+
+      warning: '#FFC03A',
+      'warning-hover': '#FFC5B3',
+      'warning-100': '#FFA98E',
+
+      blood: '#931C0C',
+      "blood-hover": '#B73214',
+
+      info: '#1BC3F7',
+      'info-100': '#EDFAFD',
+      'info-200': '#E8F8FC',
+      'info-300': '#D2F1F9',
+      'info-400': '#BBE9F6',
+      'info-500': '#A5E2F3',
+      'info-600': '#08B7ED',
+      'info-700': '#08B3E8',
+      'info-800': '#08A7D9'
     },
     spacing: {
       px: '1px',
