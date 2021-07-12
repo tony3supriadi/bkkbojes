@@ -1,0 +1,29 @@
+.logo {
+    height: 48px;
+}
+
+@media (min-width: 576px) {
+    .logo {
+        height: 34px;
+    }
+}
+@media (min-width: 768px) {
+    .logo {
+        height: 34px;
+    }
+}
+@media (min-width: 992px) {
+    .logo {
+        height: 48px;
+    }
+}
+@media (min-width: 1200px) {
+    .logo {
+        height: 48px;
+    }
+}
+@media (min-width: 1400px) {
+    .logo {
+        height: 48px;
+    }
+}
