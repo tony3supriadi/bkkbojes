@@ -45,7 +45,7 @@ $route = Route::currentRouteName();
             </li>
         </ul>
 
-        <button class="navbar-toggler border-none" type="button" data-toggle="collapse" data-target="#navigation-mobile" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation-mobile" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
