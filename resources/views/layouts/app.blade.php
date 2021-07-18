@@ -15,7 +15,9 @@
 <body>
     @include('layouts.inc.header')
     @yield('content')
+    @include('layouts.inc.footer')
 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
     @stack('scripts')
 </body>

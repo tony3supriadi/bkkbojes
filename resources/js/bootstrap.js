@@ -11,6 +11,8 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
+    require('jquery-migrate');
+    require('slick-carousel');
 } catch (e) {}
 
 /**
