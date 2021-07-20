@@ -5,15 +5,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     {!! SEO::generate(true) !!}
+
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('vendors/fontawesome/css/all.css') }}">
     @stack('styles')
 </head>
 
 <body>
     @include('layouts.inc.header')
+    @yield('breadcrumbs')
     @yield('content')
     @include('layouts.inc.footer')
 

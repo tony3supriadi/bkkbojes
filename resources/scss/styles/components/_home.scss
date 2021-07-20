@@ -143,6 +143,10 @@
         }
     }
 
+    .steps-m {
+        display: none;
+    }
+
     .step-arrow {
         margin-top: 36px;
         margin-bottom: -86px;
@@ -159,6 +163,10 @@
             margin-top: 40px;
             margin-bottom: -40px;
         }
+    }
+
+    .step-arrow-m {
+        display: none;
     }
 
 }
@@ -247,6 +255,10 @@
         }
     }
 
+    .testimoni-lists-m {
+        display: none;
+    }
+
     .slick-prev:before, .slick-next:before,
     .slick-dots li.slick-active button:before {
         color: $primary;
@@ -255,5 +267,213 @@
 
     .slick-dots li button:before {
         font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    #hero-banner {
+        .hero-01,
+        .hero-02 {
+            padding-top: 30px !important;
+            padding-bottom: 0px !important;
+            text-align: center;
+        }
+
+        .hero-01 {
+
+            .title {
+                font-size: 24px;
+                line-height: 28px;
+                margin-bottom: 32px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+                margin-bottom: 15px;
+            }
+
+            img {
+                width: 100%;
+                margin-bottom: 48px;
+            }
+        }
+
+        .hero-02 {
+
+            img {
+                width: 100%;
+            }
+
+            .title {
+                font-size: 24px;
+                line-height: 28px;
+                padding-left: 20px;
+                padding-right: 20px;
+                margin-top: 20px;
+            }
+
+            .subtitle {
+                color: $secondary;
+                font-size: 15px;
+                line-height: 20px;
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+    }
+
+    #how-to {
+        min-height: 250px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        margin-top: 50px;
+
+        .counting {
+            margin-top: -50px - 41px !important;
+
+            .card {
+                max-height: 82px;
+                
+                h3 {
+                    font-size: 24px;
+                }
+
+                p {
+                    font-size: 10px;
+                }
+            }
+        }
+
+        .steps {
+            display: none;
+        }
+
+        .steps-m {
+            display: block;
+            padding-top: 30px;
+
+            .step-item {
+                padding-top: 8px;
+                padding-bottom: 8px;
+
+                img {
+                    width: 100%;
+                }
+
+                .title {
+                    color: $primary;
+                    font-weight: bold;
+                    font-size: 18px;
+                    line-height: 22px;
+                    margin-bottom: 5px;
+                    margin-top: 8px;
+                }
+
+                .description {
+                    color: $secondary;
+                    font-size: 14px;
+                    line-height: 16px
+                }
+            }
+        }
+
+        .step-arrow {
+            display: none;
+        }
+
+        .step-arrow-m {
+            display: block;
+            position: absolute;
+            height: 50px;
+            width: 25px !important;
+            margin-top: -25px;
+            margin-bottom: -25px;
+            margin-left: 15px;
+        }
+
+    }
+
+    #mitra {
+        padding-top: 50px;
+        padding-bottom: 50px;
+
+        .title {
+            font-size: 24px;
+            line-height: 28px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            line-height: 18px;
+        }
+
+        img {
+            width: 100%;
+        }
+    }
+
+    #testimonial {
+        padding-top: 50px;
+        padding-bottom: 50px;
+        min-height: 50px;
+
+        .title {
+            font-size: 24px;
+            line-height: 28px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            line-height: 18px;
+            margin-bottom: 50px;
+        }
+
+        .testimoni-lists {
+            display: none;
+        }
+
+        .testimoni-lists-m {
+            display: block;
+            
+            .testimoni-item {
+                text-align: center;
+                margin-left: 25px;
+                margin-right: 25px;
+
+                .testimoni-item-image {
+                    width: 120px;
+                    height: 120px;
+                    overflow: hidden;
+                    border-radius: 50%;
+                    margin-bottom: 25px;
+                    margin-left: auto;
+                    margin-right: auto;
+
+                    img {
+                        width: 100%;
+                        border-radius: 60px;
+                    }
+                }
+
+                .testimoni-item-content {
+                    text-align: center;
+                    
+                    .title {
+                        font-size: 24px;
+                        margin-bottom: 12px;
+                        text-align: center;
+                        color: $primary;
+                        font-weight: bold;
+                    }
+
+                    .description {
+                        text-align: center;
+                        font-size: 16px;
+                        line-height: 22px;
+                        color: $secondary;
+                    }
+                }
+            }
+        }
     }
 }

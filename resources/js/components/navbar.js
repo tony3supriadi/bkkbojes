@@ -1,19 +1,15 @@
 $(function () {
     var open = false;
-    $('#mobile-menu').on('click', function () {
+    $('#navigation-mobile-toggler').on('click', function () {
         open = !open;
         if (open) {
-            console.log('open');
-            $('#mobile-menu .la-bars').removeClass('block').addClass('hidden');
-            $('#mobile-menu .la-times').removeClass('hidden').addClass('block');
-            
-            $('#mobile-menu-navigation').removeClass('hidden');
+            $('.navigation-mobile').addClass('show');
+            $('.navbar-toggler .navbar-toggler-icon').addClass('d-none');
+            $('.navbar-toggler .la-times').removeClass('d-none');
         } else {
-            console.log('close');
-            $('#mobile-menu .la-bars').removeClass('hidden').addClass('block');
-            $('#mobile-menu .la-times').removeClass('block').addClass('hidden');
-            
-            $('#mobile-menu-navigation').addClass('hidden');
+            $('.navigation-mobile').removeClass('show');
+            $('.navbar-toggler .navbar-toggler-icon').removeClass('d-none');
+            $('.navbar-toggler .la-times').addClass('d-none');
         }
     });
 

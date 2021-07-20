@@ -2,28 +2,30 @@
     height: 48px;
 }
 
-@media (min-width: 576px) {
+.navigation-mobile {
+    position: absolute;
+    right: 10px;
+    top: 70px;
+    min-width: 17rem;
+}
+
+@media (max-width: 768px) {
     .logo {
-        height: 34px;
+        height: 45px;
+    }
+    .navbar-toggler {
+        position: absolute;
+        right: 10px;
+    }
+    .dropdown-menu {
+
+        .dropdown-item {
+            padding: .75rem 1rem;
+        }
     }
 }
-@media (min-width: 768px) {
+@media (max-width: 576px) {
     .logo {
-        height: 34px;
-    }
-}
-@media (min-width: 992px) {
-    .logo {
-        height: 48px;
-    }
-}
-@media (min-width: 1200px) {
-    .logo {
-        height: 48px;
-    }
-}
-@media (min-width: 1400px) {
-    .logo {
-        height: 48px;
+        height: 42px;
     }
 }

@@ -25,9 +25,9 @@ $route = Route::currentRouteName();
                     <i class="las la-angle-down"></i>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navigation-lainnya">
-                    <a class="dropdown-item" href="{{ route('daftar-mitra') }}">Daftar Mitra</a>
-                    <a class="dropdown-item" href="{{ route('testimonial') }}">Testimonial</a>
-                    <a class="dropdown-item" href="{{ route('faq') }}">FAQ</a>
+                    <a class="dropdown-item {{ $route == 'daftar-mitra' ? 'active' : '' }}" href="{{ route('daftar-mitra') }}">Daftar Mitra</a>
+                    <a class="dropdown-item {{ $route == 'testimonial' ? 'active' : '' }}" href="{{ route('testimonial') }}">Testimonial</a>
+                    <a class="dropdown-item {{ $route == 'faq' ? 'active' : '' }}" href="{{ route('faq') }}">FAQ</a>
                 </ul>
             </li>
         </ul>
@@ -45,8 +45,22 @@ $route = Route::currentRouteName();
             </li>
         </ul>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation-mobile" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" id="navigation-mobile-toggler">
             <span class="navbar-toggler-icon"></span>
+            <span class="las la-times d-none" style="font-size:30px"></span>
         </button>
+
+        <ul class="dropdown-menu navigation-mobile">
+            <a class="dropdown-item {{ $route == 'home' ? 'active' : '' }}" href="{{ route('home') }}">Beranda</a>
+            <a class="dropdown-item {{ $route == 'lowongan' ? 'active' : '' }}" href="{{ route('lowongan') }}">Lowongan</a>
+            <a class="dropdown-item {{ $route == 'pengumuman' ? 'active' : '' }}" href="{{ route('pengumuman') }}">Pengumuman</a>
+            <a class="dropdown-item {{ $route == 'daftar-mitra' ? 'active' : '' }}" href="{{ route('daftar-mitra') }}">Daftar Mitra</a>
+            <a class="dropdown-item {{ $route == 'testimonial' ? 'active' : '' }}" href="{{ route('testimonial') }}">Testimonial</a>
+
+            <div class="row mx-1 mb-3 mt-2">
+                <div class="col-6" style="padding-right:.3rem"><a class="btn btn-outline-primary w-100" href="{{ route('login') }}">Login</a></div>
+                <div class="col-6" style="padding-left:.3rem"><a class="btn btn-primary w-100" href="{{ route('daftar') }}">Daftar</a></div>
+            </div>
+        </ul>
     </div>
 </nav>

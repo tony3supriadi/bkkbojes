@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-6 mb-5">
                         <h4 class="title">BURSA KERJA</h4>
                         <ul>
                             <li><a href="">Tentang Kami</a></li>
@@ -12,7 +12,7 @@
                             <li><a href="">Testimonial</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-6 mb-5">
                         <h4 class="title">BANTUAN</h4>
                         <ul>
                             <li><a href="">Sering Ditanya (FAQ)</a></li>
@@ -21,7 +21,7 @@
                             <li><a href="">SMK Negeri 1 Bojongsari</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-12 mb-5">
                         <h4 class="title">PERUSAHAAN</h4>
                         <ul>
                             <li><a href="">Daftar Perusahaan Mitra</a></li>
