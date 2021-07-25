@@ -11585,6 +11585,9 @@ form .form-check-input:focus {
     line-height: 22px;
     color: #142B63;
   }
+  #testimonial .slick-arrow {
+    display: none !important;
+  }
 }
 #login-page {
   padding-top: 30px;
