@@ -1,0 +1,15 @@
+.breadcrumb {
+
+    .breadcrumb-item {
+        
+        a {
+            text-decoration: none;
+            color: $secondary;
+        }
+
+        &.active {
+            color: $secondary-300;
+            font-size: 14px;
+        }
+    }
+}

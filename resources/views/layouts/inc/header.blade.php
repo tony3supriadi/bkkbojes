@@ -3,7 +3,7 @@ use Illuminate\Support\Facades\Route;
 $route = Route::currentRouteName();
 @endphp
 
-<nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+<nav class="navbar navbar-expand-lg navbar-light bg-transparent @if($route != 'home') shadow-sm mb-3 @endif">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">
             <img src="{{ asset('images/logo-brand.png') }}" class="logo" alt="Logo SMK Negeri 1 Bojongsari">

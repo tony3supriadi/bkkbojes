@@ -1,0 +1,53 @@
+form {
+
+    .form-group {
+
+        label {
+            font-size: 14px;
+            color: $gray-600;
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            border-color: $gray-500;
+            border-width: 1.5px;
+
+            &:focus {
+                border-color: $primary;
+                box-shadow: none;
+            }
+        }
+
+        .input-group {
+
+            .form-control {
+                border-right: none;
+            }
+
+            .input-group-append,
+            .input-group-prepand {
+                background: $white;
+
+                .input-group-text {
+                    border-color: $gray-500;
+                    border-width: 1.5px;
+                    padding: 0.675rem 0.75rem;
+                }
+            }
+
+            .input-group-append {
+
+                .input-group-text {
+                    border-left: 0;
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                }
+            }
+        }
+    }
+
+    .form-check-input:focus {
+        box-shadow: none;
+        border-color: $primary;
+    }
+}
