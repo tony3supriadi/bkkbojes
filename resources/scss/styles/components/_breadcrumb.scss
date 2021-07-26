@@ -11,5 +11,13 @@
             color: $secondary-300;
             font-size: 14px;
         }
+
+        + .breadcrumb-item {
+            padding-left: .75rem;
+
+            &::before {
+                padding-right: .75rem;
+            }
+        }
     }
 }

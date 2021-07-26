@@ -4,6 +4,8 @@
 @import 'variables';
 
 @import "bootstrap/scss/bootstrap.scss";
+@import "select2/src/scss/core.scss";
+@import "select2-bootstrap-5-theme/src/include-all";
 @import "slick-carousel/slick/slick.scss";
 @import "slick-carousel/slick/slick-theme.scss";
 

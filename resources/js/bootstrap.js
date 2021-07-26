@@ -13,6 +13,7 @@ try {
     require('bootstrap');
     require('jquery-migrate');
     require('slick-carousel');
+    require('select2')
 } catch (e) {}
 
 /**
