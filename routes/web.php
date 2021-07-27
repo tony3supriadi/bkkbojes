@@ -12,4 +12,6 @@ Route::get('/faq', [App\Http\Controllers\DaftarMitraController::class, 'index'])
 
 Route::get('/login', [App\Http\Controllers\LoginController::class, 'index'])->name('login');
 Route::get('/daftar', [App\Http\Controllers\DaftarController::class, 'index'])->name('daftar');
+Route::get('/daftar/konfirmasi', [App\Http\Controllers\DaftarController::class, 'confirm_page'])->name('daftar.konfirmasi');
+Route::get('/daftar/berhasil', [App\Http\Controllers\DaftarController::class, 'success_page'])->name('daftar.berhasil');
 Route::get('/lupa-sandi', [App\Http\Controllers\LupaSandiController::class, 'index'])->name('lupa-sandi');

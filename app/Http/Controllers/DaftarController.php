@@ -10,4 +10,14 @@ class DaftarController extends Controller
     {
         return view('pages.daftar');
     }
+
+    public function confirm_page()
+    {
+        return view('pages.daftar-konfirmasi');
+    }
+
+    public function success_page()
+    {
+        return view('pages.daftar-berhasil');
+    }
 }

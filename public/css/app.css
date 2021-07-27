@@ -12689,3 +12689,29 @@ form .form-check-input:focus {
     text-align: center;
   }
 }
+
+#register-success-page {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 50px;
+}
+#register-success-page h3, #register-success-page .h3 {
+  font-weight: bold;
+  font-size: 28px;
+  color: #142B63;
+}
+#register-success-page p {
+  color: #142B63;
+  line-height: 26px;
+  font-size: 16px;
+  margin-bottom: 38px;
+}
+@media (max-width: 768px) {
+  #register-success-page h3, #register-success-page .h3 {
+    font-size: 24px;
+  }
+  #register-success-page p {
+    font-size: 14px;
+    line-height: 24px;
+  }
+}
