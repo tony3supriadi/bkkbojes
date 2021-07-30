@@ -17,10 +17,12 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-                <h3>Selamat!<br />akunmu berhasil dibuat.</h3>
-                <p>Silahkan lengkapi profil dan CV kamu,<br />agar dapat mengajukan lamaran</p>
+                <i class="fa fa-check-circle fa-7x mb-4 text-success"></i>
 
-                <a href="" class="btn btn-primary">Lengkapi Profil</a>
+                <h3>Selamat! akunmu berhasil dibuat.</h3>
+                <p>Silahkan lengkapi profil dan CV kamu, agar dapat mengajukan lamaran</p>
+
+                <a href="{{ route('akun.profile.personal') }}" class="btn btn-primary">Lengkapi Profil</a>
             </div>
         </div>
     </div>

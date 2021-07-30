@@ -1,0 +1,34 @@
+#account-page {
+
+    .card {
+        border: 0;
+        box-shadow: 0 0 .25rem 0 $gray-300;
+
+        .nav-pills {
+
+            .nav-link {
+                border-bottom: 4px solid $gray-300;
+
+                i {
+                    position: absolute;
+                    font-size: 24px;
+                }
+
+                span {
+                    margin-left: 32px;
+                    font-size: 14px;
+                }
+            }
+            
+            .nav-link.active {
+                border-bottom: 4px solid $orange;
+            }
+        }
+
+        .account-content {
+            padding: 1rem;
+
+            
+        }
+    }
+}
