@@ -14,4 +14,11 @@
             <span>Dashboard</span>
         </a>
     </li>
+
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ route('admin.manage-admin.index') }}">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Manage Admin</span>
+        </a>
+    </li>
 </ul>

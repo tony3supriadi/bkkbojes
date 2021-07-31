@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'redirectTo']);
+
 Route::get('/lowongan', [App\Http\Controllers\LowonganController::class, 'index'])->name('lowongan');
 Route::get('/pengumuman', [App\Http\Controllers\PengumumanController::class, 'index'])->name('pengumuman');
 Route::get('/daftar-mitra', [App\Http\Controllers\DaftarMitraController::class, 'index'])->name('daftar-mitra');
@@ -60,19 +61,25 @@ Route::group([
     Route::get('/latihan-tes', [App\Http\Controllers\Akun\AkunController::class, 'latihan_tes'])->name('latihan-tes');
 });
 
+/** Routes Admin */
 Route::get('/bkk-admin', [App\Http\Controllers\Admin\AdminController::class, 'redirectTo']);
 Route::get('/app', [App\Http\Controllers\Admin\AdminController::class, 'redirectTo']);
 Route::get('/app/v1', [App\Http\Controllers\Admin\AdminController::class, 'redirectTo']);
+
 Route::group([
     "prefix" => "/app/v1/bkk-admin",
     "as" => "admin."
 ], function () {
 
-    Route::group(["middleware" => ["auth.admin"]], function () {
-        Route::get("/", [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+    Route::group(["middleware" => ["auth:admin"]], function () {
+        Route::get("/", [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('index');
         Route::get("/dashboard", [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+
+        Route::resource("/manage-admin", App\Http\Controllers\Admin\ManageAdminController::class);
+
+        Route::post("/logout", [App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('logout');
     });
 
-    Route::get("/login", [App\Http\Controllers\Admin\AuthController::class, 'login'])->name('auth.login');
-    Route::post("/login", [App\Http\Controllers\Admin\AuthController::class, 'authentication']);
+    Route::get("/login", [App\Http\Controllers\Admin\AuthController::class, 'showLoginForm'])->name('auth.login');
+    Route::post("/login", [App\Http\Controllers\Admin\AuthController::class, 'login']);
 });

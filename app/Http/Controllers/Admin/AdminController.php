@@ -9,6 +9,6 @@ class AdminController extends Controller
 {
     public function redirectTo()
     {
-        return redirect()->route('admin.dashboard');
+        return redirect()->route('admin.index');
     }
 }
