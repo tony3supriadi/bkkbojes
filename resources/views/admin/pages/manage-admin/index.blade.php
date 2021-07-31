@@ -11,7 +11,7 @@
             <i class="fa fa-trash-alt"></i> Hapus Masal
         </button>
 
-        <a href="#" class="btn btn-primary shadow-sm">
+        <a href="{{ route('admin.manage-admin.create') }}" class="btn btn-primary shadow-sm">
             <i class="fas fa-plus-circle fa-sm text-white-50"></i> Tambah Baru
         </a>
     </div>
@@ -48,7 +48,7 @@
             width: '100%',
             processing: true,
             select: {
-                style: 'os',
+                style: 'multi',
                 selector: 'td:first-child'
             },
             ajax: {
@@ -78,14 +78,6 @@
                 data: 'email',
                 title: 'E-Mail',
                 orderable: false,
-            }, {
-                defaultContent: '',
-                title: 'Level',
-                orderable: false,
-                width: '10%',
-                render: (data, type, row) => {
-                    return `<span class="badge badge-secondary">` + row.level + `</span>`;
-                }
             }],
             rowCallback: (row, data, index) => {
                 $('td:first-child', row).on('click', function() {
@@ -128,4 +120,36 @@
         });
     });
 </script>
+
+@if(Session::has('destroy-success'))
+<script type="text/javascript">
+    $(document).ready(function() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Proses hapus data admin berhasil.',
+            showConfirmButton: false,
+            buttonsStyling: false,
+            timer: 1500,
+            timerProgressBar: true,
+        });
+    });
+</script>
+@endif
+
+@if(Session::has('bulk-destroy-success'))
+<script type="text/javascript">
+    $(document).ready(function() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Proses hapus data masal berhasil.',
+            showConfirmButton: false,
+            buttonsStyling: false,
+            timer: 1500,
+            timerProgressBar: true,
+        });
+    });
+</script>
+@endif
 @endpush
