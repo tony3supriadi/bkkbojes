@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'redirectTo']);
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'redirectTo']);
 
 Route::get('/lowongan', [App\Http\Controllers\LowonganController::class, 'index'])->name('lowongan');
 Route::get('/pengumuman', [App\Http\Controllers\PengumumanController::class, 'index'])->name('pengumuman');
@@ -71,7 +71,9 @@ Route::group([
     "as" => "admin."
 ], function () {
 
-    Route::group(["middleware" => ["auth:admin"]], function () {
+    Route::group([
+        "middleware" => ["auth:admin", "authIsAdmin"]
+    ], function () {
         Route::get("/", [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('index');
         Route::get("/dashboard", [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
 
@@ -82,4 +84,6 @@ Route::group([
 
     Route::get("/login", [App\Http\Controllers\Admin\AuthController::class, 'showLoginForm'])->name('auth.login');
     Route::post("/login", [App\Http\Controllers\Admin\AuthController::class, 'login']);
+
+    Route::get("/akses-ditolak", [App\Http\Controllers\Admin\AuthController::class, 'deniedAccess'])->name('akses-ditolak');
 });

@@ -22,14 +22,14 @@
                                         <input type="text" name="username" class="form-control form-control-user @error('username') is-invalid @enderror" placeholder="Masukan username atau email" autocomplete="off" autofocus />
 
                                         @error('username')
-                                        <small class="text-danger">{{ $message }}</small>
+                                        <small class="text-danger w-100 d-block px-3">{{ $message }}</small>
                                         @enderror
                                     </div>
                                     <div class="form-group">
                                         <input type="password" name="password" class="form-control form-control-user @error('password') is-invalid @enderror" placeholder="Masukan kata sandi">
 
                                         @error('password')
-                                        <small class="text-danger">{{ $message }}</small>
+                                        <small class="text-danger w-100 d-block px-3">{{ $message }}</small>
                                         @enderror
                                     </div>
                                     <div class="form-group">

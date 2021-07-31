@@ -15,8 +15,11 @@ class ManageAdminController extends Controller
      */
     public function index()
     {
-        $admins = Admin::all();
-        return view('admin.pages.admin.index', compact('admins'));
+        if (request()->get('type') == 'json') {
+            $data_admin = Admin::all();
+            return response()->json($data_admin);
+        }
+        return view('admin.pages.admin.index');
     }
 
     /**

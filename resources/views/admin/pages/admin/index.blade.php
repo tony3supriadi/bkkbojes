@@ -17,3 +17,23 @@
     </div>
 </div>
 @endsection
+
+@section('content')
+<div class="card card-body shadow-sm">
+    <table class="table datatable"></table>
+</div>
+@endsection
+
+@push('styles')
+<link href="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+@endpush
+
+@push('scripts')
+<script src="{{ asset('admin/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.datatable').DataTable();
+    });
+</script>
+@endpush

@@ -39,4 +39,9 @@ class AuthController extends Controller
         $this->guard()->logout();
         return redirect()->route('admin.auth.login');
     }
+
+    public function deniedAccess()
+    {
+        return view('admin.auth.akses-ditolak');
+    }
 }

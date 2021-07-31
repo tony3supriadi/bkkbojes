@@ -15,11 +15,12 @@ class CreateBpg1AdminTable extends Migration
     {
         Schema::create('bpg1_admin', function (Blueprint $table) {
             $table->id();
-            $table->string('nama',64);
-            $table->string('username',64)->unique();
+            $table->string('nama', 64);
+            $table->string('username', 64)->unique();
             $table->string('password');
-            $table->string('email',128)->unique();
-            $table->enum('level',['Super Admin','Admin'])->nullable();           
+            $table->string('email', 128)->unique();
+            $table->enum('level', ['Super Admin', 'Admin'])->nullable();
+            $table->boolean('isadmin')->default(true);
             $table->timestamps();
         });
     }
