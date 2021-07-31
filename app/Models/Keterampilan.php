@@ -5,14 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Admin extends Model
+class Keterampilan extends Model
 {
-    protected $table="bpg1_admin";
+    protected $table="fdf4_keterampilan";
     protected $fillable = [
-        'nama',
-        'username',
-        'password',
-        'email',
-        'level',
+        'personal_id',
+        'keterampilankomputer',
+        'keterampilanlain',
     ];
 }
