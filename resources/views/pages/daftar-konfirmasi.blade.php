@@ -14,15 +14,31 @@
 
 @section('content')
 <section id="register-success-page">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-                <h3>Selamat!<br />akunmu berhasil dibuat.</h3>
-                <p>Silahkan lengkapi profil dan CV kamu,<br />agar dapat mengajukan lamaran</p>
+    <div class="container text-center">
+        <img src="{{ asset('images/hero-mail.png') }}" alt="Konfirmasi E-Mail" />
+        <h3 class="text-primary mt-4">Konfirmasi E-Mail</h3>
+        <p class="mb-5 text-sedonary">Silahkan buka email dan klik link untuk mengaktivasi akunmu</p>
 
-                <a href="" class="btn btn-primary">Lengkapi Profil</a>
-            </div>
-        </div>
+        <p class="text-muted text-resend"><small>Kirim ulang <span class="time">60</span> detik</small></p>
+        <button type="submit" class="btn-resend btn btn-primary d-none">Kirim Ulang Konfirmasi</button>
     </div>
 </section>
 @endsection
+
+@push('scripts')
+<script type="text/javascript">
+    $(function() {
+        var timer = 60;
+        var timerInterval = setInterval(function() {
+            timer = timer - 1;
+            $('.text-resend .time').html(timer);
+
+            if (timer == 0) {
+                $('.text-resend').addClass('d-none');
+                $('.btn-resend').removeClass('d-none');
+                clearInterval(timerInterval);
+            }
+        }, 1000)
+    });
+</script>
+@endpush

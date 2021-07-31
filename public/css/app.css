@@ -3845,7 +3845,7 @@ textarea.form-control-lg {
 
 .nav-link {
   display: block;
-  padding: 0.5rem 1rem;
+  padding: 1rem 1rem;
   font-weight: 500;
   color: #142B63;
   text-decoration: none;
@@ -3857,7 +3857,7 @@ textarea.form-control-lg {
   }
 }
 .nav-link:hover, .nav-link:focus {
-  color: #ff8953;
+  color: #FF6C28;
 }
 .nav-link.disabled {
   color: #a1aac1;
@@ -3899,12 +3899,12 @@ textarea.form-control-lg {
 .nav-pills .nav-link {
   background: none;
   border: 0;
-  border-radius: 0.25rem;
+  border-radius: 0;
 }
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #FF6C28;
+  color: #FF6C28;
+  background-color: transparent;
 }
 
 .nav-fill > .nav-link,
@@ -3954,8 +3954,8 @@ textarea.form-control-lg {
   justify-content: space-between;
 }
 .navbar-brand {
-  padding-top: 0.3125rem;
-  padding-bottom: 0.3125rem;
+  padding-top: 0.8125rem;
+  padding-bottom: 0.8125rem;
   margin-right: 1rem;
   font-size: 1.25rem;
   text-decoration: none;
@@ -3977,8 +3977,8 @@ textarea.form-control-lg {
 }
 
 .navbar-text {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .navbar-collapse {
@@ -4834,7 +4834,7 @@ textarea.form-control-lg {
 .list-group-item {
   position: relative;
   display: block;
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1rem;
   color: #212529;
   text-decoration: none;
   background-color: #fff;
@@ -12171,6 +12171,10 @@ form .form-check-input:focus {
   height: 48px;
 }
 
+.navbar {
+  padding-top: 0;
+}
+
 .navigation-mobile {
   position: absolute;
   right: 10px;
@@ -12197,6 +12201,58 @@ form .form-check-input:focus {
     height: 42px;
   }
 }
+#sidenav {
+  border: 0;
+  box-shadow: 0 0 0.25rem 0 #dee2e6;
+}
+#sidenav .title {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 25px;
+  color: #142B63;
+}
+#sidenav .progress-label {
+  margin: 0;
+  padding: 0;
+}
+#sidenav .progress {
+  border-radius: 0;
+}
+#sidenav .description {
+  font-size: 14px;
+  color: #ced4da;
+  padding-top: 12px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+#sidenav .navigation {
+  margin-bottom: 32px;
+}
+#sidenav .navigation .list-group-item {
+  border: 0;
+  padding: 0;
+}
+#sidenav .navigation .list-group-item .list-group-link {
+  text-decoration: none;
+  color: #142B63;
+  font-size: 14px;
+  padding: 0.6rem 1rem;
+  width: 100%;
+  display: block;
+}
+#sidenav .navigation .list-group-item .list-group-link i {
+  margin-right: 0.75rem;
+}
+#sidenav .navigation .list-group-item .list-group-link:hover {
+  background-color: #e9ecef;
+}
+#sidenav .navigation .list-group-item.active .list-group-link {
+  color: #fff;
+}
+#sidenav .navigation .list-group-item.active .list-group-link:hover {
+  background-color: #FF6C28;
+}
+
 #hero-banner {
   background: linear-gradient(#EDFAFD, #fff);
   background-repeat: no-repeat;
@@ -12714,4 +12770,26 @@ form .form-check-input:focus {
     font-size: 14px;
     line-height: 24px;
   }
+}
+
+#account-page .card {
+  border: 0;
+  box-shadow: 0 0 0.25rem 0 #dee2e6;
+}
+#account-page .card .nav-pills .nav-link {
+  border-bottom: 4px solid #dee2e6;
+}
+#account-page .card .nav-pills .nav-link i {
+  position: absolute;
+  font-size: 24px;
+}
+#account-page .card .nav-pills .nav-link span {
+  margin-left: 32px;
+  font-size: 14px;
+}
+#account-page .card .nav-pills .nav-link.active {
+  border-bottom: 4px solid #FF6C28;
+}
+#account-page .card .account-content {
+  padding: 1rem;
 }
