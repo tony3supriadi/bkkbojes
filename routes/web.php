@@ -59,3 +59,20 @@ Route::group([
     Route::get('/lamaran-terkirim', [App\Http\Controllers\Akun\AkunController::class, 'lamaran_terkirim'])->name('lamaran-terkirim');
     Route::get('/latihan-tes', [App\Http\Controllers\Akun\AkunController::class, 'latihan_tes'])->name('latihan-tes');
 });
+
+Route::get('/bkk-admin', [App\Http\Controllers\Admin\AdminController::class, 'redirectTo']);
+Route::get('/app', [App\Http\Controllers\Admin\AdminController::class, 'redirectTo']);
+Route::get('/app/v1', [App\Http\Controllers\Admin\AdminController::class, 'redirectTo']);
+Route::group([
+    "prefix" => "/app/v1/bkk-admin",
+    "as" => "admin."
+], function () {
+
+    Route::group(["middleware" => ["auth.admin"]], function () {
+        Route::get("/", [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+        Route::get("/dashboard", [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+    });
+
+    Route::get("/login", [App\Http\Controllers\Admin\AuthController::class, 'login'])->name('auth.login');
+    Route::post("/login", [App\Http\Controllers\Admin\AuthController::class, 'authentication']);
+});
