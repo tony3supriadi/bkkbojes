@@ -16,10 +16,16 @@ class ManageAdminController extends Controller
     public function index()
     {
         if (request()->get('type') == 'json') {
-            $data_admin = Admin::all();
-            return response()->json($data_admin);
+            $index = 0;
+            $results = [];
+            foreach (Admin::all() as $item) {
+                $results[$index] = $item;
+                $results[$index]["encryptid"] = encrypt($item->id);
+                $index++;
+            }
+            return response()->json($results);
         }
-        return view('admin.pages.admin.index');
+        return view('admin.pages.manage-admin.index');
     }
 
     /**

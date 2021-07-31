@@ -77,7 +77,9 @@ Route::group([
         Route::get("/", [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('index');
         Route::get("/dashboard", [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
 
-        Route::resource("/manage-admin", App\Http\Controllers\Admin\ManageAdminController::class);
+        Route::delete("/manage-admin", [App\Http\Controllers\Admin\ManageAdminController::class, "bulk_destroy"])->name("manage-admin.bulk-destroy");
+        Route::resource("/manage-admin", App\Http\Controllers\Admin\ManageAdminController::class)
+            ->except(["show"]);
 
         Route::post("/logout", [App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('logout');
     });
