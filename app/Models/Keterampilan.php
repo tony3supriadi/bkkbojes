@@ -10,7 +10,7 @@ class Keterampilan extends Model
     protected $table="fdf4_keterampilan";
     protected $fillable = [
         'personal_id',
-        'keterampilankomputer',
-        'keterampilanlain',
+        'skill',
+        'prosentase',
     ];
 }

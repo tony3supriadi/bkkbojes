@@ -10,9 +10,10 @@ class Organisasi extends Model
     protected $table="fdf5_organisasi";
     protected $fillable = [
         'personal_id',
-        'tahunmulai',
-        'hinggamulai',
-        'posisijabatan',
-        'namaorganisasi',
+        'tahun_mulai',
+        'hingga_mulai',
+        'masih_aktif',
+        'posisi_jabatan',
+        'nama_organisasi',
     ];
 }

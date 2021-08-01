@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBbn2KetentuanpenggunaanTable extends Migration
+class CreateBbn3KebijakanPrivasiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateBbn2KetentuanpenggunaanTable extends Migration
      */
     public function up()
     {
-        Schema::create('bbn2_ketentuanpenggunaan', function (Blueprint $table) {
+        Schema::create('bbn3_kebijakan_privasi', function (Blueprint $table) {
             $table->id();
-            $table->string('namaketentuan',128);
-            $table->text('deskripsiketentuan');
+            $table->string('nama_kebijakan',128);
+            $table->text('deskripsi_kebijakan');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateBbn2KetentuanpenggunaanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bbn2_ketentuanpenggunaan');
+        Schema::dropIfExists('bbn3_kebijakan_privasi');
     }
 }

@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class KebijakanPrivasi extends Model
 {
-    protected $table="bbn3_kebijakanprivasi";
+    protected $table="bbn3_kebijakan_privasi";
     protected $fillable = [
-        'namakebijakan',
-        'deskripsikebijakan',
+        'nama_kebijakan',
+        'deskripsi_kebijakan',
     ];
 }

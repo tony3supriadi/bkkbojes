@@ -10,15 +10,16 @@ class Pendidikan extends Model
     protected $table="fdf3_pendidikan";
     protected $fillable = [
         'personal_id',
-        'bulanmulai',
-        'tahunmulai',
-        'bulanselesai',
-        'tahunselesai',
-        'almamater',
+        'bulan_mulai',
+        'tahun_mulai',
+        'bulan_selesai',
+        'tahun_selesai',
+        'masih_sekolah',
+        'nama_sekolah',
         'provinsi',
         'kabupaten',
-        'jenjangpendidikan',
+        'jenjang_pendidikan',
         'jurusan',
-        'nilaitertinggi',
+        'nilai_akhir',
     ];
 }

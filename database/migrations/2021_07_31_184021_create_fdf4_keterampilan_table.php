@@ -16,8 +16,8 @@ class CreateFdf4KeterampilanTable extends Migration
         Schema::create('fdf4_keterampilan', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('personal_id');
-            $table->text('keterampilankomputer');
-            $table->text('keterampilanlain');
+            $table->string('skill',128);
+            $table->tinyInteger('prosentase',);
             $table->timestamps();
         });
     }

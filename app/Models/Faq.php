@@ -9,7 +9,7 @@ class Faq extends Model
 {
     protected $table="bbn1_faq";
     protected $fillable = [
-        'namafaq',
-        'deskripsifaq',
+        'nama_faq',
+        'deskripsi_faq',
     ];
 }

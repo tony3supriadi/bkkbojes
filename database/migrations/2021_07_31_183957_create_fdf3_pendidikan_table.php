@@ -16,16 +16,17 @@ class CreateFdf3PendidikanTable extends Migration
         Schema::create('fdf3_pendidikan', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('personal_id');
-            $table->string('bulanmulai',2);
-            $table->string('tahunmulai',4);
-            $table->string('bulanselesai',2);
-            $table->string('tahunselesai',4);
-            $table->string('almamater',128);
+            $table->string('bulan_mulai',2);
+            $table->string('tahun_mulai',4);
+            $table->string('bulan_selesai',2);
+            $table->string('tahun_selesai',4);
+            $table->boolean('masih_sekolah',)->nullable();
+            $table->string('nama_sekolah',128);
             $table->string('provinsi',64)->nullable();
             $table->string('kabupaten',64)->nullable();
-            $table->string('jenjangpendidikan',32)->nullable();
+            $table->string('jenjang_pendidikan',32)->nullable();
             $table->string('jurusan',64)->nullable();
-            $table->decimal('nilaitertinggi',8,2)->nullable();
+            $table->decimal('nilai_akhir',8,2)->nullable();
             $table->timestamps();
         });
     }
