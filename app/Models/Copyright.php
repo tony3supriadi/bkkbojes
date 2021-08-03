@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Copyright extends Model
 {
-    protected $table = "bpt3_copyright";
+    protected $table = "bbt3_copyright";
     protected $fillable = [
         'situs_dikelola',
         'hak_cipta',
