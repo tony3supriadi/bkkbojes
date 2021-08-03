@@ -119,8 +119,8 @@ Route::group([
             Route::resource("/faq", App\Http\Controllers\Admin\FaqController::class)
                 ->except(["show"]);
 
-            Route::delete("/ketentuanpengguna", [App\Http\Controllers\Admin\KetentuanPenggunaController::class, "bulk_destroy"])->name("ketentuanpengguna.bulk-destroy");
-            Route::resource("/ketentuanpengguna", App\Http\Controllers\Admin\KetentuanPenggunaController::class)
+            Route::delete("/ketentuan-pengguna", [App\Http\Controllers\Admin\KetentuanPenggunaanController::class, "bulk_destroy"])->name("ketentuan-pengguna.bulk-destroy");
+            Route::resource("/ketentuan-pengguna", App\Http\Controllers\Admin\KetentuanPenggunaanController::class)
                 ->except(["show"]);
 
             Route::delete("/kebijakanprivasi", [App\Http\Controllers\Admin\KebijakanPrivasiController::class, "bulk_destroy"])->name("kebijakanprivasi.bulk-destroy");
