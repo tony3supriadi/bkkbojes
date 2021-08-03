@@ -19,7 +19,8 @@ Route::get('/lupa-sandi', [App\Http\Controllers\LupaSandiController::class, 'ind
 
 Route::group([
     "prefix" => "/akun",
-    "as" => "akun."
+    "as" => "akun.",
+    "middleware" => ["auth:personal"]
 ], function () {
     Route::get('/', [App\Http\Controllers\Akun\AkunController::class, 'redirectTo']);
 

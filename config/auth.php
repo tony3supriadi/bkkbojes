@@ -47,6 +47,12 @@ return [
             'provider' => 'admins',
         ],
 
+        'personal' => [
+            'redirectTo' => '/akun',
+            'driver' => 'session',
+            'provider' => 'personals',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -79,6 +85,10 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class
+        ],
+        'personals' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Personal::class
         ]
 
         // 'users' => [
