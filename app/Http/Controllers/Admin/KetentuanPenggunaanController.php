@@ -36,7 +36,7 @@ class KetentuanPenggunaanController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.ketentuan-penggunaan.create');
     }
 
     /**
@@ -47,18 +47,14 @@ class KetentuanPenggunaanController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $this->validate($request, [
+            "nama_ketentuan" => "required",
+            "deskripsi_ketentuan" => "required"
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $data = KetentuanPenggunaan::create($request->all());
+        return redirect()->route('admin.ketentuan-pengguna.edit', encrypt($data->id))
+            ->with('store-success', "Proses tambah baru Ketentuan Penggunaan berhasil");
     }
 
     /**
@@ -69,7 +65,8 @@ class KetentuanPenggunaanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = KetentuanPenggunaan::find(decrypt($id));
+        return view('admin.pages.ketentuan-penggunaan.edit', compact('data'));
     }
 
     /**
@@ -81,7 +78,15 @@ class KetentuanPenggunaanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            "nama_ketentuan" => "required",
+            "deskripsi_ketentuan" => "required"
+        ]);
+
+        $data = KetentuanPenggunaan::find(decrypt($id));
+        $data->update($request->all());
+        return redirect()->back()
+            ->with('update-success', 'Proses ubah data berhasil');
     }
 
     /**
