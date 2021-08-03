@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Manage Admin')
+@section('title', 'Tambah Baru - Manage Admin')
 
 @section('page-title')
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
