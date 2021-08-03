@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -12,9 +13,21 @@ Route::get('/testimonial', [App\Http\Controllers\DaftarMitraController::class, '
 Route::get('/faq', [App\Http\Controllers\DaftarMitraController::class, 'index'])->name('faq');
 
 Route::get('/login', [App\Http\Controllers\LoginController::class, 'index'])->name('login');
+
 Route::get('/daftar', [App\Http\Controllers\DaftarController::class, 'index'])->name('daftar');
+Route::post('/daftar', [App\Http\Controllers\DaftarController::class, 'process_register']);
+
 Route::get('/daftar/konfirmasi', [App\Http\Controllers\DaftarController::class, 'confirm_page'])->name('daftar.konfirmasi');
+
+Route::post('/daftar/konfirmasi/resend', [App\Http\Controllers\DaftarController::class, 'confirm_resend'])
+    ->name('daftar.konfirmasi.resend')
+    ->middleware(["auth", "throttle:6,1"]);
+Route::post('/daftar/konfirmasi/{id}/{hash}', [App\Http\Controllers\DaftarController::class, 'confirm_process'])
+    ->name('daftar.konfirmasi.process')
+    ->middleware(["auth", "throttle:6,1", "signed"]);
+
 Route::get('/daftar/berhasil', [App\Http\Controllers\DaftarController::class, 'success_page'])->name('daftar.berhasil');
+
 Route::get('/lupa-sandi', [App\Http\Controllers\LupaSandiController::class, 'index'])->name('lupa-sandi');
 
 Route::group([

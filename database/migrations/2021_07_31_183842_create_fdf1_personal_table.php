@@ -23,6 +23,7 @@ class CreateFdf1PersonalTable extends Migration
             $table->string('tempat_lahir',64)->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('email',128)->unique();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('alamat',64)->nullable();
             $table->string('provinsi',64)->nullable();
             $table->string('kabupaten',64)->nullable();
@@ -33,6 +34,7 @@ class CreateFdf1PersonalTable extends Migration
             $table->string('nama_pengguna',64)->unique();
             $table->enum('jenis_akun',['Siswa','Alumni','Umum'])->nullable();
             $table->string('kata_sandi');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
