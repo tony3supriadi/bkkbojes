@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
-    protected $table = "bpt2_address";
+    protected $table = "bbt2_address";
     protected $fillable = [
         'nama',
         'alamat',

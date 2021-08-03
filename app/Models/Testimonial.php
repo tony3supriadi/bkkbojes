@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Testimonial extends Model
 {
-    protected $tables = "bbk2_testimonial";
+    protected $table = "bbk2_testimonial";
     protected $fillable = [
         'personal_id',
         'nama',

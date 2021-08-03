@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Link extends Model
 {
-    protected $table = "bpt4_link";
+    protected $table = "bbt4_link";
     protected $fillable = [
         'nama',
         'logo',
