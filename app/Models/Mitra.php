@@ -9,20 +9,19 @@ class Mitra extends Model
 {
     protected $table="bpr1_mitra";
     protected $fillable = [
-        'namaperusahaan',
-        'bidangusaha',
-        'lokasikabupaten',
-        'jenisbadanusaha',
-        'bentukusaha',
-        'jumlahkaryawan',
-        'busanakerja',
-        'waktukerja',
+        'nama_mitra',
+        'bidang_usaha',
+        'lokasi_kabupaten',
+        'jenis_badan_usaha',
+        'bentuk_usaha',
+        'jumlah_karyawan',
+        'busana_kerja',
+        'waktu_kerja',
         'kontak',
         'telepon',
         'website',
         'email',
-        'profilperusahaan',
+        'profil_perusahaan',
         'logo',
-        'imageslideshow',
     ];
 }

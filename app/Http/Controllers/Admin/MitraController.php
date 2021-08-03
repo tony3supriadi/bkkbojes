@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Mitra;
 use Illuminate\Http\Request;
 
-class LowonganController extends Controller
+class MitraController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,17 @@ class LowonganController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        if (request()->get('type') == 'json') {
+            $index = 0;
+            $results = [];
+            foreach (Mitra::all() as $item) {
+                $results[$index] = $item;
+                $results[$index]["encryptid"] = encrypt($item->id);
+                $index++;
+            }
+            return response()->json($results);
+        }
+        return view('admin.pages.mitra.index');
     }
 
     /**
