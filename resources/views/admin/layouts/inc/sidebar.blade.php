@@ -58,7 +58,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Custom Pages:</h6>
                 <a class="collapse-item" href="{{ route('admin.faq.index') }}">Sering Ditanya (FAQ)</a>
-                <a class="collapse-item" href="#">Ketentuan Penggunaan</a>
+                <a class="collapse-item" href="{{ route('admin.ketentuan-pengguna.index') }}">Ketentuan Penggunaan</a>
                 <a class="collapse-item" href="#">Kebijakan Privasi</a>
                 <a class="collapse-item" href="#">Tentang Kami</a>
                 <a class="collapse-item" href="#">Testimonial</a>
