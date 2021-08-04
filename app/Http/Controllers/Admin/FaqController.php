@@ -35,7 +35,7 @@ class FaqController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.pages.faq.create");
     }
 
     /**
@@ -46,18 +46,14 @@ class FaqController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $this->validate($request, [
+            'nama_faq' => 'required',
+            'deskripsi_faq' => 'required'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $data = Faq::create($request->all());
+        return redirect()->route('admin.faq.edit', encrypt($data->id))
+            ->with('store-success', 'Proses tambah baru FAQ berhasil');
     }
 
     /**
@@ -68,7 +64,8 @@ class FaqController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Faq::find(decrypt($id));
+        return view('admin.pages.faq.edit', compact('data'));
     }
 
     /**
@@ -80,7 +77,15 @@ class FaqController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'nama_faq' => 'required',
+            'deskripsi_faq' => 'required'
+        ]);
+
+        $data = Faq::find(decrypt($id));
+        $data->update($request->all());
+        return redirect()->back()
+            ->with('update-success', 'Proses ubah data FAQ berhasil.');
     }
 
     /**
