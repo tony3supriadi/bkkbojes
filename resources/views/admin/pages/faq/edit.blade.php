@@ -110,7 +110,7 @@
             $('.btn-save').attr('disabled', 'disabled');
             $('.btn-reset').attr('disabled', 'disabled');
 
-            $('input').attr('readonly', 'readonlu');
+            $('input').attr('readonly', 'readonly');
             $('#deskripsi-disabled').removeClass('d-none');
             $('#deskripsi-input').addClass('d-none');
         });
@@ -123,7 +123,7 @@
         Swal.fire({
             icon: 'success',
             title: 'Berhasil!!',
-            text: 'Proses tambah baru admin berhasil',
+            text: 'Proses tambah baru FAQ berhasil',
             confirmButtonClass: 'btn btn-primary',
             showConfirmButton: false,
             buttonsStyling: false,
@@ -140,7 +140,7 @@
         Swal.fire({
             icon: 'success',
             title: 'Berhasil!!',
-            text: 'Proses ubah data admin berhasil.',
+            text: 'Proses ubah data FAQ berhasil.',
             confirmButtonClass: 'btn btn-primary',
             showConfirmButton: false,
             buttonsStyling: false,

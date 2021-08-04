@@ -35,7 +35,7 @@ class KebijakanPrivasiController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.pages.kebijakan-privasi.create");
     }
 
     /**
@@ -46,18 +46,15 @@ class KebijakanPrivasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $this->validate($request, [
+            'nama_kebijakan' => 'required',
+            'deskripsi_kebijakan' => 'required'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $data = KebijakanPrivasi::create($request->all());
+        return redirect()->route('admin.kebijakan-privasi.edit', encrypt($data->id))
+            ->with('store-success', 'Proses tambah baru Kebijakan Privasi berhasil');
+
     }
 
     /**
@@ -68,7 +65,9 @@ class KebijakanPrivasiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = KebijakanPrivasi::find(decrypt($id));
+        return view('admin.pages.kebijakan-privasi.edit', compact('data'));
+
     }
 
     /**
@@ -80,7 +79,15 @@ class KebijakanPrivasiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'nama_kebijakan' => 'required',
+            'deskripsi_kebijakan' => 'required'
+        ]);
+
+        $data = KebijakanPrivasi::find(decrypt($id));
+        $data->update($request->all());
+        return redirect()->back()
+            ->with('update-success', 'Proses ubah data Kebijakan Privasi berhasil.');
     }
 
     /**

@@ -35,7 +35,7 @@ class TestimonialController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.testimonial.create');
     }
 
     /**
@@ -46,7 +46,19 @@ class TestimonialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'personal_id' => 'required',
+            'nama' => 'required',
+            'jenis_akun' => 'required',
+            'tahun' => 'required',
+            'status' => 'required',
+            'detail_status' => 'required',
+            'deskripsi_testimoni' => 'required'
+        ]);
+
+        $data = Testimonial::create($request->all());
+        return redirect()->route('admin.testimonial.edit', encrypt($data->id))
+            ->with('store-success', 'Proses tambah baru testimonial berhasil');
     }
 
     /**

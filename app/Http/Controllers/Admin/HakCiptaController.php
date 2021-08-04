@@ -35,7 +35,7 @@ class HakCiptaController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.hak-cipta.create');
     }
 
     /**
@@ -46,18 +46,14 @@ class HakCiptaController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $this->validate($request,[
+            'situs_dikelola' => 'required',
+            'hak_cipta' => 'required'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $data = Copyright::create($request->all());
+        return redirect()->route('admin.hak-cipta.edit', encrypt($data->id))
+            ->with('store-success' , 'Proses tambah baru alamat berhasil');
     }
 
     /**
@@ -68,7 +64,8 @@ class HakCiptaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Copyright::find(decrypt($id));
+        return view('admin.pages.hak-cipta.edit', compact('data'));
     }
 
     /**
@@ -80,7 +77,15 @@ class HakCiptaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'situs_dikelola' => 'required',
+            'hak_cipta' => 'required'
+        ]);
+
+        $data = Copyright::find(decrypt($id));
+        $data->update($request->all());
+        return redirect()->back()
+            ->with('update-success', 'Proses ubah data FAQ berhasil.');
     }
 
     /**

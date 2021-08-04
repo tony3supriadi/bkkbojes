@@ -1,14 +1,14 @@
-@extends('admin.layouts.app')
+@extends("admin.layouts.app")
 
-@section('title', 'Ubah Data - Ketentuan Penggunaan')
+@section('title', 'Ubah Data - Hak Cipta')
 
 @section('page-title')
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">
-        <a href="{{ route('admin.ketentuan-pengguna.index') }}" class="btn btn-outline-secondary btn-circle mr-2">
+        <a href="{{ route('admin.hak-cipta.index') }}" class="btn btn-outline-secondary btn-circle mr-2">
             <i class="fa fa-arrow-left"></i>
         </a>
-        Ketentuan Penggunaan | Ubah Data
+        Hak Cipta | Ubah Data
     </h1>
 
     <div class="button-action">
@@ -24,7 +24,7 @@
             <i class="fa fa-trash-alt"></i> Hapus
         </button>
 
-        <a href="{{ route('admin.ketentuan-pengguna.create') }}" class="btn btn-primary shadow-sm">
+        <a href="{{ route('admin.hak-cipta.create') }}" class="btn btn-primary shadow-sm">
             <i class="fas fa-plus-circle fa-sm text-white-50"></i> Tambah Baru
         </a>
     </div>
@@ -34,28 +34,24 @@
 @section('content')
 <div class="row">
     <div class="col-md-6">
-        <form action="{{route('admin.ketentuan-pengguna.update', encrypt($data->id)) }}" method="post" class="card shadow-sm">
+        <form action="{{ route('admin.hak-cipta.update', encrypt($data->id)) }}" method="post" class="card shadow-sm">
             @csrf
             @method('put')
             <div class="card-body">
                 <div class="form-group">
-                    <label for="nama_ketentuan">Ketentuan Penggunaan</label>
-                    <input type="text" name="nama_ketentuan" id="nama_ketentuan" value="{{old('nama_ketentuan') ? old('nama_ketentuan'): $data->nama_ketentuan}}" 
-                        class="form-control @error('nama_ketentuan') is-invalid @enderror" autocomplete="off" readonly/>
+                    <label for="situs_dikelola">Situs dikelola oleh :</label>
+                    <input type="text" name="situs_dikelola" id="situs_dikelola" value="{{ old('situs_dikelola') ? old('situs_dikelola') : $data->situs_dikelola }}" class="form-control @error('situs_dikelola') is-invalid @enderror" autocomplete="off" readonly />
 
-                    @error('nama_ketentuan')
+                    @error('situs_dikelola')
                     <small class="text-danger d-block">{{ ucfirst($message) }}</small>
                     @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="deskripsi_ketentuan">Deskripsi</label>
-                    <textarea id="deskripsi-disabled" disabled class="form-control">{{$data->deskripsi_ketentuan}}</textarea>
-                    <div id="deskripsi-input" class="d-none">
-                        <textarea type="text" name="deskripsi_ketentuan" id="deskripsi_ketentuan" class="form-control tinymce">{{old('deskripsi_ketentuan') ? old('deskripsi_ketentuan'): $data->deskripsi_ketentuan}}</textarea>
-                    </div>
+                    <label for="hak_cipta">Hak Cipta</label>
+                    <input type="text" name="hak_cipta" id="hak_cipta" value="{{ old('hak_cipta') ? old('hak_cipta') : $data->hak_cipta }}" class="form-control @error('hak_cipta') is-invalid @enderror" autocomplete="off" readonly />
 
-                    @error('deskripsi_ketentuan')
+                    @error('hak_cipta')
                     <small class="text-danger d-block">{{ ucfirst($message) }}</small>
                     @enderror
                 </div>
@@ -93,16 +89,14 @@
 </script>
 
 <script type="text/javascript">
-    $(document).ready(function(){
-        $('.btn-edit').on('click', function(){
+    $(document).ready(function() {
+        $('.btn-edit').on('click', () => {
             $('.btn-edit').addClass('d-none');
             $('.btn-cancel').removeClass('d-none');
             $('.btn-save').removeAttr('disabled');
             $('.btn-reset').removeAttr('disabled');
 
             $('input').removeAttr('readonly');
-            $('#deskripsi-disabled').addClass('d-none');
-            $('#deskripsi-input').removeClass('d-none');
         });
 
         $('.btn-cancel').on('click', () => {
@@ -112,8 +106,6 @@
             $('.btn-reset').attr('disabled', 'disabled');
 
             $('input').attr('readonly', 'readonly');
-            $('#deskripsi-disabled').removeClass('d-none');
-            $('#deskripsi-input').addClass('d-none');
         });
     });
 </script>
@@ -124,7 +116,7 @@
         Swal.fire({
             icon: 'success',
             title: 'Berhasil!!',
-            text: 'Proses tambah baru ketentuan penggunaan berhasil',
+            text: 'Proses tambah baru hak cipta berhasil',
             confirmButtonClass: 'btn btn-primary',
             showConfirmButton: false,
             buttonsStyling: false,
@@ -141,7 +133,7 @@
         Swal.fire({
             icon: 'success',
             title: 'Berhasil!!',
-            text: 'Proses ubah data ketentuan penggunaan berhasil.',
+            text: 'Proses ubah data hak cipta berhasil.',
             confirmButtonClass: 'btn btn-primary',
             showConfirmButton: false,
             buttonsStyling: false,

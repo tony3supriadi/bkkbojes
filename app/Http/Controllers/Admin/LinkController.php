@@ -35,7 +35,7 @@ class LinkController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.link.create');
     }
 
     /**
@@ -46,18 +46,15 @@ class LinkController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $this->validate($request, [
+            'nama' => 'required',
+            'logo' => 'required',
+            'link' => 'required'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $data = Link::create($request->all());
+        return redirect()->route('admin.link.edit', encrypt($data->id))
+            ->with('store-success', 'Proses tambah baru link berhasil');
     }
 
     /**
@@ -68,7 +65,8 @@ class LinkController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Link::find(decrypt($id));
+        return view('admin.pages.link.edit', compact('data'));
     }
 
     /**
@@ -80,7 +78,16 @@ class LinkController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'nama' => 'required',
+            'logo' => 'required',
+            'link' => 'required'
+        ]);
+
+        $data = Link::find(decrypt($id));
+        $data->update($request->all());
+        return redirect()->back()
+            ->with('update-success', 'Proses ubah data link berhasil.');
     }
 
     /**
@@ -91,6 +98,26 @@ class LinkController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Link::find(decrypt($id));
+        $data->delete();
+        return redirect()->route('admin.link.index')
+            ->with('destroy-success', 'Proses hapus data link berhasil.');
+    }
+
+    /**
+     * Remove the resource selected from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function bulk_destroy()
+    {
+        $links = json_decode(request()->links);
+        foreach ($links as $link) {
+            $data = Link::find($link->id);
+            $data->delete();
+        }
+        return redirect()->back()
+            ->with('bulk-destroy-success', 'Proses hapus masal link berhasil.');
     }
 }

@@ -1,14 +1,14 @@
-@extends('admin.layouts.app')
+@extends("admin.layouts.app")
 
-@section('title', 'Ubah Data - Ketentuan Penggunaan')
+@section('title', 'Ubah Data - Tentang Kami')
 
 @section('page-title')
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">
-        <a href="{{ route('admin.ketentuan-pengguna.index') }}" class="btn btn-outline-secondary btn-circle mr-2">
+        <a href="{{ route('admin.tentang-kami.index') }}" class="btn btn-outline-secondary btn-circle mr-2">
             <i class="fa fa-arrow-left"></i>
         </a>
-        Ketentuan Penggunaan | Ubah Data
+        Tentang Kami | Ubah Data
     </h1>
 
     <div class="button-action">
@@ -24,7 +24,7 @@
             <i class="fa fa-trash-alt"></i> Hapus
         </button>
 
-        <a href="{{ route('admin.ketentuan-pengguna.create') }}" class="btn btn-primary shadow-sm">
+        <a href="{{ route('admin.tentang-kami.create') }}" class="btn btn-primary shadow-sm">
             <i class="fas fa-plus-circle fa-sm text-white-50"></i> Tambah Baru
         </a>
     </div>
@@ -34,28 +34,27 @@
 @section('content')
 <div class="row">
     <div class="col-md-6">
-        <form action="{{route('admin.ketentuan-pengguna.update', encrypt($data->id)) }}" method="post" class="card shadow-sm">
+        <form action="{{ route('admin.tentang-kami.update', encrypt($data->id)) }}" method="post" class="card shadow-sm">
             @csrf
             @method('put')
             <div class="card-body">
                 <div class="form-group">
-                    <label for="nama_ketentuan">Ketentuan Penggunaan</label>
-                    <input type="text" name="nama_ketentuan" id="nama_ketentuan" value="{{old('nama_ketentuan') ? old('nama_ketentuan'): $data->nama_ketentuan}}" 
-                        class="form-control @error('nama_ketentuan') is-invalid @enderror" autocomplete="off" readonly/>
+                    <label for="tentang_kami">FAQ</label>
+                    <input type="text" name="tentang_kami" id="tentang_kami" value="{{ old('tentang_kami') ? old('tentang_kami') : $data->tentang_kami }}" class="form-control @error('tentang_kami') is-invalid @enderror" autocomplete="off" readonly />
 
-                    @error('nama_ketentuan')
+                    @error('tentang_kami')
                     <small class="text-danger d-block">{{ ucfirst($message) }}</small>
                     @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="deskripsi_ketentuan">Deskripsi</label>
-                    <textarea id="deskripsi-disabled" disabled class="form-control">{{$data->deskripsi_ketentuan}}</textarea>
+                    <label for="deskripsi_tentang_kami">Deskripsi</label>
+                    <textarea id="deskripsi-disabled" disabled class="form-control">{{$data->deskripsi_tentang_kami}}</textarea>
                     <div id="deskripsi-input" class="d-none">
-                        <textarea type="text" name="deskripsi_ketentuan" id="deskripsi_ketentuan" class="form-control tinymce">{{old('deskripsi_ketentuan') ? old('deskripsi_ketentuan'): $data->deskripsi_ketentuan}}</textarea>
+                        <textarea name="deskripsi_tentang_kami" id="deskripsi_tentang_kami" class="form-control tinymce">{{ old('deskripsi_tentang_kami') ? old('deskripsi_tentang_kami') : $data->deskripsi_tentang_kami }}</textarea>
                     </div>
 
-                    @error('deskripsi_ketentuan')
+                    @error('deskripsi_tentang_kami')
                     <small class="text-danger d-block">{{ ucfirst($message) }}</small>
                     @enderror
                 </div>
@@ -93,8 +92,8 @@
 </script>
 
 <script type="text/javascript">
-    $(document).ready(function(){
-        $('.btn-edit').on('click', function(){
+    $(document).ready(function() {
+        $('.btn-edit').on('click', () => {
             $('.btn-edit').addClass('d-none');
             $('.btn-cancel').removeClass('d-none');
             $('.btn-save').removeAttr('disabled');
@@ -124,7 +123,7 @@
         Swal.fire({
             icon: 'success',
             title: 'Berhasil!!',
-            text: 'Proses tambah baru ketentuan penggunaan berhasil',
+            text: 'Proses tambah baru tentang kami berhasil',
             confirmButtonClass: 'btn btn-primary',
             showConfirmButton: false,
             buttonsStyling: false,
@@ -141,7 +140,7 @@
         Swal.fire({
             icon: 'success',
             title: 'Berhasil!!',
-            text: 'Proses ubah data ketentuan penggunaan berhasil.',
+            text: 'Proses ubah data tentang kami berhasil.',
             confirmButtonClass: 'btn btn-primary',
             showConfirmButton: false,
             buttonsStyling: false,

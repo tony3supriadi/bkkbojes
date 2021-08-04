@@ -4,7 +4,7 @@
 
 @section('page-title')
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Ketentuan Privasi</h1>
+    <h1 class="h3 mb-0 text-gray-800">Kebijakan Privasi</h1>
 
     <div class="button-action">
         <button type="button" class="btn-bulk-destroy btn btn-danger shadow-sm" disabled>
