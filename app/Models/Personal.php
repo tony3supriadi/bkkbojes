@@ -16,6 +16,8 @@ class Personal extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'nik',
         'nis',
+        'photo',
+        'photo_dir',
         'nama_depan',
         'nama_belakang',
         'jenis_kelamin',
@@ -31,25 +33,20 @@ class Personal extends Authenticatable implements MustVerifyEmail
         'no_hp',
         'nama_pengguna',
         'jenis_akun',
-        'kata_sandi',
+        'password',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
-        'kata_sandi',
+        'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
 }

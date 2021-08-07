@@ -19,6 +19,7 @@
 
     <div class="account-content">
         Personal-page-init!
+        {{ Auth::user() }}
     </div>
 </div>
 @endsection

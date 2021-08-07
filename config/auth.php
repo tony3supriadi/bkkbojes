@@ -48,7 +48,7 @@ return [
         ],
 
         'personal' => [
-            'redirectTo' => '/akun',
+            'redirectTo' => 'akun.profile.personal',
             'driver' => 'session',
             'provider' => 'personals',
         ],

@@ -32,6 +32,51 @@ $route = Route::currentRouteName();
             </li>
         </ul>
 
+        @if(Auth::guard('personal')->user())
+        <ul class="navbar-nav mt-2 mt-lg-0 d-none d-md-flex">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle user-profile" href="#" id="navigation-lainnya" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    @if(!Auth::guard('personal')->user()->foto_profile)
+                    <div class="photo bg-primary">
+                        {{ substr(Auth::guard('personal')->user()->nama_depan, 0, 1) }}
+                    </div>
+                    <span class="mx-1">
+                        {{ Auth::guard('personal')->user()->nama_depan }}
+                    </span>
+                    <i class="las la-angle-down"></i>
+                    @else
+                    <div class="photo">
+                        <img src="{{ asset('uploads/profile/'.Auth::guard('personal')->user()->photo_dir.'/'.strtolower(Auth::guard('personal')->user()->nama_depan).'-32x32.jpg') }}" />
+                    </div>
+                    <span class="mx-1">
+                        {{ Auth::guard('personal')->user()->nama_depan }}
+                    </span>
+                    <i class="las la-angle-down"></i>
+                    @endif
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navigation-lainnya">
+                    <li><a class="dropdown-item py-2" href="{{ route('akun.profile.personal') }}"><i class="la la-user me-2"></i>Profile</a></li>
+                    <li><a class="dropdown-item" href="{{ route('akun.resume') }}"><i class="la la-file-alt me-2"></i>Resume</a></li>
+                    <li><a class="dropdown-item" href="{{ route('akun.pemberitahuan') }}"><i class="la la-bell me-2"></i>Pemberitahuan</a></li>
+                    <li><a class="dropdown-item" href="{{ route('akun.lowongan-tersimpan') }}"><i class="la la-bookmark me-2"></i>Lowongan Tersimpan</a></li>
+                    <li><a class="dropdown-item" href="{{ route('akun.lamaran-terkirim') }}"><i class="la la-send me-2"></i>Lamaran Terkirim</a></li>
+                    <li><a class="dropdown-item" href="{{ route('akun.latihan-tes') }}"><i class="la la-puzzle-piece me-2"></i>Latihan Tes</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="javascript::void()" onclick="$('#logout').submit()">
+                            <i class="la la-sign-out-alt me-2"></i>Logout
+                        </a>
+
+                        <form method="post" action="{{ route('akun.logout') }}" id="logout">
+                            @csrf
+                        </form>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        @else
         <ul class="navbar-nav mt-2 mt-lg-0 d-none d-md-flex">
             <li class="nav-item mx-1">
                 <a class="btn btn-outline-primary" href="{{ route('login') }}">
@@ -44,6 +89,7 @@ $route = Route::currentRouteName();
                 </a>
             </li>
         </ul>
+        @endif
 
         <button class="navbar-toggler" type="button" id="navigation-mobile-toggler">
             <span class="navbar-toggler-icon"></span>

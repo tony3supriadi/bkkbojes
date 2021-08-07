@@ -17,8 +17,10 @@ class CreateFdf1PersonalTable extends Migration
             $table->id();
             $table->string('nik',16)->nullable();
             $table->string('nis',32)->nullable();
-            $table->string('nama_depan',64);
-            $table->string('nama_belakang',64);
+            $table->string('photo')->nullable();
+            $table->string('photo_dir')->nullable();
+            $table->string('nama_depan', 64);
+            $table->string('nama_belakang',64)->nullable();
             $table->enum('jenis_kelamin',['Laki-laki','Perempuan'])->nullable();
             $table->string('tempat_lahir',64)->nullable();
             $table->date('tanggal_lahir')->nullable();
@@ -33,7 +35,7 @@ class CreateFdf1PersonalTable extends Migration
             $table->string('no_hp',16);
             $table->string('nama_pengguna',64)->unique();
             $table->enum('jenis_akun',['Siswa','Alumni','Umum'])->nullable();
-            $table->string('kata_sandi');
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });

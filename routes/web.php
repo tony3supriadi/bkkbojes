@@ -13,27 +13,30 @@ Route::get('/testimonial', [App\Http\Controllers\DaftarMitraController::class, '
 Route::get('/faq', [App\Http\Controllers\DaftarMitraController::class, 'index'])->name('faq');
 
 Route::get('/login', [App\Http\Controllers\LoginController::class, 'index'])->name('login');
+Route::post('/login', [App\Http\Controllers\LoginController::class, 'login']);
 
 Route::get('/daftar', [App\Http\Controllers\DaftarController::class, 'index'])->name('daftar');
-Route::post('/daftar', [App\Http\Controllers\DaftarController::class, 'process_register']);
+Route::post('/daftar', [App\Http\Controllers\DaftarController::class, 'register']);
 
-Route::get('/daftar/konfirmasi', [App\Http\Controllers\DaftarController::class, 'confirm_page'])->name('daftar.konfirmasi');
+Route::get('/daftar/konfirmasi', [App\Http\Controllers\DaftarController::class, 'confirm_page'])
+    ->name('verification.notice');
 
 Route::post('/daftar/konfirmasi/resend', [App\Http\Controllers\DaftarController::class, 'confirm_resend'])
-    ->name('daftar.konfirmasi.resend')
-    ->middleware(["auth", "throttle:6,1"]);
-Route::post('/daftar/konfirmasi/{id}/{hash}', [App\Http\Controllers\DaftarController::class, 'confirm_process'])
-    ->name('daftar.konfirmasi.process')
-    ->middleware(["auth", "throttle:6,1", "signed"]);
+    ->name('verification.resend')->middleware(['auth:personal', 'throttle:6,1']);
+
+Route::get('/daftar/konfirmasi/{id}/{hash}', [App\Http\Controllers\DaftarController::class, 'confirm_verify'])
+    ->name('verification.verify')->middleware(['auth:personal', 'signed', 'throttle:6,1']);
 
 Route::get('/daftar/berhasil', [App\Http\Controllers\DaftarController::class, 'success_page'])->name('daftar.berhasil');
 
 Route::get('/lupa-sandi', [App\Http\Controllers\LupaSandiController::class, 'index'])->name('lupa-sandi');
 
+Route::post('/logout', [App\Http\Controllers\LoginController::class, 'logout'])->name('akun.logout');
+
 Route::group([
     "prefix" => "/akun",
     "as" => "akun.",
-    "middleware" => ["auth:personal"]
+    "middleware" => ["auth:personal", "verified"]
 ], function () {
     Route::get('/', [App\Http\Controllers\Akun\AkunController::class, 'redirectTo']);
 
@@ -84,6 +87,11 @@ Route::group([
     "prefix" => "/app/v1/bkk-admin",
     "as" => "admin."
 ], function () {
+
+    Route::get("/login", [App\Http\Controllers\Admin\AuthController::class, 'showLoginForm'])->name('auth.login');
+    Route::post("/login", [App\Http\Controllers\Admin\AuthController::class, 'login']);
+
+    Route::get("/akses-ditolak", [App\Http\Controllers\Admin\AuthController::class, 'deniedAccess'])->name('akses-ditolak');
 
     Route::group([
         "middleware" => ["auth:admin", "authIsAdmin"]
@@ -149,9 +157,4 @@ Route::group([
 
         Route::post("/logout", [App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('logout');
     });
-
-    Route::get("/login", [App\Http\Controllers\Admin\AuthController::class, 'showLoginForm'])->name('auth.login');
-    Route::post("/login", [App\Http\Controllers\Admin\AuthController::class, 'login']);
-
-    Route::get("/akses-ditolak", [App\Http\Controllers\Admin\AuthController::class, 'deniedAccess'])->name('akses-ditolak');
 });

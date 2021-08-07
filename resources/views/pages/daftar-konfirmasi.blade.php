@@ -20,7 +20,10 @@
         <p class="mb-5 text-sedonary">Silahkan buka email dan klik link untuk mengaktivasi akunmu</p>
 
         <p class="text-muted text-resend"><small>Kirim ulang <span class="time">60</span> detik</small></p>
-        <button type="submit" class="btn-resend btn btn-primary d-none">Kirim Ulang Konfirmasi</button>
+        <form action="{{ route('verification.resend') }}" method="post">
+            @csrf
+            <button type="submit" class="btn-resend btn btn-primary d-none">Kirim Ulang Konfirmasi</button>
+        </form>
     </div>
 </section>
 @endsection

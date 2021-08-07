@@ -12174,6 +12174,22 @@ form .form-check-input:focus {
 .navbar {
   padding-top: 0;
 }
+.navbar .user-profile .photo {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 300;
+  text-align: center;
+  align-items: center;
+}
+.navbar .user-profile .photo img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
 
 .navigation-mobile {
   position: absolute;
