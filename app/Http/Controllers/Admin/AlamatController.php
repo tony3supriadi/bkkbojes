@@ -98,6 +98,26 @@ class AlamatController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Address::find(decrypt($id));
+        $data->delete();
+        return redirect()->route('admin.alamat.index')
+            ->with('destroy-success', 'Proses hapus data alamat berhasil.');
+    }
+
+    /**
+     * Remove the resource selected from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function bulk_destroy()
+    {
+        $address = json_decode(request()->address);
+        foreach($address as $alamat){
+            $data = Address::find($alamat->id);
+            $data->delete();
+        } 
+        return redirect()->back()
+            ->with('bulk-destroy-success', 'Proses hapus masal alamat berhasil.');
     }
 }

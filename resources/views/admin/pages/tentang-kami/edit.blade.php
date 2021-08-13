@@ -70,6 +70,11 @@
         </form>
     </div>
 </div>
+
+<form id="destroy-action" action="{{ route('admin.tentang-kami.destroy', encrypt($data->id)) }}" method="post" class="d-none">
+    @csrf
+    @method(delete);
+</form>
 @endsection
 
 @push('styles')
@@ -113,6 +118,24 @@
             $('input').attr('readonly', 'readonly');
             $('#deskripsi-disabled').removeClass('d-none');
             $('#deskripsi-input').addClass('d-none');
+        });
+
+        $('.btn-destroy').on('click', () => {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Data yang sudah dihapus tidak bisa dikembalikan?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonClass: 'btn btn-danger',
+                cancelButtonClass: 'btn btn-secondary',
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Batal',
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('#destroy-action').submit();
+                }
+            })
         });
     });
 </script>

@@ -96,6 +96,20 @@ class TentangKamiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = TentangKami::find(decrypt($id));
+        $data->delete();
+        return redirect()->route('admin.pages.tentang-kami.index')
+            ->with('destroy-success', 'Proses hapus data admin berhasil.');
+    }
+
+    public function bulk_destroy()
+    {
+        $tentangs = json_decode(request()->tentangs);
+        foreach ($tentangs as $tentang){
+            $data = TentangKami::find($tentang->id);
+            $data->delete();
+            return redirect()->back()
+                ->with('bulk-destroy', 'Proses hapus masal tentang kami berhasil.');
+        }
     }
 }

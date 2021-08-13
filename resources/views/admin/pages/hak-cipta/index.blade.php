@@ -22,6 +22,12 @@
 <div class="card card-body shadow-sm">
     <table class="table datatable" width="100%"></table>
 </div>
+
+<form id="bulk-destroy" action="{{ route('admin.hak-cipta.bulk-destroy') }}" method="post" class="d-none">
+    @csrf
+    @method('delete')
+    <input type="text" name="copyrights">
+</form>
 @endsection
 
 @push('styles')
@@ -37,6 +43,7 @@
 <script src="{{ asset('admin/vendor/sweetalert2/sweetalert2.all.min.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
+        var selected = [];
         $('.datatable').DataTable({
             width: '100%',
             processing: true,
@@ -68,7 +75,77 @@
                 title: 'Hak Cipta',
                 orderable: true,
             }],
+            rowCallback: (row, data, index) => {
+                $('td:first-child', row).on('click', function() {
+                    if (!$(row).hasClass('selected')) {
+                        $(row).addClass('selected');
+                        selected.push(data);
+                    } else {
+                        $(row).removeClass('selected');
+                        selected.splice(selected.indexOf(data.id), 1);
+                    }
+
+                    if (selected.length > 0) {
+                        $('.btn-bulk-destroy').removeAttr('disabled');
+                    } else {
+                        $('.btn-bulk-destroy').attr('disabled', 'disabled');
+                    }
+                });
+
+                $('td', row).on('dblclick', () => {
+                    window.location.href = "/app/v1/bkk-admin/hak-cipta/" + data.encryptid + "/edit";
+                });
+            }
+        });
+
+        $('.btn-bulk-destroy').on('click', () => {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Data yang sudah dihapus tidak bisa dikembalikan?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonClass: 'btn btn-danger',
+                confirmButtonColor: '#d52a1a',
+                cancelButtonClass: 'btn btn-secondary',
+                confirmButtonText: 'Ya, Hapus',
+                cancelButtonText: 'Batal',
+            }).then((result) => {
+                $('#bulk-destroy input[name="copyrights"]').val(JSON.stringify(selected));
+                $('#bulk-destroy').submit();
+            });
         });
     });
 </script>
+
+@if(Session::has('destroy-success'))
+<script type="text/javascript">
+    $(document).ready(function() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Proses hapus data hak cipta berhasil.',
+            showConfirmButton: false,
+            buttonsStyling: false,
+            timer: 1500,
+            timerProgressBar: true,
+        });
+    });
+</script>
+@endif
+
+@if(Session::has('bulk-destroy-success'))
+<script type="text/javascript">
+    $(document).ready(function() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Proses hapus data masal berhasil.',
+            showConfirmButton: false,
+            buttonsStyling: false,
+            timer: 1500,
+            timerProgressBar: true,
+        });
+    });
+</script>
+@endif
 @endpush

@@ -53,7 +53,7 @@ class HakCiptaController extends Controller
 
         $data = Copyright::create($request->all());
         return redirect()->route('admin.hak-cipta.edit', encrypt($data->id))
-            ->with('store-success' , 'Proses tambah baru alamat berhasil');
+            ->with('store-success' , 'Proses tambah baru hak cipta berhasil');
     }
 
     /**
@@ -85,7 +85,7 @@ class HakCiptaController extends Controller
         $data = Copyright::find(decrypt($id));
         $data->update($request->all());
         return redirect()->back()
-            ->with('update-success', 'Proses ubah data FAQ berhasil.');
+            ->with('update-success', 'Proses ubah data hak cipta berhasil.');
     }
 
     /**
@@ -96,6 +96,20 @@ class HakCiptaController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $data = Copyright::find(decrypt($id));
+       $data->delete();
+       return redirect()->route('admin.hak-cipta.index')
+        ->with('destroy-success', 'Proses hapus data hak cipta berhasil.');
+    }
+
+    public function bulk_destroy()
+    {
+        $copyrights = json_decode(request()->copyrights);
+        foreach ($copyrights as $copyright) {
+            $data = Copyright::find($copyright->id);
+            $data->delete();
+        }
+        return redirect()->back()
+            ->with('bulk-destroy-success', 'Proses hapus masal hak cipta berhasil.');
     }
 }
