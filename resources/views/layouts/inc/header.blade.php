@@ -36,7 +36,7 @@ $route = Route::currentRouteName();
         <ul class="navbar-nav mt-2 mt-lg-0 d-none d-md-flex">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle user-profile" href="#" id="navigation-lainnya" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    @if(!Auth::guard('personal')->user()->foto_profile)
+                    @if(!Auth::guard('personal')->user()->photo)
                     <div class="photo bg-primary">
                         {{ substr(Auth::guard('personal')->user()->nama_depan, 0, 1) }}
                     </div>
@@ -46,7 +46,7 @@ $route = Route::currentRouteName();
                     <i class="las la-angle-down"></i>
                     @else
                     <div class="photo">
-                        <img src="{{ asset('uploads/profile/'.Auth::guard('personal')->user()->photo_dir.'/'.strtolower(Auth::guard('personal')->user()->nama_depan).'-32x32.jpg') }}" />
+                        <img src="{{ Auth::guard('personal')->user()->photo }}" />
                     </div>
                     <span class="mx-1">
                         {{ Auth::guard('personal')->user()->nama_depan }}
@@ -64,6 +64,7 @@ $route = Route::currentRouteName();
                     <li>
                         <hr class="dropdown-divider">
                     </li>
+                    <li><a class="dropdown-item" href=""><i class="la la-lock me-2"></i>Akun</a></li>
                     <li>
                         <a class="dropdown-item" href="javascript::void()" onclick="$('#logout').submit()">
                             <i class="la la-sign-out-alt me-2"></i>Logout
@@ -97,16 +98,27 @@ $route = Route::currentRouteName();
         </button>
 
         <ul class="dropdown-menu navigation-mobile">
-            <a class="dropdown-item {{ $route == 'home' ? 'active' : '' }}" href="{{ route('home') }}">Beranda</a>
-            <a class="dropdown-item {{ $route == 'lowongan' ? 'active' : '' }}" href="{{ route('lowongan') }}">Lowongan</a>
-            <a class="dropdown-item {{ $route == 'pengumuman' ? 'active' : '' }}" href="{{ route('pengumuman') }}">Pengumuman</a>
-            <a class="dropdown-item {{ $route == 'daftar-mitra' ? 'active' : '' }}" href="{{ route('daftar-mitra') }}">Daftar Mitra</a>
-            <a class="dropdown-item {{ $route == 'testimonial' ? 'active' : '' }}" href="{{ route('testimonial') }}">Testimonial</a>
+            <li><a class="dropdown-item {{ $route == 'home' ? 'active' : '' }}" href="{{ route('home') }}">Beranda</a></li>
+            <li><a class="dropdown-item {{ $route == 'lowongan' ? 'active' : '' }}" href="{{ route('lowongan') }}">Lowongan</a></li>
+            <li><a class="dropdown-item {{ $route == 'pengumuman' ? 'active' : '' }}" href="{{ route('pengumuman') }}">Pengumuman</a></li>
+            <li><a class="dropdown-item {{ $route == 'daftar-mitra' ? 'active' : '' }}" href="{{ route('daftar-mitra') }}">Daftar Mitra</a></li>
+            <li><a class="dropdown-item {{ $route == 'testimonial' ? 'active' : '' }}" href="{{ route('testimonial') }}">Testimonial</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
 
-            <div class="row mx-1 mb-3 mt-2">
-                <div class="col-6" style="padding-right:.3rem"><a class="btn btn-outline-primary w-100" href="{{ route('login') }}">Login</a></div>
-                <div class="col-6" style="padding-left:.3rem"><a class="btn btn-primary w-100" href="{{ route('daftar') }}">Daftar</a></div>
-            </div>
+            @if(Auth::guard('personal')->user())
+            <li><a class="dropdown-item" href="{{ route('akun.profile.personal') }}">Profile</a></li>
+            <li><a class="dropdown-item" href=""><i class="la la-lock me-2"></i>Akun</a></li>
+            <li><a class="dropdown-item" href="javascript::void()" onclick="$('#logout').submit()">Logout</a></li>
+            @else
+            <li>
+                <div class="row mx-1 mb-3 mt-2">
+                    <div class="col-6" style="padding-right:.3rem"><a class="btn btn-outline-primary w-100" href="{{ route('login') }}">Login</a></div>
+                    <div class="col-6" style="padding-left:.3rem"><a class="btn btn-primary w-100" href="{{ route('daftar') }}">Daftar</a></div>
+                </div>
+            </li>
+            @endif
         </ul>
     </div>
 </nav>

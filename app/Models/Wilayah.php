@@ -1,0 +1,93 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Wilayah extends Model
+{
+    use HasFactory;
+
+    protected $table = "wilayah";
+
+    protected $fillable = [
+        "nama", "kode"
+    ];
+
+    public function provinsi()
+    {
+        $index = 0;
+        $provinces = [];
+        foreach ($this->orderBy('nama', 'ASC')->get() as $key => $val) {
+            if (strlen($val->kode) == 2) {
+                $provinces[$index] = [
+                    "kode" => $val->kode,
+                    "nama" => ucwords(strtolower($val->nama))
+                ];
+                $index++;
+            }
+        };
+        return (object) $provinces;
+    }
+
+    public function kabupaten($provId)
+    {
+        $index = 0;
+        $regencies = [];
+        foreach ($this->where('kode', 'like', $provId . '%')->orderBy('nama', 'ASC')->get() as $key => $val) {
+            if (strlen($val->kode) == 5) {
+                $regencies[$index] = [
+                    "kode" => $val->kode,
+                    "nama" => str_replace("Kab. ", "", ucwords(strtolower($val->nama)))
+                ];
+                $index++;
+            }
+        }
+        return $regencies;
+    }
+
+    public function kecamatan($kabId)
+    {
+        $index = 0;
+        $districts = [];
+        foreach ($this->where('kode', 'like', $kabId . '%')->orderBy('nama', 'ASC')->get() as $key => $val) {
+            if (strlen($val->kode) == 8) {
+                $districts[$index] = [
+                    "kode" => $val->kode,
+                    "nama" => $val->nama
+                ];
+                $index++;
+            }
+        }
+        return $districts;
+    }
+
+    public function desa($kecId)
+    {
+        $index = 0;
+        $villages = [];
+        foreach ($this->where('kode', 'like', $kecId . '%')->orderBy('nama', 'ASC')->get() as $key => $val) {
+            if (strlen($val->kode) > 8) {
+                $villages[$index] = [
+                    "kode" => $val->kode,
+                    "nama" => $val->nama
+                ];
+                $index++;
+            }
+        }
+        return $villages;
+    }
+
+    public function findByCode($code)
+    {
+        return $this->where('kode', $code)->first();
+    }
+
+    public function getName($code)
+    {
+        $wilayah = $this->findByCode($code);
+        $wilayah = ucwords(strtolower($wilayah->nama));
+        return $wilayah;
+    }
+}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Akun;
 
 use App\Http\Controllers\Controller;
+use App\Models\Personal;
 use Illuminate\Http\Request;
 
 class AkunController extends Controller

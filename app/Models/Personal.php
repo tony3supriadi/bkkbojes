@@ -11,13 +11,12 @@ class Personal extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
-    protected $table="fdf1_personal";
-    
+    protected $table = "fdf1_personal";
+
     protected $fillable = [
         'nik',
         'nis',
         'photo',
-        'photo_dir',
         'nama_depan',
         'nama_belakang',
         'jenis_kelamin',
