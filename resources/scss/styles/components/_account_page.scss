@@ -106,7 +106,7 @@
             }
 
             .empty-data {
-                background-color: $gray-100;
+                border: 2px dashed $gray-400;
                 color: $gray-500;
                 width: 100%;
                 min-height: 332px;

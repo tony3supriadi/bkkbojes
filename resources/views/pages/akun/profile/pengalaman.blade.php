@@ -1,3 +1,8 @@
+@php
+use App\Models\Wilayah;
+$wilayah = new Wilayah();
+@endphp
+
 @extends('pages.akun.akun')
 
 @section('breadcrumbs')
@@ -24,143 +29,77 @@
                 <span>Pengalaman Kerja</span>
             </h4>
 
-            <a href="">
+            <a href="{{ route('akun.profile.pengalaman.create') }}">
                 <i class="la la-plus-circle me-2"></i>Tambah
             </a>
         </div>
 
-        @if (!count($pengalaman))
+        @if (count($pengalaman))
         <div class="py-4">
+            @foreach($pengalaman as $key => $val)
             <div class="row mb-5">
                 <div class="col-md-4">
-                    <p class="text-secondary m-0"><strong>Sep 2019 - Sekarang</strong></p>
-                    <p class="text-muted m-0">1 Tahun 11 Bulan</p>
+                    <p class="text-secondary m-0"><strong>{{ Carbon\Carbon::parse($val->tanggal_mulai)->isoFormat('MMM Y') }} - {{ $val->masih_bekerja ? "Sekarang" : Carbon\Carbon::parse($val->tanggal_selesai)->isoFormat('MMM Y') }}</strong></p>
+                    <p class="text-muted m-0">
+                        @php
+                        $start = date_create($val->tanggal_mulai);
+                        $end = date_create($val->masih_bekerja ? date('Y-m-d') : $val->tanggal_selesai);
+                        $diff = date_diff($end, $start);
+                        print($diff->y . " Tahun " . $diff->m . " Bulan")
+                        @endphp
+                    </p>
                 </div>
                 <div class="col-md-8">
-                    <h5 class="text-secondary mb-3"><strong>Programmer</strong></h5>
+                    <h5 class="text-secondary mb-3"><strong>{{ $val->bekerja_sebagai }}</strong></h5>
 
                     <div class="mb-4">
-                        <p class="text-muted m-0"><i class="la la-building me-2"></i> DINKOMINFO</p>
-                        <p class="text-muted m-0"><i class="la la-map-marker me-2"></i> Purbalingga, Jawa Tengah, Indonesia</p>
-                        <p class="text-muted m-0"><i class="la la-industry me-2"></i> Teknologi Informasi</p>
+                        <p class="text-muted m-0"><i class="la la-building me-2"></i> {{ $val->nama_perusahaan }}</p>
+                        <p class="text-muted m-0"><i class="la la-map-marker me-2"></i> {{ $wilayah->getName($val->kabupaten) }}, {{ $wilayah->getName($val->provinsi) }}, Indonesia</p>
+                        <p class="text-muted m-0"><i class="la la-industry me-2"></i> {{ $val->bidang_usaha }}</p>
                     </div>
 
                     <div class="row py-1">
                         <div class="col-md-4 text-secondary mb-1"><strong>Jabatan</strong></div>
-                        <div class="col-md-8">Pegawai (Non-manajemen & Non-supervisor)</div>
+                        <div class="col-md-8">{{ $val->jabatan ? $val->jabatan : '-' }}</div>
                     </div>
 
                     <div class="row py-1">
                         <div class="col-md-4 text-secondary mb-1"><strong>Bidang Pekerjaan</strong></div>
-                        <div class="col-md-8">Programmer Perangkat Lunak</div>
+                        <div class="col-md-8">{{ $val->bidang_pekerjaan ? $val->bidang_pekerjaan : '-' }}</div>
                     </div>
 
                     <div class="row py-1 mb-md-4">
                         <div class="col-md-4 text-secondary"><strong>Gaji Bulanan</strong></div>
-                        <div class="col-md-8">Rp2.500.000,-</div>
+                        <div class="col-md-8">{{ $val->gaji ? 'Rp' . number_format($val->gaji) . ',-' : '-' }}</div>
                     </div>
 
                     <div class="row py-1 mb-md-2">
                         <div class="col-12 text-secondary mb-1"><strong>Deskripsi Pekerjaan :</strong></div>
                         <div class="col-12">
-                            <ul>
-                                <li>Melakukan analisis, development, deployment aplikasi yang dibutuhkan</li>
-                                <li>Melakukan pemeliharaan dan penyempurnaan aplikasi yang sudah ada</li>
-                            </ul>
+                            {!! $val->deskripsi_pekerjaan ? $val->deskripsi_pekerjaan : '-' !!}
                         </div>
                     </div>
 
                     <div class="row py-1">
                         <div class="col-12 text-secondary mb-1"><strong>Tools yang Digunakan :</strong></div>
                         <div class="col-12">
-                            <ul>
-                                <li>Visual Studio</li>
-                                <li>Codeigniter dan Laravel (PHP Framework)</li>
-                                <li>Bootstrap dan Material Design (CSS Framework)</li>
-                                <li>Spring (Java Framework)</li>
-                            </ul>
+                            {!! $val->tools ? $val->tools : '-' !!}
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12 text-end">
                     <hr />
-                    <a href="#" class="btn btn-outline-secondary btn-sm"><i class="la la-edit mr-1"></i>Ubah</a>
-                    <a href="#" class="btn btn-outline-danger btn-sm"><i class="la la-trash mr-1"></i>Hapus</a>
+                    <a href="{{ route('akun.profile.pengalaman.edit', encrypt($val->id)) }}" class="btn btn-outline-secondary btn-sm"><i class="la la-edit mr-1"></i>Ubah</a>
+                    <a href="#" onclick="deleted('{{ $val->id }}')" class="btn btn-danger text-white btn-sm"><i class="la la-trash mr-1"></i>Hapus</a>
                 </div>
             </div>
 
-            <div class="row mb-5">
-                <div class="col-md-4">
-                    <p class="text-secondary m-0"><strong>Sep 2019 - Sekarang</strong></p>
-                    <p class="text-muted m-0">1 Tahun 11 Bulan</p>
-                </div>
-                <div class="col-md-8">
-                    <h5 class="text-secondary mb-3"><strong>Programmer</strong></h5>
-
-                    <div class="mb-4">
-                        <p class="text-muted m-0"><i class="la la-building me-2"></i> DINKOMINFO</p>
-                        <p class="text-muted m-0"><i class="la la-map-marker me-2"></i> Purbalingga, Jawa Tengah, Indonesia</p>
-                        <p class="text-muted m-0"><i class="la la-industry me-2"></i> Teknologi Informasi</p>
-                    </div>
-
-                    <div class="row py-1">
-                        <div class="col-md-4 text-secondary mb-1"><strong>Jabatan</strong></div>
-                        <div class="col-md-8">Pegawai (Non-manajemen & Non-supervisor)</div>
-                    </div>
-
-                    <div class="row py-1">
-                        <div class="col-md-4 text-secondary mb-1"><strong>Bidang Pekerjaan</strong></div>
-                        <div class="col-md-8">Programmer Perangkat Lunak</div>
-                    </div>
-
-                    <div class="row py-1 mb-md-4">
-                        <div class="col-md-4 text-secondary"><strong>Gaji Bulanan</strong></div>
-                        <div class="col-md-8">Rp2.500.000,-</div>
-                    </div>
-
-                    <div class="row py-1 mb-md-2">
-                        <div class="col-12 text-secondary mb-1"><strong>Deskripsi Pekerjaan :</strong></div>
-                        <div class="col-12">
-                            <ul>
-                                <li>Melakukan analisis, development, deployment aplikasi yang dibutuhkan</li>
-                                <li>Melakukan pemeliharaan dan penyempurnaan aplikasi yang sudah ada</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="row py-1">
-                        <div class="col-12 text-secondary mb-1"><strong>Tools yang Digunakan :</strong></div>
-                        <div class="col-12">
-                            <ul>
-                                <li>Visual Studio</li>
-                                <li>Codeigniter dan Laravel (PHP Framework)</li>
-                                <li>Bootstrap dan Material Design (CSS Framework)</li>
-                                <li>Spring (Java Framework)</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 text-end">
-                    <hr />
-                    <a href="#" class="btn btn-outline-secondary btn-sm"><i class="la la-edit mr-1"></i>Ubah</a>
-                    <a href="#" class="btn btn-outline-danger btn-sm"><i class="la la-trash mr-1"></i>Hapus</a>
-                </div>
-            </div>
+            <form action="{{ route('akun.profile.pengalaman.destroy', encrypt($val->id)) }}" id="form-delete-{{ $val->id }}" method="post">
+                @csrf
+                @method('delete')
+            </form>
+            @endforeach
         </div>
-
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            </ul>
-        </nav>
         @else
         <div class="row">
             <div class="col-12">
@@ -177,3 +116,28 @@
     </div>
 </div>
 @endsection
+
+@push('styles')
+<link href="{{ asset('/vendors/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" />
+@endpush
+
+@push('scripts')
+<script src="{{ asset('/vendors/sweetalert2/sweetalert2.all.min.js') }}"></script>
+<script type="text/javascript">
+    function deleted(id) {
+        Swal.fire({
+            title: 'Hapus Data Pengalaman?',
+            text: "Pengalaman kerja yang sudah dihapus tidak bisa dikembalikan!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#FF5E7B',
+            confirmButtonText: 'Ya, Hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $(`#form-delete-${id}`).submit();
+            }
+        })
+    }
+</script>
+@endpush

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pengalaman extends Model
 {
-    protected $table="fdf2_pengalaman";
+    protected $table = "fdf2_pengalaman";
     protected $fillable = [
         'personal_id',
         'tanggal_mulai',
@@ -24,7 +24,7 @@ class Pengalaman extends Model
         'bidang_pekerjaan',
         'gaji_prefix',
         'gaji',
-        'deskripsipekerjaan',
+        'deskripsi_pekerjaan',
         'tools',
     ];
 }

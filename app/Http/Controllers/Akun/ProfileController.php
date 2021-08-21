@@ -67,14 +67,69 @@ class ProfileController extends Controller
         return view('pages.akun.profile.pengalaman', compact('pengalaman'));
     }
 
-    public function pengalaman_edit()
+    public function pengalaman_create()
     {
-        return view('pages.akun.profile.pengalaman_edit');
+        $wilayah = new Wilayah();
+        $provinsi = $wilayah->provinsi();
+        return view('pages.akun.profile.pengalaman_create', compact('provinsi'));
     }
 
-    public function pengalaman_update(Request $request)
+    public function pengalaman_store(Request $request)
     {
+        $request->validate([
+            "tanggal_mulai" => 'required',
+            "tanggal_selesai" => $request->masih_bekerja ? "" : "required",
+            "bekerja_sebagai" => "required",
+            "nama_perusahaan" => "required",
+            "gaji" => "numeric"
+        ]);
+
+        Pengalaman::create($request->all());
+        return redirect()->route('akun.profile.pengalaman')
+            ->with('success', 'Penambahan pengalaman kerja berhasil');
     }
+
+    public function pengalaman_edit($id)
+    {
+        $pengalaman = Pengalaman::find(decrypt($id));
+
+        $wilayah = new Wilayah();
+        $provinsi = $wilayah->provinsi();
+        $kabupaten = $wilayah->kabupaten($pengalaman->provinsi);
+
+        return view('pages.akun.profile.pengalaman_edit', compact('pengalaman', 'provinsi', 'kabupaten'));
+    }
+
+    public function pengalaman_update(Request $request, $id)
+    {
+        $request->validate([
+            "tanggal_mulai" => 'required',
+            "tanggal_selesai" => $request->masih_bekerja ? "" : "required",
+            "bekerja_sebagai" => "required",
+            "nama_perusahaan" => "required",
+            "gaji" => "numeric"
+        ]);
+
+        $data = $request->all();
+        $data['masih_bekerja'] = 0;
+
+        $pengalaman = Pengalaman::find(decrypt($id));
+        $pengalaman->fill($data);
+        $pengalaman->save();
+
+        return redirect()->route('akun.profile.pengalaman')
+            ->with('success', 'Penambahan pengalaman kerja berhasil');
+    }
+
+    public function pengalaman_destroy($id)
+    {
+        $pengalaman = Pengalaman::find(decrypt($id));
+        $pengalaman->delete();
+
+        return redirect()->route('akun.profile.pengalaman')
+            ->with('success', 'Penambahan pengalaman kerja berhasil');
+    }
+
 
     public function pendidikan()
     {

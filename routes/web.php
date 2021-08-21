@@ -51,8 +51,11 @@ Route::group([
         Route::put('/personal/{id}', [App\Http\Controllers\Akun\ProfileController::class, 'personal_update'])->name('personal.update');
 
         Route::get('/pengalaman', [App\Http\Controllers\Akun\ProfileController::class, 'pengalaman'])->name('pengalaman');
+        Route::get('/pengalaman/tambah', [App\Http\Controllers\Akun\ProfileController::class, 'pengalaman_create'])->name('pengalaman.create');
+        Route::post('/pengalaman', [App\Http\Controllers\Akun\ProfileController::class, 'pengalaman_store'])->name('pengalaman.store');
         Route::get('/pengalaman/{id}/edit', [App\Http\Controllers\Akun\ProfileController::class, 'pengalaman_edit'])->name('pengalaman.edit');
         Route::put('/pengalaman/{id}', [App\Http\Controllers\Akun\ProfileController::class, 'pengalaman_update'])->name('pengalaman.update');
+        Route::delete('/pengalaman/{id}', [App\Http\Controllers\Akun\ProfileController::class, 'pengalaman_destroy'])->name('pengalaman.destroy');
 
         Route::get('/pendidikan', [App\Http\Controllers\Akun\ProfileController::class, 'pendidikan'])->name('pendidikan');
         Route::get('/pendidikan/{id}/edit', [App\Http\Controllers\Akun\ProfileController::class, 'pendidikan_edit'])->name('pendidikan.edit');
@@ -103,10 +106,10 @@ Route::group([
         Route::delete("/pengguna", [App\Http\Controllers\Admin\PenggunaController::class, "bulk_destroy"])->name("pengguna.bulk-destroy");
         Route::resource("/pengguna", App\Http\Controllers\Admin\PenggunaController::class)
             ->except(["show"]);
-        
+
         Route::delete("/mitra", [App\Http\Controllers\Admin\MitraController::class, "bulk_destroy"])->name("mitra.bulk-destroy");
         Route::resource("/mitra", App\Http\Controllers\Admin\MitraController::class)
-                ->except(["show"]);
+            ->except(["show"]);
 
         //Transaction
         Route::delete("/lowongan", [App\Http\Controllers\Admin\LowonganController::class, "bulk_destroy"])->name("lowongan.bulk-destroy");
@@ -115,7 +118,7 @@ Route::group([
 
         Route::delete("/pengumuman", [App\Http\Controllers\Admin\PengumumanController::class, "bulk_destroy"])->name("pengumuman.bulk-destroy");
         Route::resource("/pengumuman", App\Http\Controllers\Admin\PengumumanController::class)
-                ->except(["show"]);
+            ->except(["show"]);
 
         //Pages
         Route::delete("/faq", [App\Http\Controllers\Admin\FaqController::class, "bulk_destroy"])->name("faq.bulk-destroy");
@@ -142,7 +145,7 @@ Route::group([
         Route::delete("/manage-admin", [App\Http\Controllers\Admin\ManageAdminController::class, "bulk_destroy"])->name("manage-admin.bulk-destroy");
         Route::resource("/manage-admin", App\Http\Controllers\Admin\ManageAdminController::class)
             ->except(["show"]);
-        
+
         Route::delete("/alamat", [App\Http\Controllers\Admin\AlamatController::class, "bulk_destroy"])->name("alamat.bulk-destroy");
         Route::resource("/alamat", App\Http\Controllers\Admin\AlamatController::class)
             ->except(["show"]);
@@ -150,7 +153,7 @@ Route::group([
         Route::delete("/hak-cipta", [App\Http\Controllers\Admin\HakCiptaController::class, "bulk_destroy"])->name("hak-cipta.bulk-destroy");
         Route::resource("/hak-cipta", App\Http\Controllers\Admin\HakCiptaController::class)
             ->except(["show"]);
-        
+
         Route::delete("/link", [App\Http\Controllers\Admin\LinkController::class, "bulk_destroy"])->name("link.bulk-destroy");
         Route::resource("/link", App\Http\Controllers\Admin\LinkController::class)
             ->except(["show"]);
