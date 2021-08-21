@@ -29,8 +29,9 @@
             </a>
         </div>
 
-        @if (!count($pendidikan))
+        @if (count($pendidikan))
         <div class="py-4">
+            @foreach($pendidikan as $key => $val)
             <div class="row mb-5">
                 <div class="col-md-4">
                     <p class="text-secondary m-0"><strong>April 2012 - April 2016</strong></p>
@@ -59,21 +60,8 @@
                     <a href="#" class="btn btn-outline-danger btn-sm"><i class="la la-trash mr-1"></i>Hapus</a>
                 </div>
             </div>
+            @endforeach
         </div>
-
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            </ul>
-        </nav>
         @else
         <div class="row">
             <div class="col-12">
