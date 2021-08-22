@@ -12085,6 +12085,9 @@ form .form-check-input:focus {
   box-shadow: none;
   border-color: #FF6C28;
 }
+form .select2-container .select2-selection--single .select2-selection__rendered {
+  padding: 0 !important;
+}
 
 #footer {
   background: #0c1a3b;

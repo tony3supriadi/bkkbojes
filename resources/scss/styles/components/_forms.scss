@@ -50,4 +50,8 @@ form {
         box-shadow: none;
         border-color: $primary;
     }
+
+    .select2-container .select2-selection--single .select2-selection__rendered {
+        padding: 0 !important;
+    }
 }

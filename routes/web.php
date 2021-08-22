@@ -58,8 +58,11 @@ Route::group([
         Route::delete('/pengalaman/{id}', [App\Http\Controllers\Akun\ProfileController::class, 'pengalaman_destroy'])->name('pengalaman.destroy');
 
         Route::get('/pendidikan', [App\Http\Controllers\Akun\ProfileController::class, 'pendidikan'])->name('pendidikan');
+        Route::get('/pendidikan/create', [App\Http\Controllers\Akun\ProfileController::class, 'pendidikan_create'])->name('pendidikan.create');
+        Route::post('/pendidikan', [App\Http\Controllers\Akun\ProfileController::class, 'pendidikan_store'])->name('pendidikan.store');
         Route::get('/pendidikan/{id}/edit', [App\Http\Controllers\Akun\ProfileController::class, 'pendidikan_edit'])->name('pendidikan.edit');
         Route::put('/pendidikan/{id}', [App\Http\Controllers\Akun\ProfileController::class, 'pendidikan_update'])->name('pendidikan.update');
+        Route::delete('/pendidikan/{id}', [App\Http\Controllers\Akun\ProfileController::class, 'pendidikan_destroy'])->name('pendidikan.destroy');
 
         Route::get('/keterampilan', [App\Http\Controllers\Akun\ProfileController::class, 'keterampilan'])->name('keterampilan');
         Route::get('/keterampilan/{id}/edit', [App\Http\Controllers\Akun\ProfileController::class, 'keterampilan_edit'])->name('keterampilan.edit');

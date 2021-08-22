@@ -138,13 +138,82 @@ class ProfileController extends Controller
         return view('pages.akun.profile.pendidikan', compact('pendidikan'));
     }
 
-    public function pendidikan_edit()
+    public function pendidikan_create()
     {
-        return view('pages.akun.profile.pendidikan_edit');
+        $wilayah = new Wilayah();
+        $provinsi = $wilayah->provinsi();
+        return view('pages.akun.profile.pendidikan_create', compact('provinsi'));
     }
 
-    public function pendidikan_update(Request $request)
+    public function pendidikan_store(Request $request)
     {
+        $request->validate([
+            "bulan_mulai" => "required",
+            "tahun_mulai" => "required",
+            "bulan_selesai" => $request->masih_sekolah ? '' : 'required',
+            "tahun_selesai" => $request->masih_sekolah ? '' : 'required',
+            "nama_sekolah" => "required",
+            "provinsi" => "required",
+            "kabupaten" => "required",
+            "jenjang_pendidikan" => "required",
+            "jurusan" => "required",
+            "nilai_akhir" => "required"
+        ]);
+        Pendidikan::create($request->all());
+        return redirect()->route('akun.profile.pendidikan')
+            ->with('success', 'Penambahan pendidikan berhasil');
+    }
+
+    public function pendidikan_edit($id)
+    {
+        $pendidikan = Pendidikan::find(decrypt($id));
+
+        $wilayah = new Wilayah();
+        $provinsi = $wilayah->provinsi();
+        $kabupaten = $wilayah->kabupaten($pendidikan->kabupaten);
+        return view('pages.akun.profile.pendidikan_edit', compact('provinsi', 'kabupaten', 'pendidikan'));
+    }
+
+    public function pendidikan_update(Request $request, $id)
+    {
+        $request->validate([
+            "bulan_mulai" => "required",
+            "tahun_mulai" => "required",
+            "bulan_selesai" => $request->masih_sekolah ? '' : 'required',
+            "tahun_selesai" => $request->masih_sekolah ? '' : 'required',
+            "nama_sekolah" => "required",
+            "provinsi" => "required",
+            "kabupaten" => "required",
+            "jenjang_pendidikan" => "required",
+            "jurusan" => "required",
+            "nilai_akhir" => "required"
+        ]);
+
+        $pendidikan = Pendidikan::find(decrypt($id));
+
+        $data = $request->all();
+        $data['masih_sekolah'] = $request->masih_sekolah
+            ? $request->masih_sekolah : 0;
+
+        $data['bulan_selesai'] = $request->masih_sekolah
+            ? '' : $request->bulan_selesai;
+        $data['tahun_selesai'] = $request->masih_sekolah
+            ? '' : $request->tahun_selesai;
+
+        $pendidikan->fill($data);
+        $pendidikan->save();
+
+        return redirect()->route('akun.profile.pendidikan')
+            ->with('success', 'Perubahan data pendidikan berhasil');
+    }
+
+    public function pendidikan_destroy($id)
+    {
+        $pendidikan = Pendidikan::find(decrypt($id));
+        $pendidikan->delete();
+
+        return redirect()->route('akun.profile.pendidikan')
+            ->with('success', 'Penghapusan data pendidikan berhasil');
     }
 
     public function keterampilan()

@@ -25,9 +25,9 @@
             </h4>
         </div>
 
-        <form action="{{ route('akun.profile.pendidikan.update', encrypt($pendidikan->id)) }}" method="post" class="row">
+        <form action="{{ route('akun.profile.pendidikan.store') }}" method="post" class="row">
             @csrf
-            @method('put')
+            <input type="hidden" name="personal_id" value="{{ Auth::guard('personal')->user()->id }}">
 
             <div class="col-md-4">
                 <div class="form-group mb-3 row">
@@ -53,7 +53,7 @@
                             @endphp
 
                             @foreach($months as $month)
-                            <option value="{{ $month['value'] }}" <?= $month['value'] == $pendidikan->bulan_mulai ? 'selected' : '' ?>>{{ $month['text'] }}</option>
+                            <option value="{{ $month['value'] }}">{{ $month['text'] }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -62,7 +62,7 @@
                         <select name="tahun_mulai" id="tahun_mulai" data-placeholder="Tahun" class="form-control select2-nosearch  @error('tahun_mulai') is_invalid border-danger @enderror">
                             <option value=""></option>
                             @for($year = date('Y'); $year >= 2002; $year--)
-                            <option value="{{ $year }}" <?= $year == $pendidikan->tahun_mulai ? 'selected' : '' ?>>{{ $year }}</option>
+                            <option value="{{ $year }}">{{ $year }}</option>
                             @endfor
                         </select>
                     </div>
@@ -71,7 +71,7 @@
                 <div class="form-group mb-3 row">
                     <label for="tanggal_selesai" class="col-12">Selesai</label>
                     <div class="col-6 pe-1">
-                        <select name="bulan_selesai" id="bulan_selesai" data-placeholder="Bulan" class="form-control select2-nosearch  @error('bulan_selesai') is_invalid border-danger @enderror" @if(old('masih_sekolah') || $pendidikan->masih_sekolah) disabled @endif>
+                        <select name="bulan_selesai" id="bulan_selesai" data-placeholder="Bulan" class="form-control select2-nosearch  @error('bulan_selesai') is_invalid border-danger @enderror" @if(old('masih_sekolah')) disabled @endif>
                             <option value=""></option>
                             @php
                             $months = [
@@ -91,23 +91,23 @@
                             @endphp
 
                             @foreach($months as $month)
-                            <option value="{{ $month['value'] }}" <?= $month['value'] == $pendidikan->bulan_selesai ? 'selected' : '' ?>>{{ $month['text'] }}</option>
+                            <option value="{{ $month['value'] }}">{{ $month['text'] }}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="col-6 ps-1">
-                        <select name="tahun_selesai" id="tahun_selesai" data-placeholder="Tahun" class="form-control select2-nosearch  @error('tahun_selesai') is_invalid border-danger @enderror" @if(old('masih_sekolah') || $pendidikan->masih_sekolah) disabled @endif>
+                        <select name="tahun_selesai" id="tahun_selesai" data-placeholder="Tahun" class="form-control select2-nosearch  @error('tahun_selesai') is_invalid border-danger @enderror" @if(old('masih_sekolah')) disabled @endif>
                             <option value=""></option>
                             @for($year = date('Y'); $year >= 2002; $year--)
-                            <option value="{{ $year }}" <?= $year == $pendidikan->tahun_selesai ? 'selected' : '' ?>>{{ $year }}</option>
+                            <option value="{{ $year }}">{{ $year }}</option>
                             @endfor
                         </select>
                     </div>
 
                     <div class="col-12">
                         <div class="form-check">
-                            <input class="form-check-input" name="masih_sekolah" type="checkbox" value="1" id="masih_sekolah" @if(old('masih_sekolah') || $pendidikan->masih_sekolah) checked @endif>
+                            <input class="form-check-input" name="masih_sekolah" type="checkbox" value="1" id="masih_sekolah" @if(old('masih_sekolah')) checked @endif>
                             <label class="form-check-label" for="masih_sekolah">
                                 Masih Sekolah
                             </label>
@@ -119,7 +119,7 @@
             <div class="col-md-8">
                 <div class="form-group mb-3">
                     <label for="nama_sekolah">Nama Sekolah / PTN / PTS</label>
-                    <input type="text" name="nama_sekolah" id="nama_sekolah" value="{{ old('nama_sekolah') ? old('nama_sekolah') : $pendidikan->nama_sekolah }}" class="form-control @error('nama_sekolah') is-invalid border-danger @enderror">
+                    <input type="text" name="nama_sekolah" id="nama_sekolah" value="{{ old('nama_sekolah') }}" class="form-control @error('nama_sekolah') is-invalid border-danger @enderror">
                     @error('nama_sekolah')
                     <div class="invalid-feedback">{{ ucfirst($message) }}</div>
                     @enderror
@@ -131,16 +131,13 @@
                         <select name="provinsi" data-placeholder="Pilih provinsi" id="provinsi" class="form-control select2-basic @error('provinsi') is-invalid border-danger @enderror">
                             <option value=""></option>
                             @foreach($provinsi as $prov)
-                            <option value="{{ $prov['kode'] }}" <?= $prov['kode'] == $pendidikan->provinsi ? 'selected' : '' ?>>{{ $prov['nama'] }}</option>
+                            <option value="{{ $prov['kode'] }}">{{ $prov['nama'] }}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <select name="kabupaten" data-placeholder="Pilih kabupaten" id="kabupaten" class="form-control select2-basic @error('kabupaten') is-invalid border-danger @enderror">
                         <option value=""></option>
-                        @foreach($kabupaten as $kab)
-                        <option value="{{ $kab['kode'] }}" <?= $kab['kode'] == $pendidikan->kabupaten ? 'selected' : '' ?>>{{ $kab['nama'] }}</option>
-                        @endforeach
                     </select>
                 </div>
 
@@ -163,7 +160,7 @@
                             ];
                             @endphp
                             @foreach($jenjang_pendidikan as $item)
-                            <option value="{{ $item }}" <?= $item == $pendidikan->jenjang_pendidikan ? 'selected' : '' ?>>{{ $item }}</option>
+                            <option value="{{ $item }}" {{ old('jenjang_pendidikan') == $item ? 'selected' : '' }}>{{ $item }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -171,7 +168,7 @@
 
                 <div class="form-group mb-3">
                     <label for="jurusan">Jurusan</label>
-                    <input type="text" name="jurusan" id="jurusan" value="{{ old('jurusan') ? old('jurusan') : $pendidikan->jurusan }}" class="form-control @error('jurusan') is-invalid border-danger @enderror">
+                    <input type="text" name="jurusan" id="jurusan" value="old('jurusan')" class="form-control @error('jurusan') is-invalid border-danger @enderror">
                     @error('jurusan')
                     <div class="invalid-feedback">{{ ucfirst($message) }}</div>
                     @enderror
@@ -179,7 +176,7 @@
 
                 <div class="form-group mb-3">
                     <label for="nilai_akhir">Nilai Akhir / NEM / IPK</label>
-                    <input type="text" name="nilai_akhir" id="nilai_akhir" value="{{ old('nilai_akhir') ? old('nilai_akhir') : $pendidikan->nilai_akhir }}" class="form-control @error('nilai_akhir') is-invalid border-danger @enderror">
+                    <input type="text" name="nilai_akhir" id="nilai_akhir" value="old('nilai_akhir')" class="form-control @error('nilai_akhir') is-invalid border-danger @enderror">
                     @error('nilai_akhir')
                     <div class="invalid-feedback">{{ ucfirst($message) }}</div>
                     @enderror

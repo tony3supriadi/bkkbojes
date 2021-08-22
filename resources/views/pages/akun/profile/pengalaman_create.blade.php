@@ -29,7 +29,7 @@
             @csrf
             <input type="hidden" name="personal_id" value="{{ Auth::guard('personal')->user()->id }}">
 
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="form-group mb-3">
                     <label for="tanggal_mulai">Mulai</label>
                     <input type="date" name="tanggal_mulai" id="tanggal_mulai" value="{{ old('tanggal_mulai') }}" class="form-control @error('tanggal_mulai') is-invalid border-danger @enderror">
@@ -53,7 +53,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <div class="form-group mb-3">
                     <label for="bekerja_sebagai">Bekerja Sebagai</label>
                     <input type="text" name="bekerja_sebagai" id="bekerja_sebagai" value="{{ old('bekerja_sebagai') }}" class="form-control @error('bekerja_sebagai') is-invalid border-danger @enderror">
