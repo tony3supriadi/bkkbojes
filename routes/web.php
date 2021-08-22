@@ -65,8 +65,9 @@ Route::group([
         Route::delete('/pendidikan/{id}', [App\Http\Controllers\Akun\ProfileController::class, 'pendidikan_destroy'])->name('pendidikan.destroy');
 
         Route::get('/keterampilan', [App\Http\Controllers\Akun\ProfileController::class, 'keterampilan'])->name('keterampilan');
-        Route::get('/keterampilan/{id}/edit', [App\Http\Controllers\Akun\ProfileController::class, 'keterampilan_edit'])->name('keterampilan.edit');
-        Route::put('/keterampilan/{id}', [App\Http\Controllers\Akun\ProfileController::class, 'keterampilan_update'])->name('keterampilan.update');
+        Route::get('/keterampilan/edit', [App\Http\Controllers\Akun\ProfileController::class, 'keterampilan_edit'])->name('keterampilan.edit');
+        Route::put('/keterampilan', [App\Http\Controllers\Akun\ProfileController::class, 'keterampilan_update'])->name('keterampilan.update');
+        Route::delete('/keterampilan/{id}', [App\Http\Controllers\Akun\ProfileController::class, 'keterampilan_destroy'])->name('keterampilan.destroy');
 
         Route::get('/organisasi', [App\Http\Controllers\Akun\ProfileController::class, 'organisasi'])->name('organisasi');
         Route::get('/organisasi/{id}/edit', [App\Http\Controllers\Akun\ProfileController::class, 'organisasi_edit'])->name('organisasi.edit');

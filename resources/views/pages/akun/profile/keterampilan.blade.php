@@ -24,39 +24,53 @@
                 <span>Keterampilan / Skill</span>
             </h4>
 
-            <a href="">
+            <a href="{{ route('akun.profile.keterampilan.edit') }}">
+                @if(count($keterampilan))
                 <i class="la la-edit me-2"></i>Ubah
+                @else
+                <i class="la la-plus-circle me-2"></i>Tambah
+                @endif
             </a>
         </div>
 
-        @if (!count($keterampilan))
+        @if (count($keterampilan))
         <div class="py-3">
+            @if('mahir')
             <div class="row">
                 <div class="col-md-2">
                     <p class="text-muted m-0">Mahir</p>
                 </div>
                 <div class="col-md-10">
                     <ul>
-                        <li>Laravel</li>
-                        <li>Codeigniter</li>
-                        <li>ReactJs</li>
-                        <li>Angular</li>
-                        <li>HTML+CSS</li>
+                        @foreach($keterampilan as $mahir)
+                        @if ($mahir->prosentase == 100)
+                        <li>{{ $mahir->skill }}</li>
+                        @endif
+                        @endforeach
                     </ul>
                 </div>
             </div>
+            @endif
+
+            @if($menengah)
             <hr />
             <div class="row">
                 <div class="col-md-2">
-                    <p class="text-muted m-0">Sedang</p>
+                    <p class="text-muted m-0">Menengah</p>
                 </div>
                 <div class="col-md-10">
                     <ul>
-                        <li>React Native</li>
-                        <li>Flutter</li>
+                        @foreach($keterampilan as $mahir)
+                        @if ($mahir->prosentase == 75)
+                        <li>{{ $mahir->skill }}</li>
+                        @endif
+                        @endforeach
                     </ul>
                 </div>
             </div>
+            @endif
+
+            @if($pemula)
             <hr />
             <div class="row">
                 <div class="col-md-2">
@@ -64,10 +78,15 @@
                 </div>
                 <div class="col-md-10">
                     <ul>
-                        <li>Technical Support</li>
+                        @foreach($keterampilan as $mahir)
+                        @if ($mahir->prosentase == 60)
+                        <li>{{ $mahir->skill }}</li>
+                        @endif
+                        @endforeach
                     </ul>
                 </div>
             </div>
+            @endif
         </div>
         @else
         <div class="row">

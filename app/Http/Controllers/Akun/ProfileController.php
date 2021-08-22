@@ -220,16 +220,41 @@ class ProfileController extends Controller
     {
         $id = Auth::guard('personal')->user()->id;
         $keterampilan = Keterampilan::where('personal_id', '=', $id)->get();
-        return view('pages.akun.profile.keterampilan', compact('keterampilan'));
+
+        $mahir = Keterampilan::where('personal_id', '=', $id)->where('prosentase', '=', 100)->count();
+        $menengah = Keterampilan::where('personal_id', '=', $id)->where('prosentase', '=', 75)->count();
+        $pemula = Keterampilan::where('personal_id', '=', $id)->where('prosentase', '=', 60)->count();
+
+        return view('pages.akun.profile.keterampilan', compact('keterampilan', 'mahir', 'menengah', 'pemula'));
     }
 
     public function keterampilan_edit()
     {
-        return view('pages.akun.profile.keterampilan_edit');
+        $id = Auth::guard('personal')->user()->id;
+        $keterampilan = Keterampilan::where('personal_id', '=', $id)->get();
+
+        if (request()->get('type') == 'json') {
+            return response()->json($keterampilan);
+        }
+
+        return view('pages.akun.profile.keterampilan_edit', compact('keterampilan'));
     }
 
     public function keterampilan_update(Request $request)
     {
+        Keterampilan::where('personal_id', '=', $request->personal_id)->delete();
+
+        $data = $request->all();
+        foreach ($data['keterampilan'] as $item) {
+            Keterampilan::create([
+                "personal_id" => $data["personal_id"],
+                "skill" => $item["skill"],
+                "prosentase" => $item["prosentase"]
+            ]);
+        }
+
+        return redirect()
+            ->route('akun.profile.keterampilan');
     }
 
     public function organisasi()
