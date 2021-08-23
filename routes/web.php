@@ -70,8 +70,11 @@ Route::group([
         Route::delete('/keterampilan/{id}', [App\Http\Controllers\Akun\ProfileController::class, 'keterampilan_destroy'])->name('keterampilan.destroy');
 
         Route::get('/organisasi', [App\Http\Controllers\Akun\ProfileController::class, 'organisasi'])->name('organisasi');
+        Route::get('/organisasi/tambah', [App\Http\Controllers\Akun\ProfileController::class, 'organisasi_create'])->name('organisasi.create');
+        Route::post('/organisasi', [App\Http\Controllers\Akun\ProfileController::class, 'organisasi_store'])->name('organisasi.store');
         Route::get('/organisasi/{id}/edit', [App\Http\Controllers\Akun\ProfileController::class, 'organisasi_edit'])->name('organisasi.edit');
         Route::put('/organisasi/{id}', [App\Http\Controllers\Akun\ProfileController::class, 'organisasi_update'])->name('organisasi.update');
+        Route::delete('/organisasi/{id}', [App\Http\Controllers\Akun\ProfileController::class, 'organisasi_destroy'])->name('organisasi.destroy');
     });
 
     Route::get('/resume', [App\Http\Controllers\Akun\AkunController::class, 'resume'])->name('resume');

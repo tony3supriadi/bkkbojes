@@ -261,15 +261,62 @@ class ProfileController extends Controller
     {
         $id = Auth::guard('personal')->user()->id;
         $organisasi = Organisasi::where('personal_id', '=', $id)->get();
+
         return view('pages.akun.profile.organisasi', compact('organisasi'));
     }
 
-    public function organisasi_edit()
+    public function organisasi_create()
     {
-        return view('pages.akun.profile.organisasi_edit');
+        return view('pages.akun.profile.organisasi_create');
     }
 
-    public function organisasi_update(Request $request)
+    public function organisasi_store(Request $request)
     {
+        $request->validate([
+            'tahun_mulai' => 'required|numeric',
+            'tahun_berakhir' => $request->masih_aktif ? '' : 'required|numeric',
+            'nama_organisasi' => 'required',
+            'posisi_jabatan' => 'required'
+        ]);
+
+        Organisasi::create($request->all());
+        return redirect()->route('akun.profile.organisasi')
+            ->with('success', 'Penamabahan data organisasi berhasil');
+    }
+
+    public function organisasi_edit($id)
+    {
+        $organisasi = Organisasi::find(decrypt($id));
+        return view('pages.akun.profile.organisasi_edit', compact('organisasi'));
+    }
+
+    public function organisasi_update(Request $request, $id)
+    {
+        $request->validate([
+            'tahun_mulai' => 'required|numeric',
+            'tahun_berakhir' => $request->masih_aktif ? '' : 'required|numeric',
+            'nama_organisasi' => 'required',
+            'posisi_jabatan' => 'required'
+        ]);
+
+        $organisasi = Organisasi::find(decrypt($id));
+
+        $data = $request->all();
+        $data['masih_aktif'] = $request->masih_aktif ? $request->masih_aktif : 0;
+
+        $organisasi->fill($data);
+        $organisasi->save();
+
+        return redirect()->route('akun.profile.organisasi')
+            ->with('success', 'Perubahan data organisasi berhasil');
+    }
+
+    public function organisasi_destroy($id)
+    {
+        $organisasi = Organisasi::find(decrypt($id));
+        $organisasi->delete();
+
+        return redirect()->route('akun.profile.organisasi')
+            ->with('success', 'Penghapusan data organisasi berhasil');
     }
 }

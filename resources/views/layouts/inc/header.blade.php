@@ -108,9 +108,19 @@ $route = Route::currentRouteName();
             </li>
 
             @if(Auth::guard('personal')->user())
-            <li><a class="dropdown-item" href="{{ route('akun.profile.personal') }}">Profile</a></li>
+            <li><a class="dropdown-item py-2" href="{{ route('akun.profile.personal') }}"><i class="la la-user me-2"></i>Profile</a></li>
+            <li><a class="dropdown-item" href="{{ route('akun.resume') }}"><i class="la la-file-alt me-2"></i>Resume</a></li>
+            <li><a class="dropdown-item" href="{{ route('akun.pemberitahuan') }}"><i class="la la-bell me-2"></i>Pemberitahuan</a></li>
+            <li><a class="dropdown-item" href="{{ route('akun.lowongan-tersimpan') }}"><i class="la la-bookmark me-2"></i>Lowongan Tersimpan</a></li>
+            <li><a class="dropdown-item" href="{{ route('akun.lamaran-terkirim') }}"><i class="la la-send me-2"></i>Lamaran Terkirim</a></li>
+            <li><a class="dropdown-item" href="{{ route('akun.latihan-tes') }}"><i class="la la-puzzle-piece me-2"></i>Latihan Tes</a></li>
+
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+
             <li><a class="dropdown-item" href=""><i class="la la-lock me-2"></i>Akun</a></li>
-            <li><a class="dropdown-item" href="javascript::void()" onclick="$('#logout').submit()">Logout</a></li>
+            <li><a class="dropdown-item" href="javascript::void()" onclick="$('#logout').submit()"><i class="la la-sign-out me-2"></i>Logout</a></li>
             @else
             <li>
                 <div class="row mx-1 mb-3 mt-2">

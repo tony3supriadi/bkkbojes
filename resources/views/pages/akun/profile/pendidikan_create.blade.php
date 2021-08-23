@@ -168,7 +168,7 @@
 
                 <div class="form-group mb-3">
                     <label for="jurusan">Jurusan</label>
-                    <input type="text" name="jurusan" id="jurusan" value="old('jurusan')" class="form-control @error('jurusan') is-invalid border-danger @enderror">
+                    <input type="text" name="jurusan" id="jurusan" value="{{old('jurusan')}}" class="form-control @error('jurusan') is-invalid border-danger @enderror">
                     @error('jurusan')
                     <div class="invalid-feedback">{{ ucfirst($message) }}</div>
                     @enderror
@@ -176,7 +176,7 @@
 
                 <div class="form-group mb-3">
                     <label for="nilai_akhir">Nilai Akhir / NEM / IPK</label>
-                    <input type="text" name="nilai_akhir" id="nilai_akhir" value="old('nilai_akhir')" class="form-control @error('nilai_akhir') is-invalid border-danger @enderror">
+                    <input type="text" name="nilai_akhir" id="nilai_akhir" value="{{ old('nilai_akhir') }}" class="form-control @error('nilai_akhir') is-invalid border-danger @enderror">
                     @error('nilai_akhir')
                     <div class="invalid-feedback">{{ ucfirst($message) }}</div>
                     @enderror

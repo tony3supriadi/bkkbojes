@@ -25,25 +25,24 @@
             </h4>
         </div>
 
-        <form action="{{ route('akun.profile.organisasi.update', encrypt($organisasi->id)) }}" method="post" class="row">
+        <form action="{{ route('akun.profile.organisasi.store') }}" method="post" class="row">
             @csrf
-            @method('put')
             <input type="hidden" name="personal_id" value="{{ Auth::guard('personal')->user()->id }}" />
 
             <div class="col-md-4">
                 <div class="form-group mb-3">
                     <label for="tahun_mulai">Mulai</label>
-                    <input type="text" name="tahun_mulai" id="tahun_mulai" value="{{ old('tahun_mulai') ? old('tahun_mulai') : $organisasi->tahun_mulai }}" class="form-control @error('tahun_mulai') is-invalid border-danger @enderror">
+                    <input type="text" name="tahun_mulai" id="tahun_mulai" value="{{ old('tahun_mulai') }}" class="form-control @error('tahun_mulai') is-invalid border-danger @enderror">
                     @error('tahun_mulai')
                     <div class="invalid-feedback">{{ ucfirst($message) }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="tahun_berakhir">Selesai</label>
-                    <input type="text" name="tahun_berakhir" id="tahun_berakhir" value="{{ old('tahun_berakhir') ? old('tahun_berakhir') : $organisasi->tahun_berakhir }}" class="form-control @error('tahun_berakhir') is-invalid border-danger @enderror" @if(old('masih_aktif') || $organisasi->masih_aktif) readonly @endif>
+                    <input type="text" name="tahun_berakhir" id="tahun_berakhir" value="{{ old('tahun_berakhir') }}" class="form-control @error('tahun_berakhir') is-invalid border-danger @enderror" @if(old('masih_aktif')) readonly @endif>
 
                     <div class="form-check">
-                        <input class="form-check-input" name="masih_aktif" type="checkbox" value="1" id="masih_aktif" @if(old('masih_aktif') || $organisasi->masih_aktif) checked @endif>
+                        <input class="form-check-input" name="masih_aktif" type="checkbox" value="1" id="masih_aktif" @if(old('masih_aktif')) checked @endif>
                         <label class="form-check-label" for="masih_aktif">
                             Masih Aktif
                         </label>
@@ -58,14 +57,14 @@
             <div class="col-md-8">
                 <div class="form-group mb-3">
                     <label for="posisi_jabatan">Posisi Jabatan</label>
-                    <input type="text" name="posisi_jabatan" id="posisi_jabatan" value="{{ old('posisi_jabatan') ? old('posisi_jabatan') : $organisasi->posisi_jabatan }}" class="form-control @error('posisi_jabatan') is-invalid border-danger @enderror" />
+                    <input type="text" name="posisi_jabatan" id="posisi_jabatan" value="{{ old('posisi_jabatan') }}" class="form-control @error('posisi_jabatan') is-invalid border-danger @enderror" />
                     @error('posisi_jabatan')
                     <div class="invalid-feedback">{{ ucfirst($message) }}</div>
                     @enderror
                 </div>
                 <div class="form-group mb-3">
                     <label for="nama_organisasi">Nama Organisasi</label>
-                    <input type="text" name="nama_organisasi" id="nama_organisasi" value="{{ old('nama_organisasi') ? old('nama_organisasi') : $organisasi->nama_organisasi }}" class="form-control @error('nama_organisasi') is-invalid border-danger @enderror" />
+                    <input type="text" name="nama_organisasi" id="nama_organisasi" value="{{ old('nama_organisasi') }}" class="form-control @error('nama_organisasi') is-invalid border-danger @enderror" />
                     @error('nama_organisasi')
                     <div class="invalid-feedback">{{ ucfirst($message) }}</div>
                     @enderror

@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Organisasi extends Model
 {
-    protected $table="fdf5_organisasi";
+    protected $table = "fdf5_organisasi";
     protected $fillable = [
         'personal_id',
         'tahun_mulai',
-        'hingga_mulai',
+        'tahun_berakhir',
         'masih_aktif',
         'posisi_jabatan',
         'nama_organisasi',

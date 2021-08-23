@@ -48,4 +48,28 @@ class Personal extends Authenticatable implements MustVerifyEmail
     {
         return $this->password;
     }
+
+    public function getProfileComplete()
+    {
+    }
+
+    public function getPersonalComplete()
+    {
+    }
+
+    public function getPengalamanComplete()
+    {
+    }
+
+    public function getPendidikanComplete()
+    {
+    }
+
+    public function getKeterampilanComplete()
+    {
+    }
+
+    public function getOrganisasiComplete()
+    {
+    }
 }

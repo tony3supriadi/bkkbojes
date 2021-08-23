@@ -16,11 +16,11 @@ class CreateFdf5OrganisasiTable extends Migration
         Schema::create('fdf5_organisasi', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('personal_id');
-            $table->string('tahun_mulai',4);
-            $table->string('hingga_mulai',4);
-            $table->boolean('masih_aktif')->nulable();
-            $table->string('posisi_jabatan',64);
-            $table->string('nama_organisasi',128);
+            $table->string('tahun_mulai', 4)->nullable();
+            $table->string('tahun_berakhir', 4)->nullable();
+            $table->boolean('masih_aktif')->nullable();
+            $table->string('posisi_jabatan', 64)->nullable();
+            $table->string('nama_organisasi', 128)->nullable();
             $table->timestamps();
         });
     }
