@@ -82,12 +82,10 @@ $wilayah = new App\Models\Wilayah;
                 <div class="col-md-3 field-name px-0">Nomor Induk (NIK)</div>
                 <div class="col-md-9 px-0">{{ $personal->nik ? $personal->nik : '-' }}</div>
             </div>
-            @if($personal->jenis_akun != 'Umum')
-            <div class="row border-bottom py-4 mx-0">
+            <!-- <div class="row border-bottom py-4 mx-0">
                 <div class="col-md-3 field-name px-0">Nomor Induk Siswa (NIS)</div>
                 <div class="col-md-9 px-0">{{ $personal->nis ? $personal->nis : '-' }}</div>
-            </div>
-            @endif
+            </div> -->
         </div>
     </div>
 </div>

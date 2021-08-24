@@ -184,16 +184,14 @@
                         </div>
                     </div>
                 </div>
-                @if($personal->jenis_akun != 'Umum')
-                <div class="row border-bottom py-4 mx-0">
+                <!-- <div class="row border-bottom py-4 mx-0">
                     <div class="col-md-3 field-name px-0 py-2">Nomor Induk Siswa (NIS)</div>
                     <div class="col-md-9 px-0">
                         <div class="form-group">
                             <input type="text" name="nis" value="{{ old('nis') ? old('nis') : $personal->nis }}" id="nis" placeholder="Nomor Induk Siswa (NIS)" class="form-control @error('nis') is-invalid border-danger @enderror" />
                         </div>
                     </div>
-                </div>
-                @endif
+                </div> -->
 
                 <div class="row py-4 mx-0">
                     <div class="col-12 text-end">
