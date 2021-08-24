@@ -116,10 +116,13 @@
                                 <option value="{{ $prov['kode'] }}" <?= $prov['kode'] == $personal->provinsi ? 'selected' : '' ?>>{{ $prov['nama'] }}</option>
                                 @endforeach
                             </select>
+                            @error('provinsi')
+                            <div class="invalid-feedback">{{ ucfirst($message) }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group mb-2">
-                            <select name="kabupaten" data-placeholder="Pilih kabupaten" id="kabupaten" class="form-control select2-basic @error('kabupaten') is-invalid border-danger @enderror" @if(!count($kabupaten)) disabled @endif>
+                            <select name="kabupaten" data-placeholder="Pilih kabupaten" id="kabupaten" class="form-control select2-basic @error('kabupaten') is-invalid border-danger @enderror">
                                 <option value=""></option>
 
                                 @if(count($kabupaten))
@@ -128,10 +131,13 @@
                                 @endforeach
                                 @endif
                             </select>
+                            @error('kabupaten')
+                            <div class="invalid-feedback">{{ ucfirst($message) }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group mb-2">
-                            <select name="kecamatan" data-placeholder="Pilih kecamatan" id="kecamatan" class="form-control select2-basic @error('kecamatan') is-invalid border-danger @enderror" @if(!count($kecamatan)) disabled @endif>
+                            <select name="kecamatan" data-placeholder="Pilih kecamatan" id="kecamatan" class="form-control select2-basic @error('kecamatan') is-invalid border-danger @enderror">
                                 <option value=""></option>
 
                                 @if(count($kecamatan))
@@ -140,10 +146,13 @@
                                 @endforeach
                                 @endif
                             </select>
+                            @error('kecamatan')
+                            <div class="invalid-feedback">{{ ucfirst($message) }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group mb-2">
-                            <select name="desa" data-placeholder="Pilih desa" id="desa" class="form-control select2-basic @error('desa') is-invalid border-danger @enderror" @if(!count($desa)) disabled @endif>
+                            <select name="desa" data-placeholder="Pilih desa" id="desa" class="form-control select2-basic @error('desa') is-invalid border-danger @enderror">
                                 <option value=""></option>
 
                                 @if(count($desa))
@@ -152,10 +161,16 @@
                                 @endforeach
                                 @endif
                             </select>
+                            @error('desa')
+                            <div class="invalid-feedback">{{ ucfirst($message) }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
-                            <input type="kodepos" name="kodepos" id="kodepos" value="{{ old('kodepos') ? old('kodepos') : $personal->kodepos }}" placeholder="Kode pos" class="form-control @error('kodepos') is-invalid border-danger @enderror" @if(!$personal->kodepos) disabled @endif />
+                            <input type="number" name="kodepos" id="kodepos" value="{{ old('kodepos') ? old('kodepos') : $personal->kodepos }}" placeholder="Kode pos" class="form-control @error('kodepos') is-invalid border-danger @enderror" />
+                            @error('kodepos')
+                            <div class="invalid-feedback">{{ ucfirst($message) }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -166,11 +181,17 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <input type="text" name="tempat_lahir" value="{{ old('tempat_lahir') ? old('tempat_lahir') : $personal->tempat_lahir }}" id="tempat_lahir" placeholder="Tempat Lahir" class="form-control @error('tempat_lahir') is-invalid border-danger @enderror" />
+                                    @error('tempat_lahir')
+                                    <div class="invalid-feedback">{{ ucfirst($message) }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <input type="date" name="tanggal_lahir" value="{{ old('tanggal_lahir') ? old('tanggal_lahir') : $personal->tanggal_lahir }}" id="tanggal_lahir" placeholder="Tanggal Lahir" class="form-control @error('tanggal_lahir') is-invalid border-danger @enderror" />
+                                    @error('tanggal_lahir')
+                                    <div class="invalid-feedback">{{ ucfirst($message) }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -181,6 +202,9 @@
                     <div class="col-md-9 px-0">
                         <div class="form-group">
                             <input type="text" name="nik" value="{{ old('nik') ? old('nik') : $personal->nik }}" id="nik" placeholder="Nomor Induk Kependudukan (NIK)" class="form-control @error('nik') is-invalid border-danger @enderror" />
+                            @error('nik')
+                            <div class="invalid-feedback">{{ ucfirst($message) }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -296,9 +320,10 @@
 
         $('#provinsi').on('change', function() {
             $.get(`/api/kabupaten/${$(this).val()}`, function(data, status) {
-                $('#kabupaten').removeAttr('disabled');
-
                 $('#kabupaten').html('');
+                $('#kecamatan').html('');
+                $('#desa').html('');
+
                 $kabOptions = `<option></option>`;
                 data.forEach((item, index) => {
                     $kabOptions += `<option value="${item.kode}">${item.nama}</option>`;
@@ -309,9 +334,8 @@
 
         $('#kabupaten').on('change', function() {
             $.get(`/api/kecamatan/${$(this).val()}`, function(data, status) {
-                $('#kecamatan').removeAttr('disabled');
-
                 $('#kecamatan').html('');
+                $('#desa').html('');
                 $kecOptions = `<option></option>`;
                 data.forEach((item, index) => {
                     $kecOptions += `<option value="${item.kode}">${item.nama}</option>`;
@@ -322,8 +346,6 @@
 
         $('#kecamatan').on('change', function() {
             $.get(`/api/desa/${$(this).val()}`, function(data, status) {
-                $('#desa').removeAttr('disabled');
-
                 $('#desa').html('');
                 $desOptions = `<option></option>`;
                 data.forEach((item, index) => {
