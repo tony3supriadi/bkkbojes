@@ -50,7 +50,8 @@ class DaftarController extends Controller
         ]);
     }
 
-    protected function create(array $data) {
+    protected function create(array $data)
+    {
         $personal = Personal::create([
             'nama_depan' => $data['nama_depan'],
             'nama_belakang' => $data['nama_belakang'],
@@ -72,8 +73,8 @@ class DaftarController extends Controller
     public function confirm_page(Request $request)
     {
         return Auth::guard('personal')->user()->hasVerifiedEmail()
-                    ? redirect()->route('akun.profile.personal')
-                    : view('pages.daftar-konfirmasi');
+            ? redirect()->route('akun.profile.personal')
+            : view('pages.daftar-konfirmasi');
     }
 
     public function confirm_resend(Request $request)
@@ -88,7 +89,7 @@ class DaftarController extends Controller
 
         return $request->wantsJson()
             ? new JsonResponse([], 202)
-            : back()->with('resent', true);
+            : redirect()->route('verification.notice')->with('resent', true);
     }
 
     public function confirm_verify(Request $request)
@@ -118,7 +119,7 @@ class DaftarController extends Controller
         return $request->wantsJson()
             ? new JsonResponse([], 204)
             : redirect()->route('daftar.berhasil')
-                ->with('verified', true);
+            ->with('verified', true);
     }
 
     public function success_page()
