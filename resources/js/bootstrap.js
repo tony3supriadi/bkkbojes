@@ -15,6 +15,7 @@ try {
     require('slick-carousel');
     require('jquery-slimscroll');
     require('select2');
+    require('jquery-toast-plugin');
 } catch (e) {}
 
 /**

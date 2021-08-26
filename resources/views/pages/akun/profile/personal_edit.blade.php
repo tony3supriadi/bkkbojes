@@ -46,13 +46,13 @@
                     <div class="col-md-3 field-name px-0 py-2">Nama Lengkap</div>
                     <div class="col-md-9 px-0">
                         <div class="form-group row">
-                            <div class="col-md-6">
+                            <div class="col-md-6 py-1 py-md-0">
                                 <input type="text" name="nama_depan" id="nama_depan" value="{{ old('nama_depan') ? old('nama_depan') : $personal->nama_depan }}" placeholder="Nama Depan" class="form-control @error('nama_depan') is-invalid border-danger @enderror" />
                                 @error('nama_depan')
                                 <div class="invalid-feedback">{{ ucfirst($message) }}</div>
                                 @enderror
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 py-1 py-md-0">
                                 <input type="text" name="nama_belakang" id="nama_belakang" value="{{ old('nama_belakang') ? old('nama_belakang') : $personal->nama_belakang }}" placeholder="Nama Belakang" class="form-control @error('nama_belakang') is-invalid border-danger @enderror" />
                                 @error('nama_belakang')
                                 <div class="invalid-feedback">{{ ucfirst($message) }}</div>
@@ -64,7 +64,7 @@
                 <div class="row border-bottom py-4 mx-0">
                     <div class="col-md-3 field-name px-0">Jenis Kelamin</div>
                     <div class="col-md-9 px-0">
-                        <div class="form-check">
+                        <div class="form-check mb-2">
                             <input class="form-check-input" type="radio" value="Laki-laki" name="jenis_kelamin" id="jenis_kelamin_1" {{ $personal->jenis_kelamin == 'Laki-laki' ? 'checked' : '' }} />
                             <label class="form-check-label" for="jenis_kelamin_1">
                                 Laki-laki
@@ -77,7 +77,7 @@
                             </label>
                         </div>
                         @error('jenis_kelamin')
-                        <div class="invalid-feedback">{{ ucfirst($message) }}</div>
+                        <div class="text-danger">{{ ucfirst($message) }}</div>
                         @enderror
                     </div>
                 </div>
@@ -178,7 +178,7 @@
                     <div class="col-md-3 field-name px-0 py-2">Tempat, Tanggal Lahir</div>
                     <div class="col-md-9 px-0">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-md-6 py-1 py-md-0">
                                 <div class="form-group">
                                     <input type="text" name="tempat_lahir" value="{{ old('tempat_lahir') ? old('tempat_lahir') : $personal->tempat_lahir }}" id="tempat_lahir" placeholder="Tempat Lahir" class="form-control @error('tempat_lahir') is-invalid border-danger @enderror" />
                                     @error('tempat_lahir')
@@ -186,9 +186,9 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-md-6 py-1 py-md-0">
                                 <div class="form-group">
-                                    <input type="date" name="tanggal_lahir" value="{{ old('tanggal_lahir') ? old('tanggal_lahir') : $personal->tanggal_lahir }}" id="tanggal_lahir" placeholder="Tanggal Lahir" class="form-control @error('tanggal_lahir') is-invalid border-danger @enderror" />
+                                    <input type="date" name="tanggal_lahir" data-date-format="DD MMM YYYY" value="{{ old('tanggal_lahir') ? old('tanggal_lahir') : $personal->tanggal_lahir }}" id="tanggal_lahir" placeholder="Tanggal Lahir" class="form-control @error('tanggal_lahir') is-invalid border-danger @enderror" />
                                     @error('tanggal_lahir')
                                     <div class="invalid-feedback">{{ ucfirst($message) }}</div>
                                     @enderror
@@ -197,7 +197,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row border-bottom py-4 mx-0">
+                <!-- <div class="row border-bottom py-4 mx-0">
                     <div class="col-md-3 field-name px-0 py-2">Nomor Induk (NIK)</div>
                     <div class="col-md-9 px-0">
                         <div class="form-group">
@@ -207,7 +207,7 @@
                             @enderror
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- <div class="row border-bottom py-4 mx-0">
                     <div class="col-md-3 field-name px-0 py-2">Nomor Induk Siswa (NIS)</div>
                     <div class="col-md-9 px-0">
@@ -261,6 +261,7 @@
 @endpush
 
 @push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="https://unpkg.com/cropperjs@1.5.12/dist/cropper.js"></script>
 <script src="{{ asset('js/inits/select2.js') }}"></script>
@@ -316,47 +317,6 @@
                     modal.hide();
                 };
             });
-        });
-
-        $('#provinsi').on('change', function() {
-            $.get(`/api/kabupaten/${$(this).val()}`, function(data, status) {
-                $('#kabupaten').html('');
-                $('#kecamatan').html('');
-                $('#desa').html('');
-
-                $kabOptions = `<option></option>`;
-                data.forEach((item, index) => {
-                    $kabOptions += `<option value="${item.kode}">${item.nama}</option>`;
-                });
-                $('#kabupaten').html($kabOptions);
-            });
-        });
-
-        $('#kabupaten').on('change', function() {
-            $.get(`/api/kecamatan/${$(this).val()}`, function(data, status) {
-                $('#kecamatan').html('');
-                $('#desa').html('');
-                $kecOptions = `<option></option>`;
-                data.forEach((item, index) => {
-                    $kecOptions += `<option value="${item.kode}">${item.nama}</option>`;
-                });
-                $('#kecamatan').html($kecOptions);
-            });
-        });
-
-        $('#kecamatan').on('change', function() {
-            $.get(`/api/desa/${$(this).val()}`, function(data, status) {
-                $('#desa').html('');
-                $desOptions = `<option></option>`;
-                data.forEach((item, index) => {
-                    $desOptions += `<option value="${item.kode}">${item.nama}</option>`;
-                });
-                $('#desa').html($desOptions);
-            });
-        });
-
-        $('#desa').on('change', function() {
-            $('#kodepos').removeAttr("disabled");
         });
     });
 </script>

@@ -10,6 +10,7 @@ use App\Models\Pengalaman;
 use App\Models\Personal;
 use App\Models\Wilayah;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
@@ -52,12 +53,33 @@ class ProfileController extends Controller
 
     public function personal_update(Request $request, $id)
     {
+        $request->validate([
+            'nama_depan' => 'required',
+            'nama_belakang' => 'required',
+            'jenis_kelamin' => 'required',
+            'no_hp' => 'required|unique:fdf1_personal,no_hp,' . decrypt($id),
+            'email' => 'required|email|unique:fdf1_personal,email,' . decrypt($id),
+            'alamat' => 'required',
+            'provinsi' => 'required',
+            'kabupaten' => 'required',
+            'kecamatan' => 'required',
+            'desa' => 'required',
+            'kodepos' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required'
+        ]);
+
+        $data = $request->all();
+        if (empty($data['photo'])) {
+            $data = Arr::except($data, array('photo'));
+        }
+
         $personal = Personal::find(decrypt($id));
-        $personal->fill($request->all());
+        $personal->fill($data);
         $personal->save();
 
         return redirect()->route('akun.profile.personal')
-            ->with('success', 'Data personal berhasil di ubah.');
+            ->with('success', 'Data informasi personal berhasil di ubah.');
     }
 
     public function pengalaman()

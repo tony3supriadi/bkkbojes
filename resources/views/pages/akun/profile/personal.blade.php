@@ -78,14 +78,6 @@ $wilayah = new App\Models\Wilayah;
                     {{ $personal->tanggal_lahir ? ', ' . Carbon\Carbon::parse($personal->tanggal_lahir)->isoFormat('D MMMM Y') : '' }}
                 </div>
             </div>
-            <div class="row border-bottom py-4 mx-0">
-                <div class="col-md-3 field-name px-0">Nomor Induk (NIK)</div>
-                <div class="col-md-9 px-0">{{ $personal->nik ? $personal->nik : '-' }}</div>
-            </div>
-            <!-- <div class="row border-bottom py-4 mx-0">
-                <div class="col-md-3 field-name px-0">Nomor Induk Siswa (NIS)</div>
-                <div class="col-md-9 px-0">{{ $personal->nis ? $personal->nis : '-' }}</div>
-            </div> -->
         </div>
     </div>
 </div>
