@@ -261,7 +261,6 @@
 @endpush
 
 @push('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="https://unpkg.com/cropperjs@1.5.12/dist/cropper.js"></script>
 <script src="{{ asset('js/inits/select2.js') }}"></script>

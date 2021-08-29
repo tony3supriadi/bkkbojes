@@ -52,13 +52,12 @@ $wilayah = new Wilayah();
                 <div class="col-md-8">
                     <h5 class="text-secondary mb-3"><strong>{{ $val->bekerja_sebagai }}</strong></h5>
 
-                    <div class="mb-4">
-                        <p class="text-muted m-0"><i class="la la-building me-2"></i> {{ $val->nama_perusahaan }}</p>
-                        <p class="text-muted m-0"><i class="la la-map-marker me-2"></i> {{ $wilayah->getName($val->kabupaten) }}, {{ $wilayah->getName($val->provinsi) }}, Indonesia</p>
-                        <p class="text-muted m-0"><i class="la la-industry me-2"></i> {{ $val->bidang_usaha }}</p>
-                    </div>
+                    <p class="text-muted m-0"><i class="la la-building me-2"></i> {{ $val->nama_perusahaan }}</p>
+                    <p class="text-muted m-0"><i class="la la-map-marker me-2"></i> {{ $wilayah->getName($val->kabupaten) }}, {{ $wilayah->getName($val->provinsi) }}, Indonesia</p>
+                    <p class="text-muted m-0"><i class="la la-industry me-2"></i> {{ $val->bidang_usaha }}</p>
 
-                    <div class="row py-1">
+
+                    <!-- <div class="row py-1">
                         <div class="col-md-4 text-secondary mb-1"><strong>Jabatan</strong></div>
                         <div class="col-md-8">{{ $val->jabatan ? $val->jabatan : '-' }}</div>
                     </div>
@@ -85,7 +84,7 @@ $wilayah = new Wilayah();
                         <div class="col-12">
                             {!! $val->tools ? $val->tools : '-' !!}
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="col-md-12 text-end">
                     <hr />

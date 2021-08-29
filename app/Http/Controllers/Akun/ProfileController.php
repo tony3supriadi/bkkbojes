@@ -85,7 +85,7 @@ class ProfileController extends Controller
     public function pengalaman()
     {
         $id = Auth::guard('personal')->user()->id;
-        $pengalaman = Pengalaman::where('personal_id', '=', $id)->get();
+        $pengalaman = Pengalaman::where('personal_id', '=', $id)->orderBy('tanggal_mulai', 'DESC')->get();
         return view('pages.akun.profile.pengalaman', compact('pengalaman'));
     }
 
@@ -103,12 +103,16 @@ class ProfileController extends Controller
             "tanggal_selesai" => $request->masih_bekerja ? "" : "required",
             "bekerja_sebagai" => "required",
             "nama_perusahaan" => "required",
-            "gaji" => "numeric"
+            "bidang_usaha" => "required",
+            "alamat" => "required",
+            "provinsi" => "required",
+            "kabupaten" => "required"
         ]);
 
         Pengalaman::create($request->all());
+
         return redirect()->route('akun.profile.pengalaman')
-            ->with('success', 'Penambahan pengalaman kerja berhasil');
+            ->with('success', 'Anda berhasil menambahkan pengalaman kerja.');
     }
 
     public function pengalaman_edit($id)
@@ -129,7 +133,10 @@ class ProfileController extends Controller
             "tanggal_selesai" => $request->masih_bekerja ? "" : "required",
             "bekerja_sebagai" => "required",
             "nama_perusahaan" => "required",
-            "gaji" => "numeric"
+            "bidang_usaha" => "required",
+            "alamat" => "required",
+            "provinsi" => "required",
+            "kabupaten" => "required"
         ]);
 
         $data = $request->all();
@@ -140,7 +147,7 @@ class ProfileController extends Controller
         $pengalaman->save();
 
         return redirect()->route('akun.profile.pengalaman')
-            ->with('success', 'Penambahan pengalaman kerja berhasil');
+            ->with('success', 'Perubahan data pengalaman kerja berhasil');
     }
 
     public function pengalaman_destroy($id)
@@ -149,7 +156,7 @@ class ProfileController extends Controller
         $pengalaman->delete();
 
         return redirect()->route('akun.profile.pengalaman')
-            ->with('success', 'Penambahan pengalaman kerja berhasil');
+            ->with('success', 'Penghapusan pengalaman kerja berhasil');
     }
 
 
