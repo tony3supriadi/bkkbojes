@@ -163,7 +163,7 @@ class ProfileController extends Controller
     public function pendidikan()
     {
         $id = Auth::guard('personal')->user()->id;
-        $pendidikan = Pendidikan::where('personal_id', '=', $id)->get();
+        $pendidikan = Pendidikan::where('personal_id', '=', $id)->orderBy('tahun_mulai', 'DESC')->get();
         return view('pages.akun.profile.pendidikan', compact('pendidikan'));
     }
 
@@ -186,11 +186,11 @@ class ProfileController extends Controller
             "kabupaten" => "required",
             "jenjang_pendidikan" => "required",
             "jurusan" => "required",
-            "nilai_akhir" => "required"
+            "nilai_akhir" => "required|numeric"
         ]);
         Pendidikan::create($request->all());
         return redirect()->route('akun.profile.pendidikan')
-            ->with('success', 'Penambahan pendidikan berhasil');
+            ->with('success', 'Penambahan riwayat pendidikan berhasil');
     }
 
     public function pendidikan_edit($id)
@@ -233,7 +233,7 @@ class ProfileController extends Controller
         $pendidikan->save();
 
         return redirect()->route('akun.profile.pendidikan')
-            ->with('success', 'Perubahan data pendidikan berhasil');
+            ->with('success', 'Perubahan riwayat pendidikan berhasil');
     }
 
     public function pendidikan_destroy($id)
@@ -242,7 +242,7 @@ class ProfileController extends Controller
         $pendidikan->delete();
 
         return redirect()->route('akun.profile.pendidikan')
-            ->with('success', 'Penghapusan data pendidikan berhasil');
+            ->with('success', 'Penghapusan riwayat pendidikan berhasil');
     }
 
     public function keterampilan()

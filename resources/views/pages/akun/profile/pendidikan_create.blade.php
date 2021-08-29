@@ -66,6 +66,10 @@
                             @endfor
                         </select>
                     </div>
+
+                    @if($errors->has('bulan_mulai') || $errors->has('tahun_mulai'))
+                    <div class="text-danger" style="font-size:.875em">Bulan dan tahun mulai harus diisi</div>
+                    @endif
                 </div>
 
                 <div class="form-group mb-3 row">
@@ -113,6 +117,10 @@
                             </label>
                         </div>
                     </div>
+
+                    @if($errors->has('bulan_selesai') || $errors->has('tahun_selesai'))
+                    <div class="text-danger" style="font-size:.875em">Bulan dan tahun selesai harus diisi</div>
+                    @endif
                 </div>
             </div>
 
@@ -134,11 +142,18 @@
                             <option value="{{ $prov['kode'] }}">{{ $prov['nama'] }}</option>
                             @endforeach
                         </select>
+                        @error('provinsi')
+                        <div class="invalid-feedback">{{ ucfirst($message) }}</div>
+                        @enderror
                     </div>
 
                     <select name="kabupaten" data-placeholder="Pilih kabupaten" id="kabupaten" class="form-control select2-basic @error('kabupaten') is-invalid border-danger @enderror">
                         <option value=""></option>
                     </select>
+
+                    @error('kabupaten')
+                    <div class="invalid-feedback">{{ ucfirst($message) }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group mb-3">
@@ -163,6 +178,9 @@
                             <option value="{{ $item }}" {{ old('jenjang_pendidikan') == $item ? 'selected' : '' }}>{{ $item }}</option>
                             @endforeach
                         </select>
+                        @error('jenjang_pendidikan')
+                        <div class="invalid-feedback">{{ ucfirst($message) }}</div>
+                        @enderror
                     </div>
                 </div>
 

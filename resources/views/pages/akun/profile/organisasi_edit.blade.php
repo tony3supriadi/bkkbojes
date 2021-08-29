@@ -32,15 +32,15 @@
 
             <div class="col-md-4">
                 <div class="form-group mb-3">
-                    <label for="tahun_mulai">Mulai</label>
-                    <input type="text" name="tahun_mulai" id="tahun_mulai" value="{{ old('tahun_mulai') ? old('tahun_mulai') : $organisasi->tahun_mulai }}" class="form-control @error('tahun_mulai') is-invalid border-danger @enderror">
+                    <label for="tahun_mulai">Tahun Mulai</label>
+                    <input type="number" name="tahun_mulai" id="tahun_mulai" value="{{ old('tahun_mulai') ? old('tahun_mulai') : $organisasi->tahun_mulai }}" class="form-control @error('tahun_mulai') is-invalid border-danger @enderror">
                     @error('tahun_mulai')
                     <div class="invalid-feedback">{{ ucfirst($message) }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="tahun_berakhir">Selesai</label>
-                    <input type="text" name="tahun_berakhir" id="tahun_berakhir" value="{{ old('tahun_berakhir') ? old('tahun_berakhir') : $organisasi->tahun_berakhir }}" class="form-control @error('tahun_berakhir') is-invalid border-danger @enderror" @if(old('masih_aktif') || $organisasi->masih_aktif) readonly @endif>
+                    <label for="tahun_berakhir">Tahun Selesai</label>
+                    <input type="number" name="tahun_berakhir" id="tahun_berakhir" value="{{ old('tahun_berakhir') ? old('tahun_berakhir') : $organisasi->tahun_berakhir }}" class="form-control @error('tahun_berakhir') is-invalid border-danger @enderror" @if(old('masih_aktif') || $organisasi->masih_aktif) readonly @endif>
 
                     <div class="form-check">
                         <input class="form-check-input" name="masih_aktif" type="checkbox" value="1" id="masih_aktif" @if(old('masih_aktif') || $organisasi->masih_aktif) checked @endif>

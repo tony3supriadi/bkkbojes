@@ -44,19 +44,11 @@ $wilayah = new Wilayah();
                 <div class="col-md-8">
                     <h5 class="text-secondary mb-3"><strong>{{ $val->nama_sekolah }}</strong></h5>
 
-                    <div class="mb-4">
+                    <div class="mb-2">
                         <p class="text-muted m-0"><i class="la la-map-marker me-2"></i>{{ $wilayah->getName($val->kabupaten) }}, {{ $wilayah->getName($val->provinsi) }}, Indonesia</p>
-                        <p class="text-muted m-0"><i class="la la-graduation-cap me-2"></i> {{ $wilayah->jenjang_pendidikan }}</p>
-                    </div>
-
-                    <div class="row py-1">
-                        <div class="col-md-4 text-muted mb-1"><strong>Jurusan</strong></div>
-                        <div class="col-md-8 text-muted">{{ $val->jurusan }}</div>
-                    </div>
-
-                    <div class="row py-1">
-                        <div class="col-md-4 text-muted mb-1"><strong>IPK/NEM</strong></div>
-                        <div class="col-md-8 text-muted">{{ $val->nilai_akhir }}</div>
+                        <p class="text-muted m-0"><i class="la la-graduation-cap me-2"></i> {{ $val->jenjang_pendidikan }}</p>
+                        <p class="text-muted m-0"><i class="las la-swatchbook"></i> {{ $val->jurusan }}</p>
+                        <p class="text-muted m-0"><i class="las la-clipboard-list"></i> {{ $val->nilai_akhir }}</p>
                     </div>
                 </div>
                 <div class="col-md-12 text-end">

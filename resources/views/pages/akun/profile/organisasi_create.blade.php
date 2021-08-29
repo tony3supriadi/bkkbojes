@@ -31,14 +31,14 @@
 
             <div class="col-md-4">
                 <div class="form-group mb-3">
-                    <label for="tahun_mulai">Mulai</label>
+                    <label for="tahun_mulai">Tahun Mulai</label>
                     <input type="text" name="tahun_mulai" id="tahun_mulai" value="{{ old('tahun_mulai') }}" class="form-control @error('tahun_mulai') is-invalid border-danger @enderror">
                     @error('tahun_mulai')
                     <div class="invalid-feedback">{{ ucfirst($message) }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="tahun_berakhir">Selesai</label>
+                    <label for="tahun_berakhir">Tahuan Selesai</label>
                     <input type="text" name="tahun_berakhir" id="tahun_berakhir" value="{{ old('tahun_berakhir') }}" class="form-control @error('tahun_berakhir') is-invalid border-danger @enderror" @if(old('masih_aktif')) readonly @endif>
 
                     <div class="form-check">
