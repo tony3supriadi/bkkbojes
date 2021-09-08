@@ -20,7 +20,7 @@
     <div class="account-content">
         <div class="page-title d-flex justify-content-between">
             <h4 class="d-inline-block">
-                <i class="la la-graduation-cap"></i>
+                <i class="la la-graduation-cap text-primary"></i>
                 <span>Riwayat Pendidikan</span>
             </h4>
         </div>

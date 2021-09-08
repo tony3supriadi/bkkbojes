@@ -38,7 +38,6 @@
                     i {
                         position: absolute;
                         font-size: 32px;
-                        color: $primary;
                     }
 
                     span {
@@ -51,11 +50,6 @@
 
                 a {
                     text-decoration: none;
-                    color: $secondary;
-                }
-
-                a:hover {
-                    color: $primary;
                 }
             }
 
@@ -73,6 +67,28 @@
                     width: 80px;
                     height: 80px;
                     border-radius: 50%;
+                }
+
+                &.resume-photo {
+                    width: 120px !important;
+                    height: 120px !important;
+
+                    img {
+                        width: 120px;
+                        height: 120px;
+                        border-radius: 50%;
+                    }
+
+                    @media (max-width: 768px) {
+                        width: 100px !important;
+                        height: 100px !important;
+                        margin: 0 auto;
+
+                        img {
+                            width: 100px !important;
+                            height: 100px !important; 
+                        }
+                    }
                 }
             }
 

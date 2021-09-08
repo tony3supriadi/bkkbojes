@@ -24,7 +24,7 @@ $wilayah = new App\Models\Wilayah;
     <div class="account-content">
         <div class="page-title d-flex justify-content-between">
             <h4 class="d-inline-block">
-                <i class="la la-id-card"></i>
+                <i class="la la-id-card text-primary"></i>
                 <span>Informasi Personal</span>
             </h4>
 

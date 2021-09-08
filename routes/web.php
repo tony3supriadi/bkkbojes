@@ -78,7 +78,8 @@ Route::group([
     });
 
     Route::get('/resume', [App\Http\Controllers\Akun\AkunController::class, 'resume'])->name('resume');
-    Route::post('/resume/exports', [App\Http\Controllers\Akun\AkunController::class, 'resume_exports'])->name('resume-exports');
+    Route::get('/resume/download', [App\Http\Controllers\Akun\AkunController::class, 'resume_download'])->name('resume-download');
+    Route::get('/resume/view/stream', [App\Http\Controllers\Akun\AkunController::class, 'resume_stream'])->name('resume-stream');
 
     Route::get('/pemberitahuan', [App\Http\Controllers\Akun\AkunController::class, 'pemberitahuan'])->name('pemberitahuan');
     Route::get('/pemberitahuan/{id}', [App\Http\Controllers\Akun\AkunController::class, 'pemberitahuan_detail'])->name('pemberitahuan-detail');

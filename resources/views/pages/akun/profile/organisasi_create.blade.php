@@ -20,7 +20,7 @@
     <div class="account-content">
         <div class="page-title d-flex justify-content-between">
             <h4 class="d-inline-block">
-                <i class="la la-cog"></i>
+                <i class="la la-sitemap text-primary"></i>
                 <span>Pengalaman Organisasi</span>
             </h4>
         </div>

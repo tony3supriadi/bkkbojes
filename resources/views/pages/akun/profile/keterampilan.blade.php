@@ -20,7 +20,7 @@
     <div class="account-content">
         <div class="page-title d-flex justify-content-between">
             <h4 class="d-inline-block">
-                <i class="la la-cog"></i>
+                <i class="la la-cog text-primary"></i>
                 <span>Keterampilan / Skill</span>
             </h4>
 
@@ -35,7 +35,7 @@
 
         @if (count($keterampilan))
         <div class="py-3">
-            @if('mahir')
+            @if($mahir)
             <div class="row">
                 <div class="col-md-2">
                     <p class="text-muted m-0">Mahir</p>

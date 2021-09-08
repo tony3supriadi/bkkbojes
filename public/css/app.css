@@ -12868,7 +12868,6 @@ input[type=date]::-webkit-calendar-picker-indicator {
 #account-page .card .account-content .page-title h4 i, #account-page .card .account-content .page-title .h4 i {
   position: absolute;
   font-size: 32px;
-  color: #FF6C28;
 }
 #account-page .card .account-content .page-title h4 span, #account-page .card .account-content .page-title .h4 span {
   font-size: 18px;
@@ -12878,10 +12877,6 @@ input[type=date]::-webkit-calendar-picker-indicator {
 }
 #account-page .card .account-content .page-title a {
   text-decoration: none;
-  color: #142B63;
-}
-#account-page .card .account-content .page-title a:hover {
-  color: #FF6C28;
 }
 #account-page .card .account-content .user-photo {
   width: 80px;
@@ -12897,6 +12892,26 @@ input[type=date]::-webkit-calendar-picker-indicator {
   width: 80px;
   height: 80px;
   border-radius: 50%;
+}
+#account-page .card .account-content .user-photo.resume-photo {
+  width: 120px !important;
+  height: 120px !important;
+}
+#account-page .card .account-content .user-photo.resume-photo img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+@media (max-width: 768px) {
+  #account-page .card .account-content .user-photo.resume-photo {
+    width: 100px !important;
+    height: 100px !important;
+    margin: 0 auto;
+  }
+  #account-page .card .account-content .user-photo.resume-photo img {
+    width: 100px !important;
+    height: 100px !important;
+  }
 }
 #account-page .card .account-content .user-photo-edit {
   cursor: pointer;
