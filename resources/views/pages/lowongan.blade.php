@@ -12,5 +12,18 @@
 @endsection
 
 @section('content')
-@include('components.errors.halaman_dikembangkan')
+<section class="daftar-lowongan">
+    <div class="container pt-4 pb-5">
+        <div class="row">
+            <div class="col-md-9"></div>
+            <div class="col-md-3">
+                <!-- Pengumuman -->
+                @include('pages.partials.pengumuman-box')
+
+                <!-- Testimonial -->
+                @include('pages.partials.testimonial-box')
+            </div>
+        </div>
+    </div>
+</section>
 @endsection
