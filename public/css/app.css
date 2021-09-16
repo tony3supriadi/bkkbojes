@@ -278,7 +278,7 @@ table {
 caption {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  color: #6c757d;
+  color: #adb5bd;
   text-align: left;
 }
 
@@ -2153,7 +2153,7 @@ progress {
 .form-text {
   margin-top: 0.25rem;
   font-size: 0.875em;
-  color: #6c757d;
+  color: #adb5bd;
 }
 
 .form-control {
@@ -7339,7 +7339,7 @@ textarea.form-control-lg {
 }
 
 .text-muted {
-  color: #6c757d !important;
+  color: #adb5bd !important;
 }
 
 .text-black-50 {
@@ -12025,6 +12025,30 @@ textarea.form-control-lg {
   opacity: 0.75;
 }
 
+.avatar-image {
+  border-radius: 50%;
+}
+.avatar-image img {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+
+.avatar-sm {
+  width: 50px;
+  height: 50px;
+}
+
+.avatar-md {
+  width: 70px;
+  height: 70px;
+}
+
+.avatar-lg {
+  width: 120px;
+  height: 120px;
+}
+
 .breadcrumb .breadcrumb-item a {
   text-decoration: none;
   color: #142B63;
@@ -12044,6 +12068,23 @@ textarea.form-control-lg {
 .btn-primary:hover,
 .btn-outline-primary:hover {
   color: #fff;
+}
+
+.box-card {
+  border: 0;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.08) !important;
+}
+.box-card .box-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #142B63;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ced4da;
+  margin-bottom: 0.5rem;
+}
+.box-card .box-title i, .box-card .box-title span {
+  font-size: 1.8rem;
+  color: #FF6C28;
 }
 
 .dropdown-toggle::after {
@@ -12084,6 +12125,57 @@ form .form-group .input-group .input-group-append .input-group-text {
 form .form-check-input:focus {
   box-shadow: none;
   border-color: #FF6C28;
+}
+form .select2-container .select2-selection--single .select2-selection__rendered {
+  padding: 0 !important;
+}
+
+input[type=date] {
+  position: relative;
+  /*width: 150px; height: 20px;*/
+  /*color: white;*/
+  display: block;
+  width: 100%;
+  height: 2.4rem;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #000;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 0 transparent;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  align-content: center;
+}
+
+input[type=date]:before {
+  position: absolute;
+  left: 12px;
+  content: attr(placeholder);
+  display: block;
+  color: #6c757d;
+}
+
+input[type=date]::-webkit-datetime-edit,
+input[type=date]::-webkit-inner-spin-button,
+input[type=date]::-webkit-clear-button {
+  display: none;
+}
+
+input[type=date]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  height: auto;
+  width: auto;
+  background: transparent;
+  color: transparent;
+  cursor: pointer;
 }
 
 #footer {
@@ -12173,6 +12265,22 @@ form .form-check-input:focus {
 
 .navbar {
   padding-top: 0;
+}
+.navbar .user-profile .photo {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 300;
+  text-align: center;
+  align-items: center;
+}
+.navbar .user-profile .photo img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
 }
 
 .navigation-mobile {
@@ -12791,5 +12899,88 @@ form .form-check-input:focus {
   border-bottom: 4px solid #FF6C28;
 }
 #account-page .card .account-content {
-  padding: 1rem;
+  padding: 1rem 1.8rem;
+}
+#account-page .card .account-content .page-title {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 5px;
+}
+#account-page .card .account-content .page-title h4 i, #account-page .card .account-content .page-title .h4 i {
+  position: absolute;
+  font-size: 32px;
+}
+#account-page .card .account-content .page-title h4 span, #account-page .card .account-content .page-title .h4 span {
+  font-size: 18px;
+  margin-left: 42px;
+  font-weight: bold;
+  color: #142B63;
+}
+#account-page .card .account-content .page-title a {
+  text-decoration: none;
+}
+#account-page .card .account-content .user-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#account-page .card .account-content .user-photo img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+#account-page .card .account-content .user-photo.resume-photo {
+  width: 120px !important;
+  height: 120px !important;
+}
+#account-page .card .account-content .user-photo.resume-photo img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+@media (max-width: 768px) {
+  #account-page .card .account-content .user-photo.resume-photo {
+    width: 100px !important;
+    height: 100px !important;
+    margin: 0 auto;
+  }
+  #account-page .card .account-content .user-photo.resume-photo img {
+    width: 100px !important;
+    height: 100px !important;
+  }
+}
+#account-page .card .account-content .user-photo-edit {
+  cursor: pointer;
+}
+#account-page .card .account-content .user-photo-edit:hover::after {
+  font-family: "Font Awesome 5 Free", "Poppins", "DM Sans", sans-serif;
+  content: "Ubah";
+  width: 80px;
+  height: 80px;
+  background: #000;
+  opacity: 0.4;
+  position: absolute;
+  font-size: 14px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#account-page .card .account-content .user-data .field-name {
+  color: #adb5bd;
+}
+#account-page .card .account-content .empty-data {
+  border: 2px dashed #ced4da;
+  color: #adb5bd;
+  width: 100%;
+  min-height: 332px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
 }

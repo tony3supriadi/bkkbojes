@@ -4,6 +4,27 @@
 
 .navbar {
     padding-top: 0;
+
+    .user-profile {
+
+        .photo {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            color: $white;
+            font-size: 20px;
+            font-weight: 300;
+            text-align: center;
+            align-items: center;
+
+            img {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+            }
+        }
+    }
 }
 
 .navigation-mobile {

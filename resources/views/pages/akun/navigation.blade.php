@@ -1,17 +1,45 @@
 @php
 use Illuminate\Support\Facades\Route;
+use App\Models\Personal;
 $route = Route::currentRouteName();
+$personal = new Personal();
 @endphp
 
 <section id="sidenav" class="card card-body p-0">
     <div class="status p-3">
         <h4 class="title">Kelengkapan Profil</h4>
 
-        <p class="text-danger progress-label">10%</p>
+        @php
+        $procentase = $personal->getProfileComplete(Auth::guard('personal')->user()->id);
+        @endphp
+
+        <p class="
+            {{ $procentase > 75 
+                ? 'text-success' : ($procentase > 50 
+                    ? 'text-warning' : ($procentase > 25 
+                        ? 'text-primary' : 'text-danger')) 
+                    }} progress-label">
+
+            {{ $procentase }}%
+        </p>
         <div class="progress">
-            <div class="progress-bar bg-danger" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar {{ $procentase > 75 
+                ? 'bg-success' : ($procentase > 50 
+                    ? 'bg-warning' : ($procentase > 25 
+                        ? 'bg-primary' : 'bg-danger')) 
+                    }}" role="progressbar" style="width: {{ $procentase }}%" aria-valuenow="{{ $procentase }}" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
-        <p class="description">Lengkapi profilmu agar dapat mengajukan lamaran kerja</p>
+        <p class="description">
+            @if ($procentase > 75)
+            Selamat anda sudah bisa download resume dan mengajukan lamaran.
+            @elseif($procentase > 50)
+            Tinggal sedikit lagi, dan bisa mencari lowongan kerjaan.
+            @elseif($procentase > 25)
+            Masih belum lengkap, segera lengkapi profilmu yah!
+            @else
+            Lengkapi profilmu agar dapat mengajukan lamaran kerja
+            @endif
+        </p>
     </div>
 
     <ul class="navigation list-group list-group-flush">

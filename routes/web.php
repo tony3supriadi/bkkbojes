@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -12,14 +13,30 @@ Route::get('/testimonial', [App\Http\Controllers\DaftarMitraController::class, '
 Route::get('/faq', [App\Http\Controllers\DaftarMitraController::class, 'index'])->name('faq');
 
 Route::get('/login', [App\Http\Controllers\LoginController::class, 'index'])->name('login');
+Route::post('/login', [App\Http\Controllers\LoginController::class, 'login']);
+
 Route::get('/daftar', [App\Http\Controllers\DaftarController::class, 'index'])->name('daftar');
-Route::get('/daftar/konfirmasi', [App\Http\Controllers\DaftarController::class, 'confirm_page'])->name('daftar.konfirmasi');
+Route::post('/daftar', [App\Http\Controllers\DaftarController::class, 'register']);
+
+Route::get('/daftar/konfirmasi', [App\Http\Controllers\DaftarController::class, 'confirm_page'])
+    ->name('verification.notice');
+
+Route::post('/daftar/konfirmasi/resend', [App\Http\Controllers\DaftarController::class, 'confirm_resend'])
+    ->name('verification.resend')->middleware(['auth:personal', 'throttle:6,1']);
+
+Route::get('/daftar/konfirmasi/{id}/{hash}', [App\Http\Controllers\DaftarController::class, 'confirm_verify'])
+    ->name('verification.verify')->middleware(['auth:personal', 'signed', 'throttle:6,1']);
+
 Route::get('/daftar/berhasil', [App\Http\Controllers\DaftarController::class, 'success_page'])->name('daftar.berhasil');
+
 Route::get('/lupa-sandi', [App\Http\Controllers\LupaSandiController::class, 'index'])->name('lupa-sandi');
+
+Route::post('/logout', [App\Http\Controllers\LoginController::class, 'logout'])->name('akun.logout');
 
 Route::group([
     "prefix" => "/akun",
-    "as" => "akun."
+    "as" => "akun.",
+    "middleware" => ["auth:personal", "verified"]
 ], function () {
     Route::get('/', [App\Http\Controllers\Akun\AkunController::class, 'redirectTo']);
 
@@ -34,24 +51,35 @@ Route::group([
         Route::put('/personal/{id}', [App\Http\Controllers\Akun\ProfileController::class, 'personal_update'])->name('personal.update');
 
         Route::get('/pengalaman', [App\Http\Controllers\Akun\ProfileController::class, 'pengalaman'])->name('pengalaman');
+        Route::get('/pengalaman/tambah', [App\Http\Controllers\Akun\ProfileController::class, 'pengalaman_create'])->name('pengalaman.create');
+        Route::post('/pengalaman', [App\Http\Controllers\Akun\ProfileController::class, 'pengalaman_store'])->name('pengalaman.store');
         Route::get('/pengalaman/{id}/edit', [App\Http\Controllers\Akun\ProfileController::class, 'pengalaman_edit'])->name('pengalaman.edit');
         Route::put('/pengalaman/{id}', [App\Http\Controllers\Akun\ProfileController::class, 'pengalaman_update'])->name('pengalaman.update');
+        Route::delete('/pengalaman/{id}', [App\Http\Controllers\Akun\ProfileController::class, 'pengalaman_destroy'])->name('pengalaman.destroy');
 
         Route::get('/pendidikan', [App\Http\Controllers\Akun\ProfileController::class, 'pendidikan'])->name('pendidikan');
+        Route::get('/pendidikan/create', [App\Http\Controllers\Akun\ProfileController::class, 'pendidikan_create'])->name('pendidikan.create');
+        Route::post('/pendidikan', [App\Http\Controllers\Akun\ProfileController::class, 'pendidikan_store'])->name('pendidikan.store');
         Route::get('/pendidikan/{id}/edit', [App\Http\Controllers\Akun\ProfileController::class, 'pendidikan_edit'])->name('pendidikan.edit');
         Route::put('/pendidikan/{id}', [App\Http\Controllers\Akun\ProfileController::class, 'pendidikan_update'])->name('pendidikan.update');
+        Route::delete('/pendidikan/{id}', [App\Http\Controllers\Akun\ProfileController::class, 'pendidikan_destroy'])->name('pendidikan.destroy');
 
         Route::get('/keterampilan', [App\Http\Controllers\Akun\ProfileController::class, 'keterampilan'])->name('keterampilan');
-        Route::get('/keterampilan/{id}/edit', [App\Http\Controllers\Akun\ProfileController::class, 'keterampilan_edit'])->name('keterampilan.edit');
-        Route::put('/keterampilan/{id}', [App\Http\Controllers\Akun\ProfileController::class, 'keterampilan_update'])->name('keterampilan.update');
+        Route::get('/keterampilan/edit', [App\Http\Controllers\Akun\ProfileController::class, 'keterampilan_edit'])->name('keterampilan.edit');
+        Route::put('/keterampilan', [App\Http\Controllers\Akun\ProfileController::class, 'keterampilan_update'])->name('keterampilan.update');
+        Route::delete('/keterampilan/{id}', [App\Http\Controllers\Akun\ProfileController::class, 'keterampilan_destroy'])->name('keterampilan.destroy');
 
         Route::get('/organisasi', [App\Http\Controllers\Akun\ProfileController::class, 'organisasi'])->name('organisasi');
+        Route::get('/organisasi/tambah', [App\Http\Controllers\Akun\ProfileController::class, 'organisasi_create'])->name('organisasi.create');
+        Route::post('/organisasi', [App\Http\Controllers\Akun\ProfileController::class, 'organisasi_store'])->name('organisasi.store');
         Route::get('/organisasi/{id}/edit', [App\Http\Controllers\Akun\ProfileController::class, 'organisasi_edit'])->name('organisasi.edit');
         Route::put('/organisasi/{id}', [App\Http\Controllers\Akun\ProfileController::class, 'organisasi_update'])->name('organisasi.update');
+        Route::delete('/organisasi/{id}', [App\Http\Controllers\Akun\ProfileController::class, 'organisasi_destroy'])->name('organisasi.destroy');
     });
 
     Route::get('/resume', [App\Http\Controllers\Akun\AkunController::class, 'resume'])->name('resume');
-    Route::post('/resume/exports', [App\Http\Controllers\Akun\AkunController::class, 'resume_exports'])->name('resume-exports');
+    Route::get('/resume/download', [App\Http\Controllers\Akun\AkunController::class, 'resume_download'])->name('resume-download');
+    Route::get('/resume/view/stream', [App\Http\Controllers\Akun\AkunController::class, 'resume_stream'])->name('resume-stream');
 
     Route::get('/pemberitahuan', [App\Http\Controllers\Akun\AkunController::class, 'pemberitahuan'])->name('pemberitahuan');
     Route::get('/pemberitahuan/{id}', [App\Http\Controllers\Akun\AkunController::class, 'pemberitahuan_detail'])->name('pemberitahuan-detail');
@@ -71,6 +99,11 @@ Route::group([
     "as" => "admin."
 ], function () {
 
+    Route::get("/login", [App\Http\Controllers\Admin\AuthController::class, 'showLoginForm'])->name('auth.login');
+    Route::post("/login", [App\Http\Controllers\Admin\AuthController::class, 'login']);
+
+    Route::get("/akses-ditolak", [App\Http\Controllers\Admin\AuthController::class, 'deniedAccess'])->name('akses-ditolak');
+
     Route::group([
         "middleware" => ["auth:admin", "authIsAdmin"]
     ], function () {
@@ -81,10 +114,10 @@ Route::group([
         Route::delete("/pengguna", [App\Http\Controllers\Admin\PenggunaController::class, "bulk_destroy"])->name("pengguna.bulk-destroy");
         Route::resource("/pengguna", App\Http\Controllers\Admin\PenggunaController::class)
             ->except(["show"]);
-        
+
         Route::delete("/mitra", [App\Http\Controllers\Admin\MitraController::class, "bulk_destroy"])->name("mitra.bulk-destroy");
         Route::resource("/mitra", App\Http\Controllers\Admin\MitraController::class)
-                ->except(["show"]);
+            ->except(["show"]);
 
         //Transaction
         Route::delete("/lowongan", [App\Http\Controllers\Admin\LowonganController::class, "bulk_destroy"])->name("lowongan.bulk-destroy");
@@ -93,7 +126,7 @@ Route::group([
 
         Route::delete("/pengumuman", [App\Http\Controllers\Admin\PengumumanController::class, "bulk_destroy"])->name("pengumuman.bulk-destroy");
         Route::resource("/pengumuman", App\Http\Controllers\Admin\PengumumanController::class)
-                ->except(["show"]);
+            ->except(["show"]);
 
         //Pages
         Route::delete("/faq", [App\Http\Controllers\Admin\FaqController::class, "bulk_destroy"])->name("faq.bulk-destroy");
@@ -120,7 +153,7 @@ Route::group([
         Route::delete("/manage-admin", [App\Http\Controllers\Admin\ManageAdminController::class, "bulk_destroy"])->name("manage-admin.bulk-destroy");
         Route::resource("/manage-admin", App\Http\Controllers\Admin\ManageAdminController::class)
             ->except(["show"]);
-        
+
         Route::delete("/alamat", [App\Http\Controllers\Admin\AlamatController::class, "bulk_destroy"])->name("alamat.bulk-destroy");
         Route::resource("/alamat", App\Http\Controllers\Admin\AlamatController::class)
             ->except(["show"]);
@@ -128,16 +161,11 @@ Route::group([
         Route::delete("/hak-cipta", [App\Http\Controllers\Admin\HakCiptaController::class, "bulk_destroy"])->name("hak-cipta.bulk-destroy");
         Route::resource("/hak-cipta", App\Http\Controllers\Admin\HakCiptaController::class)
             ->except(["show"]);
-        
+
         Route::delete("/link", [App\Http\Controllers\Admin\LinkController::class, "bulk_destroy"])->name("link.bulk-destroy");
         Route::resource("/link", App\Http\Controllers\Admin\LinkController::class)
             ->except(["show"]);
 
         Route::post("/logout", [App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('logout');
     });
-
-    Route::get("/login", [App\Http\Controllers\Admin\AuthController::class, 'showLoginForm'])->name('auth.login');
-    Route::post("/login", [App\Http\Controllers\Admin\AuthController::class, 'login']);
-
-    Route::get("/akses-ditolak", [App\Http\Controllers\Admin\AuthController::class, 'deniedAccess'])->name('akses-ditolak');
 });
