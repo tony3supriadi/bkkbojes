@@ -137,16 +137,16 @@
 
         <div class="row py-1 pt-md-4">
             <div class="col-md-3 col-6">
-                <img src="{{ asset('images/logo-ahm.png') }}" />
+                <img src="{{ asset('images/mitra/logo-ahm.png') }}" />
             </div>
             <div class="col-md-3 col-6">
-                <img src="{{ asset('images/logo-indofood.png') }}" />
+                <img src="{{ asset('images/mitra/logo-indofood.png') }}" />
             </div>
             <div class="col-md-3 col-6">
-                <img src="{{ asset('images/logo-denso.png') }}" />
+                <img src="{{ asset('images/mitra/logo-denso.png') }}" />
             </div>
             <div class="col-md-3 col-6">
-                <img src="{{ asset('images/logo-paragon.png') }}" />
+                <img src="{{ asset('images/mitra/logo-paragon.png') }}" />
             </div>
         </div>
 

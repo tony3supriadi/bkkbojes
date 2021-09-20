@@ -17,21 +17,23 @@
         <div class="row">
             <div class="col-md-9">
                 <!-- Cari Lowongan -->
-                @include('pages.partials.cari-lowongan')
+                @include('pages.lowongan.partials.cari-lowongan')
+
+                @include('pages.lowongan.partials.pagination')
             </div>
             <div class="col-md-3">
                 <!-- Pengumuman -->
-                @include('pages.partials.pengumuman-box')
+                @include('pages.lowongan.partials.pengumuman-box')
 
                 <!-- Testimonial -->
-                @include('pages.partials.testimonial-box')
+                @include('pages.lowongan.partials.testimonial-box')
 
                 <!-- Mitra Kami -->
-                @include('pages.partials.mitra-box')
+                @include('pages.lowongan.partials.mitra-box')
 
                 <div class="card card-body box-card mb-3">
                     <img src="{{ asset('images/banner/alur-ppdb.png') }}">
-                </div>      
+                </div>
             </div>
         </div>
     </div>

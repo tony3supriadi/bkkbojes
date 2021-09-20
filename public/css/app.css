@@ -12087,6 +12087,52 @@ textarea.form-control-lg {
   color: #FF6C28;
 }
 
+.box-title-detail {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #142B63;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ced4da;
+  margin-bottom: 0.5rem;
+  padding: 10px;
+}
+.box-title-detail i, .box-title-detail span {
+  font-size: 1.8rem;
+  color: #FF6C28;
+}
+
+.box-description {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #142B63;
+  background-color: #F1F6F9;
+  padding-left: 25px;
+}
+.box-description i, .box-description span {
+  font-size: 1.8rem;
+  color: #FF6C28;
+}
+
+.list-content {
+  font-size: 0.9rem;
+  color: #142B63;
+  padding-left: 50px;
+}
+
+.box-button {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #142B63;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ced4da;
+  margin-bottom: 0.5rem;
+  padding: 10px;
+}
+.box-button i, .box-button span {
+  font-size: 1.8rem;
+  color: #FF6C28;
+}
+
 .dropdown-toggle::after {
   display: none;
 }

@@ -7,6 +7,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'redirectTo']);
 
 Route::get('/lowongan', [App\Http\Controllers\LowonganController::class, 'index'])->name('lowongan');
+Route::get('/lowongan-detail', [App\Http\Controllers\LowonganController::class, 'lowongan_detail'])->name('lowongan-detail');
 Route::get('/pengumuman', [App\Http\Controllers\PengumumanController::class, 'index'])->name('pengumuman');
 Route::get('/daftar-mitra', [App\Http\Controllers\DaftarMitraController::class, 'index'])->name('daftar-mitra');
 Route::get('/testimonial', [App\Http\Controllers\DaftarMitraController::class, 'index'])->name('testimonial');

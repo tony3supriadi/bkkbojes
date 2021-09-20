@@ -1,7 +1,7 @@
 <div class="mt-4">
     <div class="row">
-        <div class="col-md-6 ">
-            <div class="row d-flex align-items-center">
+        <div class="col-md-6">
+            <div class="row">
                 <div class="col-10 d-flex align-items-center justify-content-between">
                     <img src="{{ asset('images/icons/left.png') }}">
 
@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h6>
-                        Menampilkan 1 dari 13 halaman | Total 327 Lowongan
+                        Menampilkan <strong>1</strong> dari <strong>13</strong> halaman | Total <strong>327</strong> Lowongan
                     </h6>
                 </div>
             </div>

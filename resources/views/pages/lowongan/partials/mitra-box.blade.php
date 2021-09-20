@@ -9,7 +9,7 @@
             <div class="col-10 d-flex align-items-center">
                 <img src="{{ asset('images/icons/left.png') }}">
 
-                <img src="{{ asset('images/logo-denso.png') }}">
+                <img src="{{ asset('images/mitra/logo-denso.png') }}">
             </div>
             <div class="col-2">
                 <img src="{{ asset('images/icons/right.png') }}">

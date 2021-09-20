@@ -15,4 +15,55 @@
             color: $primary;
         }
     }
+
+
+}
+
+.box-title-detail {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: $secondary;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $gray-400;
+    margin-bottom: .5rem;
+    padding:10px;
+
+    i, span {
+        font-size: 1.8rem;
+        color: $primary;
+    }
+}
+
+.box-description{
+    font-weight: bold;
+    font-size: 1rem;
+    color: $secondary;
+    background-color: $bg-description;
+    padding-left: 25px;
+
+    i, span {
+        font-size: 1.8rem;
+        color: $primary;
+    }
+}
+
+.list-content{
+    font-size: 0.9rem;
+    color: $secondary;
+    padding-left: 50px;
+}
+
+.box-button{
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: $secondary;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $gray-400;
+    margin-bottom: .5rem;
+    padding:10px;
+
+    i, span {
+        font-size: 1.8rem;
+        color: $primary;
+    }
 }

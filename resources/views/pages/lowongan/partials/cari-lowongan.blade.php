@@ -65,8 +65,10 @@
             <div class="box-title">
                 <div class="row">
                     <div class="col-md-5">
-                        <h6 class="text-primary fw-bold">Waiters, Dishwasher, Cook Helper</h6>
-                        <h6>Aston Imperium Hotel</h6>
+                        <a href="{{ route('lowongan-detail') }}" class="" style="text-decoration:none">
+                            <h6 class="text-primary fw-bold">Waiters, Dishwasher, Cook Helper</h6>
+                        </a>
+                            <h6>Aston Imperium Hotel</h6>
                     </div>
 
                     <div class="col-md-7">
@@ -145,8 +147,10 @@
             <div class="box-title">
                 <div class="row">
                     <div class="col-md-5">
-                        <h6 class="text-primary fw-bold">Lowongan Kerja Kasir</h6>
-                        <h6>PT. Indomarco Prismatama (Indomaret Group)</h6>
+                        <a href="{{ route('lowongan-detail') }}" class="" style="text-decoration:none">
+                            <h6 class="text-primary fw-bold">Lowongan Kerja Kasir</h6>
+                        </a>
+                            <h6>PT. Indomarco Prismatama (Indomaret Group)</h6>
                     </div>
 
                     <div class="col-md-7">
@@ -225,8 +229,10 @@
             <div class="box-title">
                 <div class="row">
                     <div class="col-md-5">
-                        <h6 class="text-primary fw-bold">Assistant Manager</h6>
-                        <h6>Exposure Media</h6>
+                        <a href="{{ route('lowongan-detail') }}" class="" style="text-decoration:none">
+                            <h6 class="text-primary fw-bold">Assistant Manager</h6>
+                        </a>
+                            <h6>Exposure Media</h6>
                     </div>
 
                     <div class="col-md-7">
@@ -305,8 +311,10 @@
             <div class="box-title">
                 <div class="row">
                     <div class="col-md-5">
-                        <h6 class="text-primary fw-bold">Waiters, Dishwasher, Cook Helper</h6>
-                        <h6>Aston Imperium Hotel</h6>
+                        <a href="{{ route('lowongan-detail') }}" class="" style="text-decoration:none">
+                            <h6 class="text-primary fw-bold">Waiters, Dishwasher, Cook Helper</h6>
+                        </a>
+                            <h6>Aston Imperium Hotel</h6>
                     </div>
 
                     <div class="col-md-7">
@@ -385,8 +393,10 @@
             <div class="box-title">
                 <div class="row">
                     <div class="col-md-5">
-                        <h6 class="text-primary fw-bold">Lowongan Kerja Kasir</h6>
-                        <h6>PT. Indomarco Prismatama (Indomaret Group)</h6>
+                        <a href="{{ route('lowongan-detail') }}" class="" style="text-decoration:none">
+                            <h6 class="text-primary fw-bold">Lowongan Kerja Kasir</h6>
+                        </a>
+                            <h6>PT. Indomarco Prismatama (Indomaret Group)</h6>
                     </div>
 
                     <div class="col-md-7">
@@ -780,8 +790,6 @@
         </div>
     </li>
 </ul>
-
-@include('pages.partials.pagination')
 
 
 @push('styles')
