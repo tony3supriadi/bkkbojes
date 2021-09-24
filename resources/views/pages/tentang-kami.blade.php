@@ -5,7 +5,7 @@
     <div class="container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
-            <li class="breadcrumb-item active">Pengumuman</li>
+            <li class="breadcrumb-item active">Tentang Kami</li>
         </ol>
     </div>
 </nav>

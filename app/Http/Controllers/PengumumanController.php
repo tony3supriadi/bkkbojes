@@ -8,6 +8,6 @@ class PengumumanController extends Controller
 {
     public function index()
     {
-        return view('pages.pengumuman');
+        return view('pages.pengumuman.pengumuman');
     }
 }

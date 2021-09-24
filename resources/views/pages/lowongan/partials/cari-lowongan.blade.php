@@ -1,7 +1,7 @@
 <div class="card card-body box-card mb-3">
     <div class="box py-2">
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Search for...">
+            <input type="text" class="form-control" placeholder="Keyik kata kunci, nama perusahaan, posisi, dll...">
             <span class="input-group-btn">
                 <button class="btn btn-primary" type="button">
                     <i class="la la-search" style="color: white"></i>
@@ -31,7 +31,7 @@
                 </select>
             </div>
             <div class="col-md-2 px-1 mb-2 mb-md-0">
-                <select id="kisaran_gaji" data-placeholder="Kiasaran Gaji" class="form-control">
+                <select id="kisaran_gaji" data-placeholder="Gaji" class="form-control">
                     <i class="la la-angle-down"></i>
                     <option value=""></option>
                     <option value="#">5.000.000</option>
@@ -66,7 +66,7 @@
                 <div class="row">
                     <div class="col-md-5">
                         <a href="{{ route('lowongan-detail') }}" class="" style="text-decoration:none">
-                            <h6 class="text-primary fw-bold">Waiters, Dishwasher, Cook Helper</h6>
+                            <h5>Waiters, Dishwasher, Cook Helper</h5>
                         </a>
                             <h6>Aston Imperium Hotel</h6>
                     </div>
@@ -75,38 +75,30 @@
                         <div class="row">
                             <div class="col-md-7">
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/map-marker-alt-solid.png') }}" class="me-2"/>
-                                            Purwokerto, Banyumas, Jawa Tengah
-                                        </small></h6>
+                                    <div class="icons-desc-group d-flex align-items-center mb-2">
+                                        <img src="{{ asset('images/icons/map-marker-alt-solid.png') }}" class="me-2"/>
+                                        <span>Purwokerto, Banyumas, Jawa tengah</span>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/user-tag-solid.png') }}" class="me-2"/>
-                                            Jasa Boga
-                                        </h6></small>
+                                    <div class="icons-desc-group d-flex align-items-center mb-2">
+                                        <img src="{{ asset('images/icons/user-tag-solid.png') }}" class="me-2"/>
+                                        <span> Jasa Boga</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-md-5">
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/business-time-solid.png') }}" class="me-2"/>
-                                            Full Time
-                                        </h6></small>
+                                    <div class="icons-desc-group d-flex align-items-center mb-2">
+                                        <img src="{{ asset('images/icons/business-time-solid.png') }}" class="me-2"/>
+                                        <span> Full Time </span>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/hand-holding-usd-solid.png') }}" class="me-2"/>
-                                            Rp. 3 - 5 Juta
-                                        </h6></small>
+                                    <div class="icons-desc-group d-flex align-items-center">
+                                        <img src="{{ asset('images/icons/hand-holding-usd-solid.png') }}" class="me-2"/>
+                                        <span> Rp. 3 - 5 Juta </span>
                                     </div>
                                 </div>
                             </div>
@@ -119,21 +111,21 @@
                 <div class="col-md-7">
                     <div class="row d-flex justify-items-between">
                         <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
+                            <div class="icons-desc-group d-flex align-items-center mb-2">
                                 <img src="{{ asset('images/icons/day-ago.png') }}" class="me-2"/>
-                                <small>2 hari yang lalu</small>
+                                <span>2 hari yang lalu</span>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
+                            <div class="icons-desc-group d-flex align-items-center mb-2">
                                 <i class="la la-calendar-times-o me-2"></i>
-                                <small>ditutup 16 hari lagi</small>
+                                <span>ditutup 16 hari lagi</span>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
+                            <div class="icons-desc-group d-flex align-items-center mb-2">
                                 <i class="la la-eye me-2"></i>
-                                <small>dilihat 174 kali</small>
+                                <span>dilihat 174 kali</span>
                             </div>
                         </div>
                     </div>
@@ -148,171 +140,7 @@
                 <div class="row">
                     <div class="col-md-5">
                         <a href="{{ route('lowongan-detail') }}" class="" style="text-decoration:none">
-                            <h6 class="text-primary fw-bold">Lowongan Kerja Kasir</h6>
-                        </a>
-                            <h6>PT. Indomarco Prismatama (Indomaret Group)</h6>
-                    </div>
-
-                    <div class="col-md-7">
-                        <div class="row">
-                            <div class="col-md-7">
-                                <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/map-marker-alt-solid.png') }}" class="me-2"/>
-                                            Purbalingga, Jawa Tengah, Jawa Tengah
-                                        </small></h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/user-tag-solid.png') }}" class="me-2"/>
-                                            Semua Program Studi
-                                        </h6></small>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-5">
-                                <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/business-time-solid.png') }}" class="me-2"/>
-                                            Full Time
-                                        </h6></small>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/hand-holding-usd-solid.png') }}" class="me-2"/>
-                                            Rp. 3 - 5 Juta
-                                        </h6></small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-7">
-                    <div class="row d-flex justify-items-between">
-                        <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
-                                <img src="{{ asset('images/icons/day-ago.png') }}" class="me-2"/>
-                                <small>2 hari yang lalu</small>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
-                                <i class="la la-calendar-times-o me-2"></i>
-                                <small>ditutup 16 hari lagi</small>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
-                                <i class="la la-eye me-2"></i>
-                                <small>dilihat 174 kali</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </li>
-
-    <li class="list-group">
-        <div class="card card-body box-card mb-3">
-            <div class="box-title">
-                <div class="row">
-                    <div class="col-md-5">
-                        <a href="{{ route('lowongan-detail') }}" class="" style="text-decoration:none">
-                            <h6 class="text-primary fw-bold">Assistant Manager</h6>
-                        </a>
-                            <h6>Exposure Media</h6>
-                    </div>
-
-                    <div class="col-md-7">
-                        <div class="row">
-                            <div class="col-md-7">
-                                <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/map-marker-alt-solid.png') }}" class="me-2"/>
-                                            Semarang, Jawa Tengah, Jawa Tengah
-                                        </small></h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/user-tag-solid.png') }}" class="me-2"/>
-                                            Mutimedia
-                                        </h6></small>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-5">
-                                <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/business-time-solid.png') }}" class="me-2"/>
-                                            Full Time
-                                        </h6></small>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/hand-holding-usd-solid.png') }}" class="me-2"/>
-                                            Rp. 5 - 7 Juta
-                                        </h6></small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-7">
-                    <div class="row d-flex justify-items-between">
-                        <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
-                                <img src="{{ asset('images/icons/day-ago.png') }}" class="me-2"/>
-                                <small>5 hari yang lalu</small>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
-                                <i class="la la-calendar-times-o me-2"></i>
-                                <small>ditutup 10 hari lagi</small>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
-                                <i class="la la-eye me-2"></i>
-                                <small>dilihat 240 kali</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </li>
-
-    <li class="list-group">
-        <div class="card card-body box-card mb-3">
-            <div class="box-title">
-                <div class="row">
-                    <div class="col-md-5">
-                        <a href="{{ route('lowongan-detail') }}" class="" style="text-decoration:none">
-                            <h6 class="text-primary fw-bold">Waiters, Dishwasher, Cook Helper</h6>
+                            <h5>Waiters, Dishwasher, Cook Helper</h5>
                         </a>
                             <h6>Aston Imperium Hotel</h6>
                     </div>
@@ -321,38 +149,30 @@
                         <div class="row">
                             <div class="col-md-7">
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/map-marker-alt-solid.png') }}" class="me-2"/>
-                                            Purwokerto, Banyumas, Jawa Tengah
-                                        </small></h6>
+                                    <div class="icons-desc-group d-flex align-items-center mb-2">
+                                        <img src="{{ asset('images/icons/map-marker-alt-solid.png') }}" class="me-2"/>
+                                        <span>Purwokerto, Banyumas, Jawa tengah</span>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/user-tag-solid.png') }}" class="me-2"/>
-                                            Jasa Boga
-                                        </h6></small>
+                                    <div class="icons-desc-group d-flex align-items-center mb-2">
+                                        <img src="{{ asset('images/icons/user-tag-solid.png') }}" class="me-2"/>
+                                        <span> Jasa Boga</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-md-5">
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/business-time-solid.png') }}" class="me-2"/>
-                                            Full Time
-                                        </h6></small>
+                                    <div class="icons-desc-group d-flex align-items-center mb-2">
+                                        <img src="{{ asset('images/icons/business-time-solid.png') }}" class="me-2"/>
+                                        <span> Full Time </span>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/hand-holding-usd-solid.png') }}" class="me-2"/>
-                                            Rp. 3 - 5 Juta
-                                        </h6></small>
+                                    <div class="icons-desc-group d-flex align-items-center">
+                                        <img src="{{ asset('images/icons/hand-holding-usd-solid.png') }}" class="me-2"/>
+                                        <span> Rp. 3 - 5 Juta </span>
                                     </div>
                                 </div>
                             </div>
@@ -365,21 +185,21 @@
                 <div class="col-md-7">
                     <div class="row d-flex justify-items-between">
                         <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
+                            <div class="icons-desc-group d-flex align-items-center mb-2">
                                 <img src="{{ asset('images/icons/day-ago.png') }}" class="me-2"/>
-                                <small>2 hari yang lalu</small>
+                                <span>2 hari yang lalu</span>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
+                            <div class="icons-desc-group d-flex align-items-center mb-2">
                                 <i class="la la-calendar-times-o me-2"></i>
-                                <small>ditutup 16 hari lagi</small>
+                                <span>ditutup 16 hari lagi</span>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
+                            <div class="icons-desc-group d-flex align-items-center mb-2">
                                 <i class="la la-eye me-2"></i>
-                                <small>dilihat 174 kali</small>
+                                <span>dilihat 174 kali</span>
                             </div>
                         </div>
                     </div>
@@ -394,47 +214,39 @@
                 <div class="row">
                     <div class="col-md-5">
                         <a href="{{ route('lowongan-detail') }}" class="" style="text-decoration:none">
-                            <h6 class="text-primary fw-bold">Lowongan Kerja Kasir</h6>
+                            <h5>Waiters, Dishwasher, Cook Helper</h5>
                         </a>
-                            <h6>PT. Indomarco Prismatama (Indomaret Group)</h6>
+                            <h6>Aston Imperium Hotel</h6>
                     </div>
 
                     <div class="col-md-7">
                         <div class="row">
                             <div class="col-md-7">
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/map-marker-alt-solid.png') }}" class="me-2"/>
-                                            Purbalingga, Jawa Tengah, Jawa Tengah
-                                        </small></h6>
+                                    <div class="icons-desc-group d-flex align-items-center mb-2">
+                                        <img src="{{ asset('images/icons/map-marker-alt-solid.png') }}" class="me-2"/>
+                                        <span>Purwokerto, Banyumas, Jawa tengah</span>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/user-tag-solid.png') }}" class="me-2"/>
-                                            Semua Program Studi
-                                        </h6></small>
+                                    <div class="icons-desc-group d-flex align-items-center mb-2">
+                                        <img src="{{ asset('images/icons/user-tag-solid.png') }}" class="me-2"/>
+                                        <span> Jasa Boga</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-md-5">
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/business-time-solid.png') }}" class="me-2"/>
-                                            Full Time
-                                        </h6></small>
+                                    <div class="icons-desc-group d-flex align-items-center mb-2">
+                                        <img src="{{ asset('images/icons/business-time-solid.png') }}" class="me-2"/>
+                                        <span> Full Time </span>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/hand-holding-usd-solid.png') }}" class="me-2"/>
-                                            Rp. 3 - 5 Juta
-                                        </h6></small>
+                                    <div class="icons-desc-group d-flex align-items-center">
+                                        <img src="{{ asset('images/icons/hand-holding-usd-solid.png') }}" class="me-2"/>
+                                        <span> Rp. 3 - 5 Juta </span>
                                     </div>
                                 </div>
                             </div>
@@ -447,21 +259,21 @@
                 <div class="col-md-7">
                     <div class="row d-flex justify-items-between">
                         <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
+                            <div class="icons-desc-group d-flex align-items-center mb-2">
                                 <img src="{{ asset('images/icons/day-ago.png') }}" class="me-2"/>
-                                <small>2 hari yang lalu</small>
+                                <span>2 hari yang lalu</span>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
+                            <div class="icons-desc-group d-flex align-items-center mb-2">
                                 <i class="la la-calendar-times-o me-2"></i>
-                                <small>ditutup 16 hari lagi</small>
+                                <span>ditutup 16 hari lagi</span>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
+                            <div class="icons-desc-group d-flex align-items-center mb-2">
                                 <i class="la la-eye me-2"></i>
-                                <small>dilihat 174 kali</small>
+                                <span>dilihat 174 kali</span>
                             </div>
                         </div>
                     </div>
@@ -475,46 +287,40 @@
             <div class="box-title">
                 <div class="row">
                     <div class="col-md-5">
-                        <h6 class="text-primary fw-bold">Assistant Manager</h6>
-                        <h6>Exposure Media</h6>
+                        <a href="{{ route('lowongan-detail') }}" class="" style="text-decoration:none">
+                            <h5>Waiters, Dishwasher, Cook Helper</h5>
+                        </a>
+                            <h6>Aston Imperium Hotel</h6>
                     </div>
 
                     <div class="col-md-7">
                         <div class="row">
                             <div class="col-md-7">
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/map-marker-alt-solid.png') }}" class="me-2"/>
-                                            Semarang, Jawa Tengah, Jawa Tengah
-                                        </small></h6>
+                                    <div class="icons-desc-group d-flex align-items-center mb-2">
+                                        <img src="{{ asset('images/icons/map-marker-alt-solid.png') }}" class="me-2"/>
+                                        <span>Purwokerto, Banyumas, Jawa tengah</span>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/user-tag-solid.png') }}" class="me-2"/>
-                                            Mutimedia
-                                        </h6></small>
+                                    <div class="icons-desc-group d-flex align-items-center mb-2">
+                                        <img src="{{ asset('images/icons/user-tag-solid.png') }}" class="me-2"/>
+                                        <span> Jasa Boga</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-md-5">
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/business-time-solid.png') }}" class="me-2"/>
-                                            Full Time
-                                        </h6></small>
+                                    <div class="icons-desc-group d-flex align-items-center mb-2">
+                                        <img src="{{ asset('images/icons/business-time-solid.png') }}" class="me-2"/>
+                                        <span> Full Time </span>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/hand-holding-usd-solid.png') }}" class="me-2"/>
-                                            Rp. 5 - 7 Juta
-                                        </h6></small>
+                                    <div class="icons-desc-group d-flex align-items-center">
+                                        <img src="{{ asset('images/icons/hand-holding-usd-solid.png') }}" class="me-2"/>
+                                        <span> Rp. 3 - 5 Juta </span>
                                     </div>
                                 </div>
                             </div>
@@ -527,21 +333,21 @@
                 <div class="col-md-7">
                     <div class="row d-flex justify-items-between">
                         <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
+                            <div class="icons-desc-group d-flex align-items-center mb-2">
                                 <img src="{{ asset('images/icons/day-ago.png') }}" class="me-2"/>
-                                <small>5 hari yang lalu</small>
+                                <span>2 hari yang lalu</span>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
+                            <div class="icons-desc-group d-flex align-items-center mb-2">
                                 <i class="la la-calendar-times-o me-2"></i>
-                                <small>ditutup 10 hari lagi</small>
+                                <span>ditutup 16 hari lagi</span>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
+                            <div class="icons-desc-group d-flex align-items-center mb-2">
                                 <i class="la la-eye me-2"></i>
-                                <small>dilihat 240 kali</small>
+                                <span>dilihat 174 kali</span>
                             </div>
                         </div>
                     </div>
@@ -555,46 +361,40 @@
             <div class="box-title">
                 <div class="row">
                     <div class="col-md-5">
-                        <h6 class="text-primary fw-bold">Waiters, Dishwasher, Cook Helper</h6>
-                        <h6>Aston Imperium Hotel</h6>
+                        <a href="{{ route('lowongan-detail') }}" class="" style="text-decoration:none">
+                            <h5>Waiters, Dishwasher, Cook Helper</h5>
+                        </a>
+                            <h6>Aston Imperium Hotel</h6>
                     </div>
 
                     <div class="col-md-7">
                         <div class="row">
                             <div class="col-md-7">
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/map-marker-alt-solid.png') }}" class="me-2"/>
-                                            Purwokerto, Banyumas, Jawa Tengah
-                                        </small></h6>
+                                    <div class="icons-desc-group d-flex align-items-center mb-2">
+                                        <img src="{{ asset('images/icons/map-marker-alt-solid.png') }}" class="me-2"/>
+                                        <span>Purwokerto, Banyumas, Jawa tengah</span>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/user-tag-solid.png') }}" class="me-2"/>
-                                            Jasa Boga
-                                        </h6></small>
+                                    <div class="icons-desc-group d-flex align-items-center mb-2">
+                                        <img src="{{ asset('images/icons/user-tag-solid.png') }}" class="me-2"/>
+                                        <span> Jasa Boga</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-md-5">
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/business-time-solid.png') }}" class="me-2"/>
-                                            Full Time
-                                        </h6></small>
+                                    <div class="icons-desc-group d-flex align-items-center mb-2">
+                                        <img src="{{ asset('images/icons/business-time-solid.png') }}" class="me-2"/>
+                                        <span> Full Time </span>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/hand-holding-usd-solid.png') }}" class="me-2"/>
-                                            Rp. 3 - 5 Juta
-                                        </h6></small>
+                                    <div class="icons-desc-group d-flex align-items-center">
+                                        <img src="{{ asset('images/icons/hand-holding-usd-solid.png') }}" class="me-2"/>
+                                        <span> Rp. 3 - 5 Juta </span>
                                     </div>
                                 </div>
                             </div>
@@ -607,21 +407,21 @@
                 <div class="col-md-7">
                     <div class="row d-flex justify-items-between">
                         <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
+                            <div class="icons-desc-group d-flex align-items-center mb-2">
                                 <img src="{{ asset('images/icons/day-ago.png') }}" class="me-2"/>
-                                <small>2 hari yang lalu</small>
+                                <span>2 hari yang lalu</span>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
+                            <div class="icons-desc-group d-flex align-items-center mb-2">
                                 <i class="la la-calendar-times-o me-2"></i>
-                                <small>ditutup 16 hari lagi</small>
+                                <span>ditutup 16 hari lagi</span>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
+                            <div class="icons-desc-group d-flex align-items-center mb-2">
                                 <i class="la la-eye me-2"></i>
-                                <small>dilihat 174 kali</small>
+                                <span>dilihat 174 kali</span>
                             </div>
                         </div>
                     </div>
@@ -635,46 +435,40 @@
             <div class="box-title">
                 <div class="row">
                     <div class="col-md-5">
-                        <h6 class="text-primary fw-bold">Lowongan Kerja Kasir</h6>
-                        <h6>PT. Indomarco Prismatama (Indomaret Group)</h6>
+                        <a href="{{ route('lowongan-detail') }}" class="" style="text-decoration:none">
+                            <h5>Waiters, Dishwasher, Cook Helper</h5>
+                        </a>
+                            <h6>Aston Imperium Hotel</h6>
                     </div>
 
                     <div class="col-md-7">
                         <div class="row">
                             <div class="col-md-7">
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/map-marker-alt-solid.png') }}" class="me-2"/>
-                                            Purbalingga, Jawa Tengah, Jawa Tengah
-                                        </small></h6>
+                                    <div class="icons-desc-group d-flex align-items-center mb-2">
+                                        <img src="{{ asset('images/icons/map-marker-alt-solid.png') }}" class="me-2"/>
+                                        <span>Purwokerto, Banyumas, Jawa tengah</span>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/user-tag-solid.png') }}" class="me-2"/>
-                                            Semua Program Studi
-                                        </h6></small>
+                                    <div class="icons-desc-group d-flex align-items-center mb-2">
+                                        <img src="{{ asset('images/icons/user-tag-solid.png') }}" class="me-2"/>
+                                        <span> Jasa Boga</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-md-5">
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/business-time-solid.png') }}" class="me-2"/>
-                                            Full Time
-                                        </h6></small>
+                                    <div class="icons-desc-group d-flex align-items-center mb-2">
+                                        <img src="{{ asset('images/icons/business-time-solid.png') }}" class="me-2"/>
+                                        <span> Full Time </span>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/hand-holding-usd-solid.png') }}" class="me-2"/>
-                                            Rp. 3 - 5 Juta
-                                        </h6></small>
+                                    <div class="icons-desc-group d-flex align-items-center">
+                                        <img src="{{ asset('images/icons/hand-holding-usd-solid.png') }}" class="me-2"/>
+                                        <span> Rp. 3 - 5 Juta </span>
                                     </div>
                                 </div>
                             </div>
@@ -687,21 +481,21 @@
                 <div class="col-md-7">
                     <div class="row d-flex justify-items-between">
                         <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
+                            <div class="icons-desc-group d-flex align-items-center mb-2">
                                 <img src="{{ asset('images/icons/day-ago.png') }}" class="me-2"/>
-                                <small>2 hari yang lalu</small>
+                                <span>2 hari yang lalu</span>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
+                            <div class="icons-desc-group d-flex align-items-center mb-2">
                                 <i class="la la-calendar-times-o me-2"></i>
-                                <small>ditutup 16 hari lagi</small>
+                                <span>ditutup 16 hari lagi</span>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
+                            <div class="icons-desc-group d-flex align-items-center mb-2">
                                 <i class="la la-eye me-2"></i>
-                                <small>dilihat 174 kali</small>
+                                <span>dilihat 174 kali</span>
                             </div>
                         </div>
                     </div>
@@ -715,46 +509,40 @@
             <div class="box-title">
                 <div class="row">
                     <div class="col-md-5">
-                        <h6 class="text-primary fw-bold">Assistant Manager</h6>
-                        <h6>Exposure Media</h6>
+                        <a href="{{ route('lowongan-detail') }}" class="" style="text-decoration:none">
+                            <h5>Waiters, Dishwasher, Cook Helper</h5>
+                        </a>
+                            <h6>Aston Imperium Hotel</h6>
                     </div>
 
                     <div class="col-md-7">
                         <div class="row">
                             <div class="col-md-7">
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/map-marker-alt-solid.png') }}" class="me-2"/>
-                                            Semarang, Jawa Tengah, Jawa Tengah
-                                        </small></h6>
+                                    <div class="icons-desc-group d-flex align-items-center mb-2">
+                                        <img src="{{ asset('images/icons/map-marker-alt-solid.png') }}" class="me-2"/>
+                                        <span>Purwokerto, Banyumas, Jawa tengah</span>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/user-tag-solid.png') }}" class="me-2"/>
-                                            Mutimedia
-                                        </h6></small>
+                                    <div class="icons-desc-group d-flex align-items-center mb-2">
+                                        <img src="{{ asset('images/icons/user-tag-solid.png') }}" class="me-2"/>
+                                        <span> Jasa Boga</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-md-5">
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/business-time-solid.png') }}" class="me-2"/>
-                                            Full Time
-                                        </h6></small>
+                                    <div class="icons-desc-group d-flex align-items-center mb-2">
+                                        <img src="{{ asset('images/icons/business-time-solid.png') }}" class="me-2"/>
+                                        <span> Full Time </span>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="input-group d-flex align-items-center" style="color: gray">
-                                        <h6><small>
-                                            <img src="{{ asset('images/icons/hand-holding-usd-solid.png') }}" class="me-2"/>
-                                            Rp. 5 - 7 Juta
-                                        </h6></small>
+                                    <div class="icons-desc-group d-flex align-items-center">
+                                        <img src="{{ asset('images/icons/hand-holding-usd-solid.png') }}" class="me-2"/>
+                                        <span> Rp. 3 - 5 Juta </span>
                                     </div>
                                 </div>
                             </div>
@@ -767,21 +555,95 @@
                 <div class="col-md-7">
                     <div class="row d-flex justify-items-between">
                         <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
+                            <div class="icons-desc-group d-flex align-items-center mb-2">
                                 <img src="{{ asset('images/icons/day-ago.png') }}" class="me-2"/>
-                                <small>5 hari yang lalu</small>
+                                <span>2 hari yang lalu</span>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
+                            <div class="icons-desc-group d-flex align-items-center mb-2">
                                 <i class="la la-calendar-times-o me-2"></i>
-                                <small>ditutup 10 hari lagi</small>
+                                <span>ditutup 16 hari lagi</span>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="input-group d-flex align-items-center" style="color: gray">
+                            <div class="icons-desc-group d-flex align-items-center mb-2">
                                 <i class="la la-eye me-2"></i>
-                                <small>dilihat 240 kali</small>
+                                <span>dilihat 174 kali</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+
+    <li class="list-group">
+        <div class="card card-body box-card mb-3">
+            <div class="box-title">
+                <div class="row">
+                    <div class="col-md-5">
+                        <a href="{{ route('lowongan-detail') }}" class="" style="text-decoration:none">
+                            <h5>Waiters, Dishwasher, Cook Helper</h5>
+                        </a>
+                            <h6>Aston Imperium Hotel</h6>
+                    </div>
+
+                    <div class="col-md-7">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="col-md-12">
+                                    <div class="icons-desc-group d-flex align-items-center mb-2">
+                                        <img src="{{ asset('images/icons/map-marker-alt-solid.png') }}" class="me-2"/>
+                                        <span>Purwokerto, Banyumas, Jawa tengah</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="icons-desc-group d-flex align-items-center mb-2">
+                                        <img src="{{ asset('images/icons/user-tag-solid.png') }}" class="me-2"/>
+                                        <span> Jasa Boga</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-5">
+                                <div class="col-md-12">
+                                    <div class="icons-desc-group d-flex align-items-center mb-2">
+                                        <img src="{{ asset('images/icons/business-time-solid.png') }}" class="me-2"/>
+                                        <span> Full Time </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="icons-desc-group d-flex align-items-center">
+                                        <img src="{{ asset('images/icons/hand-holding-usd-solid.png') }}" class="me-2"/>
+                                        <span> Rp. 3 - 5 Juta </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="row d-flex justify-items-between">
+                        <div class="col-md-4">
+                            <div class="icons-desc-group d-flex align-items-center mb-2">
+                                <img src="{{ asset('images/icons/day-ago.png') }}" class="me-2"/>
+                                <span>2 hari yang lalu</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="icons-desc-group d-flex align-items-center mb-2">
+                                <i class="la la-calendar-times-o me-2"></i>
+                                <span>ditutup 16 hari lagi</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="icons-desc-group d-flex align-items-center mb-2">
+                                <i class="la la-eye me-2"></i>
+                                <span>dilihat 174 kali</span>
                             </div>
                         </div>
                     </div>

@@ -6,25 +6,25 @@
                     <div class="col-md-4 col-6 mb-5">
                         <h4 class="title">BURSA KERJA</h4>
                         <ul>
-                            <li><a href="">Tentang Kami</a></li>
-                            <li><a href="">Lowongan</a></li>
-                            <li><a href="">Pengumuman</a></li>
-                            <li><a href="">Testimonial</a></li>
+                            <li><a href="{{ route('tentang-kami') }}">Tentang Kami</a></li>
+                            <li><a href="{{ route('lowongan') }}">Lowongan</a></li>
+                            <li><a href="{{ route('pengumuman') }}">Pengumuman</a></li>
+                            <li><a href="{{ route('testimonial') }}">Testimonial</a></li>
                         </ul>
                     </div>
                     <div class="col-md-4 col-6 mb-5">
                         <h4 class="title">BANTUAN</h4>
                         <ul>
-                            <li><a href="">Sering Ditanya (FAQ)</a></li>
-                            <li><a href="">Ketentuan Penggunaan</a></li>
-                            <li><a href="">Kebijakan Privasi</a></li>
+                            <li><a href="{{ route('faq') }}">Sering Ditanya (FAQ)</a></li>
+                            <li><a href="{{ route('ketentuan-penggunaan') }}">Ketentuan Penggunaan</a></li>
+                            <li><a href="{{ route('kebijakan-privasi') }}">Kebijakan Privasi</a></li>
                             <li><a href="">SMK Negeri 1 Bojongsari</a></li>
                         </ul>
                     </div>
                     <div class="col-md-4 col-12 mb-5">
                         <h4 class="title">PERUSAHAAN</h4>
                         <ul>
-                            <li><a href="">Daftar Perusahaan Mitra</a></li>
+                            <li><a href="{{ route('daftar-mitra') }}">Daftar Perusahaan Mitra</a></li>
                             <li><a href="">Kirim Lowongan Pekerjaan</a></li>
                         </ul>
                     </div>

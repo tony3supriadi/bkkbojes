@@ -1,5 +1,5 @@
 <div class="card card-body box-card mb-3">
-    <div class="box-title">
+    <div class="box-title d-flex">
         <i class="la la-comments me-3"></i>
         Kata Mereka
     </div>

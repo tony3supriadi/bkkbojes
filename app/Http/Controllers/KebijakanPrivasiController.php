@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DaftarMitraController extends Controller
+class KebijakanPrivasiController extends Controller
 {
     public function index()
     {
-        return view('pages.mitra.daftar-mitra');
+        return view('pages.kebijakan-privasi');
     }
 }

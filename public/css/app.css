@@ -12081,10 +12081,37 @@ textarea.form-control-lg {
   padding-bottom: 1rem;
   border-bottom: 1px solid #ced4da;
   margin-bottom: 0.5rem;
+  align-items: center;
 }
 .box-card .box-title i, .box-card .box-title span {
   font-size: 1.8rem;
   color: #FF6C28;
+}
+.box-card .box-title h5, .box-card .box-title .h5 {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #FF6C28;
+}
+.box-card .box-title h6, .box-card .box-title .h6 {
+  font-size: 0.82rem;
+}
+.box-card .box-title .icons-desc-group {
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+.box-card .box-title .icons-desc-group span {
+  font-weight: normal;
+  font-size: 0.77rem;
+  color: #495057;
+}
+.box-card .icons-desc-group {
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+.box-card .icons-desc-group span {
+  font-weight: normal;
+  font-size: 0.77rem;
+  color: #adb5bd;
 }
 
 .box-title-detail {
@@ -12097,7 +12124,8 @@ textarea.form-control-lg {
   padding: 10px;
 }
 .box-title-detail i, .box-title-detail span {
-  font-size: 1.8rem;
+  font-weight: normal;
+  font-size: 1.6rem;
   color: #FF6C28;
 }
 
@@ -12108,6 +12136,11 @@ textarea.form-control-lg {
   background-color: #F1F6F9;
   padding-left: 25px;
 }
+.box-description .description-title {
+  font-weight: bold;
+  align-items: center;
+  padding: 4px;
+}
 .box-description i, .box-description span {
   font-size: 1.8rem;
   color: #FF6C28;
@@ -12117,6 +12150,16 @@ textarea.form-control-lg {
   font-size: 0.9rem;
   color: #142B63;
   padding-left: 50px;
+}
+
+.icons-group {
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+.icons-group span {
+  font-weight: normal;
+  font-size: 0.77rem;
+  color: #adb5bd;
 }
 
 .box-button {
@@ -12133,6 +12176,145 @@ textarea.form-control-lg {
   color: #FF6C28;
 }
 
+.box-content {
+  font-weight: bold;
+  padding: 10px;
+  padding-bottom: 1.8rem;
+  border-bottom: 1px solid #ced4da;
+  margin-bottom: 1.5rem;
+}
+.box-content .box-content-logo {
+  color: #FF6C28;
+}
+.box-content .box-content-title {
+  font-size: 1.2rem;
+  color: #FF6C28;
+  padding-top: 5px;
+}
+.box-content .box-content-title h6, .box-content .box-content-title .h6 {
+  font-size: 1rem;
+  color: #142B63;
+}
+.box-content .btn-round {
+  border-radius: 40px;
+}
+
+.box-content-body {
+  font-size: 0.9rem;
+  color: #6c757d;
+  padding: 0px 10px;
+}
+.box-content-body p {
+  font-size: 0.8rem;
+}
+.box-content-body h4, .box-content-body .h4 {
+  font-size: 0.76rem;
+  color: #142B63;
+}
+.box-content-body h5, .box-content-body .h5 {
+  font-size: 0.72rem;
+}
+.box-content-body h6, .box-content-body .h6 {
+  font-size: 0.65rem;
+}
+.box-content-body .content-body-paragraph {
+  font-size: 0.7rem;
+}
+.box-content-body .content-body-paragraph p {
+  font-size: 0.7rem;
+}
+
+.box-content-footer {
+  font-size: 1rem;
+  color: #adb5bd;
+  padding: 0px 10px;
+  padding-top: 1rem;
+  border-top: 1px solid #ced4da;
+  margin-top: 1rem;
+}
+.box-content-footer span {
+  font-weight: normal;
+  font-size: 0.77rem;
+  color: #adb5bd;
+}
+
+.overflow {
+  height: 600px;
+  overflow-y: scroll;
+  transition: 0.3s ease;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #bbbbbb;
+  border-radius: 10px;
+}
+
+.box-sidebar {
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: #FF6C28;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ced4da;
+  margin-bottom: 0.5rem;
+}
+.box-sidebar .sidebar-logo {
+  color: #FF6C28;
+}
+.box-sidebar .sidebar-description {
+  font-size: 0.7rem;
+  color: #142B63;
+}
+
+.box-sidebar-footer {
+  font-size: 0.5rem;
+  color: #adb5bd;
+}
+
+.box-tabs {
+  font-size: 0.57rem;
+}
+.box-tabs .nav-tabs .nav-link.active {
+  font-weight: bold;
+  color: #FF6C28;
+  background-color: #f8f9fa;
+}
+.box-tabs .nav-tabs .nav-link {
+  font-weight: bold;
+  color: #142B63;
+  background-color: #fff;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.column {
+  padding: 15px;
+  background-color: white;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.08) !important;
+}
+
+@media (min-width: 770px) {
+  .flex {
+    flex-direction: row;
+  }
+  .flex .column {
+    width: 49.25%;
+  }
+}
 .dropdown-toggle::after {
   display: none;
 }

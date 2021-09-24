@@ -3,8 +3,8 @@
         <div class="box-title-detail" >
             <div class="row d-flex justify-content-between">
                 <div class="col-md-8">
-                    <h6 class="text-primary fw-bold">Lowongan Kerja Kasir</h6>
-                    <small><h6>PT. Indomarco Prismatama (Indomaret Group)</h6></small>
+                    <h4 class="text-primary fw-bold">Lowongan Kerja Kasir</h4>
+                    <h6>PT. Indomarco Prismatama (Indomaret Group)</h6>
                 </div>
 
                 <div class="col-md-4">
@@ -17,7 +17,7 @@
                         </div>
                         <div class="col md-6">
                             <h6><small class="d-flex align-items-center">
-                                <i class="la la-mail-forward me-2"></i>
+                                <img src="{{ asset('images/icons/share-solid.png') }}" class="me-2">
                                 Bagikan
                             </small></h6>
                         </div>
@@ -72,7 +72,7 @@
     <ul class="list-group">
         <li class="list-group">
             <div class="card-header border-white box-description">
-                <div class="box-content d-flex align-items-center">
+                <div class="description-title d-flex">
                     <img src="{{ asset('images/icons/tasks-solid.png') }}" class="me-3">
                     Deskripsi Pekerjaan
                 </div>
@@ -97,7 +97,7 @@
         </li>
         <li class="list-group">
             <div class="card-header border-white box-description">
-                <div class="box-content d-flex align-items-center">
+                <div class="description-title d-flex">
                     <img src="{{ asset('images/icons/user-check-solid.png') }}" class="me-3">
                     Kualifikasi
                 </div>
@@ -119,7 +119,7 @@
         </li>
         <li class="list-group">
             <div class="card-header border-white box-description">
-                <div class="box-content d-flex align-items-center">
+                <div class="description-title d-flex">
                     <img src="{{ asset('images/icons/file-invoice-dollar-solid.png') }}" class="me-3">
                     Gaji dan Fasilitas
                 </div>
@@ -137,7 +137,7 @@
         </li>
         <li class="list-group">
             <div class="card-header border-white box-description">
-                <div class="box-content d-flex align-items-center">
+                <div class="description-title d-flex">
                     <img src="{{ asset('images/icons/sticky-note.png') }}" class="me-3">
                     Catatan
                 </div>
@@ -158,7 +158,7 @@
         </li>
         <li class="list-group">
             <div class="card-header border-white box-description">
-                <div class="box-content d-flex align-items-center">
+                <div class="description-title d-flex">
                     <img src="{{ asset('images/icons/info-circle-solid.png') }}" class="me-3">
                     Informasi lain
                 </div>
@@ -176,29 +176,36 @@
         </li>
     </ul>
 
-    <div class="card-footer bg-white">
-        <div class="row d-flex align-items-center justify-items-between">
-            <div class="col-md-3">
-                <div class="input-group d-flex align-items-center" style="color: gray">
-                    <img src="{{ asset('images/icons/day-ago.png') }}" class="me-2"/>
-                    <small>2 hari yang lalu</small>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="row d-flex justify-items-between">
+                    <div class="col-md-4">
+                        <div class="icons-group d-flex align-items-center mb-2">
+                            <img src="{{ asset('images/icons/day-ago.png') }}" class="me-2"/>
+                            <span>2 hari yang lalu</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="icons-group d-flex align-items-center mb-2">
+                            <i class="la la-calendar-times-o me-2"></i>
+                            <span>ditutup 16 hari lagi</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="icons-group d-flex align-items-center mb-2">
+                            <i class="la la-eye me-2"></i>
+                            <span>dilihat 174 kali</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="input-group d-flex align-items-center" style="color: gray">
-                    <i class="la la-calendar-times-o me-2"></i>
-                    <small>ditutup 16 hari lagi</small>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="input-group d-flex align-items-center" style="color: gray">
-                    <i class="la la-eye me-2"></i>
-                    <small>dilihat 174 kali</small>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <button type="submit" class="btn btn-primary">Lamar</button>
+            <div class="col-md-5">
+                <span style="float:right">
+                    <button type="submit" class="btn btn-primary">Lamar</button>
+                </span>
             </div>
         </div>
     </div>
 </div>
+
