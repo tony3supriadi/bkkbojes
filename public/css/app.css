@@ -13220,7 +13220,15 @@ input[type=date]::-webkit-calendar-picker-indicator {
        columns: #142B63;
 }
 #tentang-kami h5, #tentang-kami .h5 {
+  border-top: 2px solid #adb5bd;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: #142B63;
+}
+#tentang-kami h5 span, #tentang-kami .h5 span {
+  font-size: 24px;
+  margin-top: -18px;
+  position: absolute;
+  background-color: #EDFAFD;
   padding-right: 1rem;
-  border-bottom: 1px solid #ced4da;
-  margin-right: 0.5rem;
 }

@@ -4,8 +4,17 @@
     columns: $secondary;
 
     h5{
-        padding-right: 1rem;
-        border-bottom: 1px solid $gray-400;
-        margin-right: .5rem;
+        border-top: 2px solid $gray-500;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        color: $secondary;
+
+        span {
+            font-size: 24px;
+            margin-top: -18px;
+            position: absolute;
+            background-color: #EDFAFD;
+            padding-right: 1rem;
+        }
     }
 }
