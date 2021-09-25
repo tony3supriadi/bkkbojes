@@ -13212,3 +13212,15 @@ input[type=date]::-webkit-calendar-picker-indicator {
   align-items: center;
   border-radius: 10px;
 }
+
+#tentang-kami {
+  padding-top: 35px;
+  font-size: 1rem;
+  -moz-columns: #142B63;
+       columns: #142B63;
+}
+#tentang-kami h5, #tentang-kami .h5 {
+  padding-right: 1rem;
+  border-bottom: 1px solid #ced4da;
+  margin-right: 0.5rem;
+}
