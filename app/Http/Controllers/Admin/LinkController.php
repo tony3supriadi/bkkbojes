@@ -8,11 +8,6 @@ use Illuminate\Http\Request;
 
 class LinkController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         if (request()->get('type') == "json") {
@@ -28,22 +23,11 @@ class LinkController extends Controller
         return view('admin.pages.link.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('admin.pages.link.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -57,25 +41,12 @@ class LinkController extends Controller
             ->with('store-success', 'Proses tambah baru link berhasil');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $data = Link::find(decrypt($id));
         return view('admin.pages.link.edit', compact('data'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $this->validate($request, [
@@ -90,12 +61,6 @@ class LinkController extends Controller
             ->with('update-success', 'Proses ubah data link berhasil.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $data = Link::find(decrypt($id));
@@ -104,12 +69,6 @@ class LinkController extends Controller
             ->with('destroy-success', 'Proses hapus data link berhasil.');
     }
 
-    /**
-     * Remove the resource selected from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function bulk_destroy()
     {
         $links = json_decode(request()->links);

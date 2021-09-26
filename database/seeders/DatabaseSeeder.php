@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\Wilayah\KabupatenSeeder;
+use Database\Seeders\AdminSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,6 +16,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $this->call(AdminSeeder::class);
+        //$this->call(AdminSeeder::class);
+        $this->call([
+            KabupatenSeeder::class,
+            AdminSeeder::class,
+        ]);
     }
 }
