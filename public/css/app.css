@@ -13214,10 +13214,14 @@ input[type=date]::-webkit-calendar-picker-indicator {
 }
 
 #tentang-kami {
-  padding-top: 35px;
-  font-size: 1rem;
+  padding-top: 45px;
+  font-size: 0.9rem;
   -moz-columns: #142B63;
        columns: #142B63;
+  color: #142B63;
+}
+#tentang-kami .field-content {
+  padding-top: 50px;
 }
 #tentang-kami h5, #tentang-kami .h5 {
   border-top: 2px solid #adb5bd;
@@ -13226,8 +13230,8 @@ input[type=date]::-webkit-calendar-picker-indicator {
   color: #142B63;
 }
 #tentang-kami h5 span, #tentang-kami .h5 span {
-  font-size: 24px;
-  margin-top: -18px;
+  font-size: 20px;
+  margin-top: -16px;
   position: absolute;
   background-color: #EDFAFD;
   padding-right: 1rem;
