@@ -54,10 +54,13 @@
             </div>
             <div class="col-md-4">
                 <ul>
-                    <li><a href=""><i class="lab la-facebook-f"></i></a></li>
+                    @foreach ($sosmeds as $sosmed)
+                        <li><a href="{{ $sosmed->link }}"><img src="{{ asset('storage/post-images/link/' . $sosmed->logo) }}" width="36" height="36"></a></li>
+                    @endforeach
+                    {{-- <li><a href=""><i class="lab la-facebook-f"></i></a></li>
                     <li><a href=""><i class="lab la-instagram"></i></a></li>
                     <li><a href=""><i class="lab la-linkedin-in"></i></a></li>
-                    <li><a href=""><i class="lab la-youtube"></i></a></li>
+                    <li><a href=""><i class="lab la-youtube"></i></a></li> --}}
                 </ul>
             </div>
         </div>
