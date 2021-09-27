@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Link;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class LinkController extends Controller
 {
@@ -32,11 +33,24 @@ class LinkController extends Controller
     {
         $this->validate($request, [
             'nama' => 'required',
-            'logo' => 'required',
+            'logo' => 'image|file|max:1024',
             'link' => 'required'
         ]);
 
-        $data = Link::create($request->all());
+        if($request->hasFile('logo')){
+            $filenameWithExt = $request->file('logo')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('logo')->getClientOriginalExtension();
+            $filenameSimpan = $filename.'_'.time().'.'.$extension;
+            $path = $request->file('logo')->storeAs('post-images/link', $filenameSimpan);
+        }else{
+            $filenameSimpan = 'noimage';
+        }
+
+        $attributes = $request->all();
+        $attributes['logo'] = $filenameSimpan;
+
+        $data = Link::create($attributes);
         return redirect()->route('admin.link.edit', encrypt($data->id))
             ->with('store-success', 'Proses tambah baru link berhasil');
     }
@@ -49,14 +63,36 @@ class LinkController extends Controller
 
     public function update(Request $request, $id)
     {
+        $data = Link::find(decrypt($id));
+
         $this->validate($request, [
             'nama' => 'required',
-            'logo' => 'required',
+            'logo' => 'image|file|max:1024',
             'link' => 'required'
         ]);
 
-        $data = Link::find(decrypt($id));
-        $data->update($request->all());
+        $attributes = $request->all();
+
+        if (!empty($attributes['logo'])) {
+            if($request->oldImage){
+                Storage::delete('post-images/link/'.$request->oldImage);
+            }
+
+            $filenameWithExt = $request->file('logo')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('logo')->getClientOriginalExtension();
+            $filenameSimpan = $filename.'_'.time().'.'.$extension;
+            $path = $request->file('logo')->storeAs('post-images/link', $filenameSimpan);
+        } else {
+            $filenameSimpan = $data->logo;
+        }
+
+
+
+        $attributes['logo'] = $filenameSimpan;
+        //dd($attributes);
+
+        $data->update($attributes);
         return redirect()->back()
             ->with('update-success', 'Proses ubah data link berhasil.');
     }
@@ -64,6 +100,11 @@ class LinkController extends Controller
     public function destroy($id)
     {
         $data = Link::find(decrypt($id));
+
+        if($data->logo){
+            Storage::delete('post-images/link/'.$data->logo);
+        }
+
         $data->delete();
         return redirect()->route('admin.link.index')
             ->with('destroy-success', 'Proses hapus data link berhasil.');
@@ -74,6 +115,11 @@ class LinkController extends Controller
         $links = json_decode(request()->links);
         foreach ($links as $link) {
             $data = Link::find($link->id);
+
+            if($data->logo){
+                Storage::delete('post-images/link/'.$data->logo);
+            }
+
             $data->delete();
         }
         return redirect()->back()

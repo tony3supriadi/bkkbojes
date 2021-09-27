@@ -16,7 +16,7 @@ class CreateBbt4LinkTable extends Migration
         Schema::create('bbt4_link', function (Blueprint $table) {
             $table->id();
             $table->string('nama',32);
-            $table->string('logo',64);
+            $table->string('logo')->nullable();
             $table->string('link',255);
             $table->timestamps();
         });
