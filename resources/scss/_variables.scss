@@ -1131,7 +1131,7 @@ $card-group-margin:                 $grid-gutter-width * .5 !default;
 $accordion-padding-y:                     1rem !default;
 $accordion-padding-x:                     1.25rem !default;
 $accordion-color:                         $body-color !default;
-$accordion-bg:                            $body-bg !default;
+$accordion-bg:                            $white !default;
 $accordion-border-width:                  $border-width !default;
 $accordion-border-color:                  rgba($black, .125) !default;
 $accordion-border-radius:                 $border-radius !default;
@@ -1145,7 +1145,7 @@ $accordion-button-padding-x:              $accordion-padding-x !default;
 $accordion-button-color:                  $accordion-color !default;
 $accordion-button-bg:                     $accordion-bg !default;
 $accordion-transition:                    $btn-transition, border-radius .15s ease !default;
-$accordion-button-active-bg:              tint-color($component-active-bg, 90%) !default;
+$accordion-button-active-bg:              $white !default;
 $accordion-button-active-color:           shade-color($primary, 10%) !default;
 
 $accordion-button-focus-border-color:     $input-focus-border-color !default;
