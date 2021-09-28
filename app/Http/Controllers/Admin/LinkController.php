@@ -5,14 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Link;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class LinkController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         if (request()->get('type') == "json") {
@@ -28,93 +24,102 @@ class LinkController extends Controller
         return view('admin.pages.link.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('admin.pages.link.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate($request, [
             'nama' => 'required',
-            'logo' => 'required',
+            'logo' => 'image|file|max:1024',
             'link' => 'required'
         ]);
 
-        $data = Link::create($request->all());
+        if($request->hasFile('logo')){
+            $filenameWithExt = $request->file('logo')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('logo')->getClientOriginalExtension();
+            $filenameSimpan = $filename.'_'.time().'.'.$extension;
+            $path = $request->file('logo')->storeAs('post-images/link', $filenameSimpan);
+        }else{
+            $filenameSimpan = 'noimage';
+        }
+
+        $attributes = $request->all();
+        $attributes['logo'] = $filenameSimpan;
+
+        $data = Link::create($attributes);
         return redirect()->route('admin.link.edit', encrypt($data->id))
             ->with('store-success', 'Proses tambah baru link berhasil');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $data = Link::find(decrypt($id));
         return view('admin.pages.link.edit', compact('data'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
+        $data = Link::find(decrypt($id));
+
         $this->validate($request, [
             'nama' => 'required',
-            'logo' => 'required',
+            'logo' => 'image|file|max:1024',
             'link' => 'required'
         ]);
 
-        $data = Link::find(decrypt($id));
-        $data->update($request->all());
+        $attributes = $request->all();
+
+        if (!empty($attributes['logo'])) {
+            if($request->oldImage){
+                Storage::delete('post-images/link/'.$request->oldImage);
+            }
+
+            $filenameWithExt = $request->file('logo')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('logo')->getClientOriginalExtension();
+            $filenameSimpan = $filename.'_'.time().'.'.$extension;
+            $path = $request->file('logo')->storeAs('post-images/link', $filenameSimpan);
+        } else {
+            $filenameSimpan = $data->logo;
+        }
+
+
+
+        $attributes['logo'] = $filenameSimpan;
+        //dd($attributes);
+
+        $data->update($attributes);
         return redirect()->back()
             ->with('update-success', 'Proses ubah data link berhasil.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $data = Link::find(decrypt($id));
+
+        if($data->logo){
+            Storage::delete('post-images/link/'.$data->logo);
+        }
+
         $data->delete();
         return redirect()->route('admin.link.index')
             ->with('destroy-success', 'Proses hapus data link berhasil.');
     }
 
-    /**
-     * Remove the resource selected from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function bulk_destroy()
     {
         $links = json_decode(request()->links);
         foreach ($links as $link) {
             $data = Link::find($link->id);
+
+            if($data->logo){
+                Storage::delete('post-images/link/'.$data->logo);
+            }
+
             $data->delete();
         }
         return redirect()->back()

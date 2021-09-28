@@ -34,7 +34,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-6">
-        <form action="{{ route('admin.link.update', encrypt($data->id)) }}" method="post" class="card shadow-sm">
+        <form action="{{ route('admin.link.update', encrypt($data->id)) }}" method="post" class="card shadow-sm" enctype="multipart/form-data">
             @csrf
             @method('put')
             <div class="card-body">
@@ -46,10 +46,22 @@
                     <small class="text-danger d-block">{{ ucfirst($message) }}</small>
                     @enderror
                 </div>
-                
+
                 <div class="form-group">
                     <label for="logo">Logo</label>
-                    <input type="text" name="logo" id="logo" value="{{ old('logo') ? old('logo') : $data->logo }}" class="form-control @error('logo') is-invalid @enderror" autocomplete="off" readonly />
+                    <input type="hidden" name="oldImage" value="{{ $data->logo }}">
+                    @if($data->logo)
+                        <div class="row align-items-center justify-content-center">
+                            <img src="{{ asset('storage/post-images/link/' . $data->logo) }}" class="img-preview img-fluid mb-3 col-sm-5">
+                        </div>
+                    @else
+                        <div class="row align-items-center justify-content-center">
+                            <img class="img-preview img-fluid mb-3 col-sm-5">
+                        </div>
+                    @endif
+
+                    <input type="file" name="logo" id="logo" class="form-control @error('logo') is-invalid @enderror"
+                        autocomplete="off" style="height: 45px" onchange="previewImage()" disabled/>
 
                     @error('logo')
                     <small class="text-danger d-block">{{ ucfirst($message) }}</small>
@@ -111,6 +123,7 @@
             $('.btn-reset').removeAttr('disabled');
 
             $('input').removeAttr('readonly');
+            $('input').removeAttr('disabled');
         });
 
         $('.btn-cancel').on('click', () => {
@@ -120,6 +133,7 @@
             $('.btn-reset').attr('disabled', 'disabled');
 
             $('input').attr('readonly', 'readonly');
+            $('input').attr('disabled', 'disabled');
         });
 
         $('.btn-destroy').on('click', () => {

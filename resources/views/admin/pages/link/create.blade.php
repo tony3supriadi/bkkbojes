@@ -16,7 +16,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-6">
-        <form action="{{ route('admin.link.store') }}" method="post" class="card shadow-sm">
+        <form action="{{ route('admin.link.store') }}" method="post" class="card shadow-sm" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
                 <div class="form-group">
@@ -30,7 +30,11 @@
 
                 <div class="form-group">
                     <label for="logo">Logo</label>
-                    <input type="text" name="logo" id="logo" value="{{ old('logo') }}" class="form-control @error('logo') is-invalid @enderror" autocomplete="off" />
+                    <div class="row align-items-center justify-content-center">
+                        <img class="img-preview img-fluid mb-3 col-sm-5">
+                    </div>
+                    <input type="file" name="logo" id="logo" class="form-control @error('logo') is-invalid @enderror"
+                        autocomplete="off" style="height: 45px" onchange="previewImage()"/>
 
                     @error('logo')
                     <small class="text-danger d-block">{{ ucfirst($message) }}</small>
@@ -72,5 +76,21 @@
         toolbar: 'bold italic underline | numlist bullist',
         content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:1rem; color: #6e707e }'
     });
+</script>
+
+<script>
+    function previewImage(){
+        const image = document.querySelector('#logo');
+        const imgPreview = document.querySelector('.img-preview');
+
+        imgPreview.style.display = 'block';
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent){
+            imgPreview.src = oFREvent.target.result;
+        }
+    }
 </script>
 @endpush
