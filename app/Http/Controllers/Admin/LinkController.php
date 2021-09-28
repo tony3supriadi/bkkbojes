@@ -34,7 +34,7 @@ class LinkController extends Controller
         $this->validate($request, [
             'nama' => 'required',
             'logo' => 'image|file|max:1024',
-            'link' => 'required'
+            'link' => 'required|url'
         ]);
 
         if($request->hasFile('logo')){
@@ -68,7 +68,7 @@ class LinkController extends Controller
         $this->validate($request, [
             'nama' => 'required',
             'logo' => 'image|file|max:1024',
-            'link' => 'required'
+            'link' => 'required|url'
         ]);
 
         $attributes = $request->all();
