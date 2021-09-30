@@ -10,6 +10,7 @@ class Lowongan extends Model
     use HasFactory;
     protected $table = 'alw1_lowongan';
     protected $fillable = [
+        'link',
         'nama_lowongan',
         'mitra_id',
         'lokasi',
@@ -24,6 +25,6 @@ class Lowongan extends Model
         'catatan',
         'informasi_lain',
         'view',
+        'publish'
     ];
-
 }

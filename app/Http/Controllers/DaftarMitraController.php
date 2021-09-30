@@ -12,4 +12,9 @@ class DaftarMitraController extends Controller
     {
         return view('pages.mitra.daftar-mitra');
     }
+
+    public function show()
+    {
+        return view('pages.mitra.daftar-mitra');
+    }
 }

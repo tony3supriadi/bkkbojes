@@ -19,6 +19,8 @@
                 <!-- Cari Lowongan -->
                 @include('pages.lowongan.partials.cari-lowongan')
 
+                @include('pages.lowongan.partials.lowongan-box')
+
                 @include('pages.lowongan.partials.pagination')
             </div>
             <div class="col-md-3">

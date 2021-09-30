@@ -1,24 +1,13 @@
 <div class="mt-3">
     <div class="row">
         <div class="col-md-6 mb-2">
-            <div class="row">
-                <div class="col-10 d-flex align-items-center justify-content-between">
-                    <img src="{{ asset('images/icons/left.png') }}">
-
-                    <small class="me-2">1</small>
-                    <small class="me-2">2</small>
-                    <small class="me-2">3</small>
-                    <small class="me-2">4</small>
-                    <small class="me-2">5</small>
-                    <small class="me-2">6</small>
-                    <small class="me-2">7</small>
-                    <small class="me-2">8</small>
-                    <small class="me-2">9</small>
-                </div>
-                <div class="col-2">
-                    <img src="{{ asset('images/icons/right.png') }}">
-                </div>
-            </div>
+            <span class="la la-angle-left text-primary fw-bold"></span>
+            <small class="mx-3">1</small>
+            <small class="mx-3">2</small>
+            <small class="mx-3">3</small>
+            <small class="mx-3">4</small>
+            <small class="mx-3">...</small>
+            <span class="la la-angle-right text-primary fw-bold"></span>
         </div>
 
         <div class="col-md-6 mb-5">

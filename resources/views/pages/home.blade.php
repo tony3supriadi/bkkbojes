@@ -1,3 +1,9 @@
+@php
+use App\Models\Lowongan;
+use App\Models\Mitra;
+use App\Models\Personal;
+@endphp
+
 @extends('layouts.app')
 
 @section('content')
@@ -38,19 +44,19 @@
         <div class="row counting">
             <div class="col-md-2 col-4 offset-md-2 offset-0">
                 <div class="card card-body">
-                    <h3>143</h3>
+                    <h3>{{ number_format(Lowongan::where('publish', '=', true)->count(), 0, ',', '.') }}</h3>
                     <p>Lowongan</p>
                 </div>
             </div>
             <div class="col-md-2 col-4 offset-md-1 offset-0">
                 <div class="card card-body">
-                    <h3>15</h3>
+                    <h3>{{ number_format(Mitra::count(), 0, ',', '.') }}</h3>
                     <p>Perusahaan</p>
                 </div>
             </div>
             <div class="col-md-2 col-4 offset-md-1 offset-0">
                 <div class="card card-body">
-                    <h3>1.378</h3>
+                    <h3>{{ number_format(Personal::count(), 0, ',', '.') }}</h3>
                     <p>Pengguna</p>
                 </div>
             </div>
@@ -135,19 +141,15 @@
             </div>
         </div>
 
+        @if (count($daftarMitra))
         <div class="row py-1 pt-md-4">
+            @foreach($daftarMitra as $mitra)
             <div class="col-md-3 col-6">
-                <img src="{{ asset('images/mitra/logo-ahm.png') }}" />
+                <a href="{{ route('daftar-mitra-detail', $mitra->uuid) }}" class="text-decoration-none">
+                    <img src="{{ asset('images/mitra/'.$mitra->logo) }}" />
+                </a>
             </div>
-            <div class="col-md-3 col-6">
-                <img src="{{ asset('images/mitra/logo-indofood.png') }}" />
-            </div>
-            <div class="col-md-3 col-6">
-                <img src="{{ asset('images/mitra/logo-denso.png') }}" />
-            </div>
-            <div class="col-md-3 col-6">
-                <img src="{{ asset('images/mitra/logo-paragon.png') }}" />
-            </div>
+            @endforeach
         </div>
 
         <div class="row">
@@ -158,6 +160,14 @@
                 </a>
             </div>
         </div>
+        @else
+
+        <div class="card card-body text-center">
+            <i class="la la-warning fa-5x text-muted d-block mb-3"></i>
+            <p class="text-muted">BELUM ADA DAFTAR MITRA</p>
+        </div>
+
+        @endif
     </div>
 </section>
 
@@ -169,104 +179,52 @@
                 <p class="subtitle">Pengalaman mereka menggunakan situs ini</p>
             </div>
         </div>
+
+        @if (count($daftarTestimonial))
         <div class="row testimoni-lists">
+            @foreach($daftarTestimonial as $testimonial)
             <div class="col-md-4">
                 <div class="testimoni-item">
                     <div class="testimoni-item-image">
-                        <img src="{{ asset('images/testimonial-01.png') }}" alt="testimonial">
+                        <img src="{{ asset('images/personal/'.$testimonial->photo) }}" alt="{{ $testimonial->nama }}">
                     </div>
                     <div class="testimoni-item-content">
-                        <h3 class="title">Carson Frederick</h3>
-                        <p class="description">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac est laoreet, rhoncus erat interdum, tempor."</p>
+                        <h3 class="title">{{ $testimonial->nama }}</h3>
+                        <p class="description">"{{ $testimonial->deskripsi_testimonial }}"</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="testimoni-item">
-                    <div class="testimoni-item-image">
-                        <img src="{{ asset('images/testimonial-01.png') }}" alt="testimonial">
-                    </div>
-                    <div class="testimoni-item-content">
-                        <h3 class="title">Carson Frederick</h3>
-                        <p class="description">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac est laoreet, rhoncus erat interdum, tempor."</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="testimoni-item">
-                    <div class="testimoni-item-image">
-                        <img src="{{ asset('images/testimonial-02.png') }}" alt="testimonial">
-                    </div>
-                    <div class="testimoni-item-content">
-                        <h3 class="title">Corine Munoz</h3>
-                        <p class="description">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac est laoreet, rhoncus erat interdum, tempor."</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="testimoni-item">
-                    <div class="testimoni-item-image">
-                        <img src="{{ asset('images/testimonial-03.png') }}" alt="testimonial">
-                    </div>
-                    <div class="testimoni-item-content">
-                        <h3 class="title">Lara Ponce</h3>
-                        <p class="description">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac est laoreet, rhoncus erat interdum, tempor."</p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
 
         <div class="row testimoni-lists-m">
+            @foreach($daftarTestimonial as $testimonial)
             <div class="col-md-12">
                 <div class="testimoni-item">
                     <div class="testimoni-item-image">
-                        <img src="{{ asset('images/testimonial-01.png') }}" alt="testimonial">
+                        <img src="{{ asset('images/personal/'.$testimonial->photo) }}" alt="{{ $testimonial->nama }}">
                     </div>
                     <div class="testimoni-item-content">
-                        <h3 class="title">Carson Frederick</h3>
-                        <p class="description">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac est laoreet, rhoncus erat interdum, tempor."</p>
+                        <h3 class="title">{{ $testimonial->nama }}</h3>
+                        <p class="description">"{{ $testimonial->deskripsi_testimonial }}"</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="testimoni-item">
-                    <div class="testimoni-item-image">
-                        <img src="{{ asset('images/testimonial-01.png') }}" alt="testimonial">
-                    </div>
-                    <div class="testimoni-item-content">
-                        <h3 class="title">Carson Frederick</h3>
-                        <p class="description">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac est laoreet, rhoncus erat interdum, tempor."</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="testimoni-item">
-                    <div class="testimoni-item-image">
-                        <img src="{{ asset('images/testimonial-02.png') }}" alt="testimonial">
-                    </div>
-                    <div class="testimoni-item-content">
-                        <h3 class="title">Corine Munoz</h3>
-                        <p class="description">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac est laoreet, rhoncus erat interdum, tempor."</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="testimoni-item">
-                    <div class="testimoni-item-image">
-                        <img src="{{ asset('images/testimonial-03.png') }}" alt="testimonial">
-                    </div>
-                    <div class="testimoni-item-content">
-                        <h3 class="title">Lara Ponce</h3>
-                        <p class="description">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac est laoreet, rhoncus erat interdum, tempor."</p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
+        @else
+        <div class="card card-body text-center">
+            <i class="la la-warning fa-5x text-muted d-block mb-3"></i>
+            <p class="text-muted">BELUM ADA TESTIMONIAL</p>
+        </div>
+        @endif
+
         <div class="row py-3 py-md-5">
             <div class="col-md-12 text-center">
                 <i class="las la-angle-double-down fa-2x text-primary"></i>
             </div>
         </div>
+
         <div class="row mt-2">
             <div class="col-md-12 text-center">
                 <a href="{{ route('daftar') }}" class="btn btn-primary mx-1">Daftar Sekarang</a>
@@ -281,7 +239,7 @@
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 <style type="text/css">
     body {
-       background-color: #fff;
+        background-color: #fff;
     }
 </style>
 @endpush

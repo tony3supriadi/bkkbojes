@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mitra extends Model
 {
-    protected $table="bpr1_mitra";
+    protected $table = "bpr1_mitra";
     protected $fillable = [
+        'link',
         'nama_mitra',
         'bidang_usaha',
         'lokasi_kabupaten',
@@ -23,5 +24,6 @@ class Mitra extends Model
         'email',
         'profil_perusahaan',
         'logo',
+        'unggulan'
     ];
 }
