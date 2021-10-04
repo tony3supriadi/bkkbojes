@@ -1,6 +1,8 @@
 @php
-use App\Models\Mitra;
-$daftarMitra = Mitra::orderBy('created_at', 'DESC')->limit(1)->get();
+use App\Models\Testimonial;
+$daftarTestimonial = Testimonial::select('bbk2_testimonial.*', 'fdf1_personal.photo')
+    ->join('fdf1_personal', 'fdf1_personal.id', '=', 'personal_id')
+    ->orderBy('created_at', 'DESC')->limit(1)->get();
 @endphp
 <div class="card card-body box-card mb-3">
     <div class="box-title d-flex">
@@ -9,21 +11,29 @@ $daftarMitra = Mitra::orderBy('created_at', 'DESC')->limit(1)->get();
     </div>
 
     <div class="py-2">
+        @if(count($daftarTestimonial))
+        @foreach($daftarTestimonial as $testimoni)
         <div class="row d-flex align-items-center">
             <div class="col-4">
                 <div class="avatar-image avatar-md">
-                    <img src="{{ asset('images/avatar.jpg') }}" alt="avatar" />
+                    <img src="{{ asset('images/personal/' . $testimoni->photo) }}" alt="avatar" />
                 </div>
             </div>
             <div class="col-8">
-                <h6 class="text-primary fw-bold mb-2">Carson Frederick</h5>
-                    <p class="text-muted mb-0">Bekerja di PT. Denso</p>
+                <h6 class="text-primary fw-bold mb-2">{{ $testimoni->nama }}</h6>
             </div>
             <div class="col-12 mt-3">
                 <small>
-                    “Nulla aliquet porttitor lacus luctus accumsan tortor posuere ac. Sit amet mauris commodo quis imperdiet massa. Lacus laoreet non curabitur gravida arcu ac tortor”.
+                    “{{ $testimoni->deskripsi_testimonial }}”.
                 </small>
             </div>
         </div>
+        @endforeach
+        @else
+            <div class="card card-body text-center">
+                <i class="la la-warning fa-5x text-muted d-block mb-3"></i>
+                <p class="text-muted">BELUM ADA TESTIMONIAL</p>
+            </div>
+        @endif
     </div>
 </div>

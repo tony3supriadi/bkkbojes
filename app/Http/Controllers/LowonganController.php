@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lowongan;
 use Illuminate\Http\Request;
 
 class LowonganController extends Controller
 {
     public function index()
     {
-        return view('pages.lowongan.lowongan');
+        $daftarLowongan = Lowongan::orderBy('create_by', 'DESC')->paginate(15);
+        return view('pages.lowongan.lowongan', compact('daftarLowongan'));
     }
 
     public function lowongan_detail()
