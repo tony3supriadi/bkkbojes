@@ -33,11 +33,22 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <form action="{{ route('admin.kebijakan-privasi.update', encrypt($data->id)) }}" method="post" class="card shadow-sm">
             @csrf
             @method('put')
             <div class="card-body">
+                <div class="form-group row">
+                    <label for="urutan" class="col-12">Urutan</label>
+                    <div class="col-4 col-md-2">
+                        <input type="number" name="urutan" id="urutan" value="{{ old('urutan') ? old('urutan') : $data->urutan }}" class="form-control @error('urutan') is-invalid @enderror" autocomplete="off" readonly />
+
+                        @error('urutan')
+                        <small class="text-danger d-block">{{ ucfirst($message) }}</small>
+                        @enderror
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label for="nama_kebijakan">Kebijakan Privasi</label>
                     <input type="text" name="nama_kebijakan" id="nama_kebijakan" value="{{ old('nama_kebijakan') ? old('nama_kebijakan') : $data->nama_kebijakan }}" class="form-control @error('nama_kebijakan') is-invalid @enderror" autocomplete="off" readonly />
@@ -77,7 +88,7 @@
 @endpush
 
 @push('scripts')
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="{{ asset('vendors/tinymce/js/tinymce/tinymce.min.js') }}"></script>
 <script src="{{ asset('admin/vendor/sweetalert2/sweetalert2.all.min.js') }}"></script>
 <script type="text/javascript">
     tinymce.init({

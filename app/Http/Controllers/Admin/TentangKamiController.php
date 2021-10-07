@@ -18,7 +18,7 @@ class TentangKamiController extends Controller
         if (request()->get('type') == "json") {
             $index = 0;
             $results = [];
-            foreach (TentangKami::all() as $item) {
+            foreach (TentangKami::orderBy('urutan', 'ASC')->get() as $item) {
                 $results[$index] = $item;
                 $results[$index]["encryptid"] = encrypt($item->id);
                 $index++;
@@ -98,18 +98,18 @@ class TentangKamiController extends Controller
     {
         $data = TentangKami::find(decrypt($id));
         $data->delete();
-        return redirect()->route('admin.pages.tentang-kami.index')
+        return redirect()->route('admin.tentang-kami.index')
             ->with('destroy-success', 'Proses hapus data admin berhasil.');
     }
 
     public function bulk_destroy()
     {
         $tentangs = json_decode(request()->tentangs);
-        foreach ($tentangs as $tentang){
+        foreach ($tentangs as $tentang) {
             $data = TentangKami::find($tentang->id);
             $data->delete();
-            return redirect()->back()
-                ->with('bulk-destroy', 'Proses hapus masal tentang kami berhasil.');
         }
+        return redirect()->back()
+            ->with('bulk-destroy', 'Proses hapus masal tentang kami berhasil.');
     }
 }

@@ -28,6 +28,11 @@
     @method('delete')
     <input type="text" name="tentangs">
 </form>
+
+<form id="destroy-action" method="post" class="d-none">
+    @csrf
+    @method('delete');
+</form>
 @endsection
 
 @push('styles')
@@ -42,7 +47,7 @@
 <script src="{{ asset('admin/vendor/datatables/dataTables.select.min.js') }}"></script>
 <script src="{{ asset('admin/vendor/sweetalert2/sweetalert2.all.min.js') }}"></script>
 <script type=text/javascript>
-    $(document).ready(function(){
+    $(document).ready(function() {
         var selected = [];
         $('.datatable').DataTable({
             width: '100%',
@@ -57,9 +62,7 @@
                     return data;
                 }
             },
-            order: [
-                [1, 'asc']
-            ],
+            ordering: false,
             columns: [{
                 defaultContent: '',
                 title: '',
@@ -69,7 +72,25 @@
             }, {
                 data: 'tentang_kami',
                 title: 'Tentang Kami',
-                orderable: true,
+                render: (data, type, row, meta) => {
+                    return (row.urutan ? row.urutan : '00') + '. ' + row.tentang_kami;
+                }
+            }, {
+                defaultContent: '',
+                title: '',
+                width: '15%',
+                className: 'text-right',
+                render: (data, type, row, meta) => {
+                    return `
+                        <a href="/app/v1/bkk-admin/tentang-kami/${row.encryptid}/edit" class="mx-1 text-primary text-decoration-none">
+                            <i class="fa fa-edit"></i>
+                        </a>
+
+                        <a href="#" onclick="deleted('/app/v1/bkk-admin/tentang-kami/${row.encryptid}')" class="mx-1 text-danger text-decoration-none">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    `;
+                }
             }],
             rowCallback: (row, data, index) => {
                 $('td:first-child', row).on('click', function() {
@@ -87,10 +108,6 @@
                         $('.btn-bulk-destroy').attr('disabled', 'disabled');
                     }
                 });
-
-                $('td', row).on('dblclick', () => {
-                    window.location.href = "/app/v1/bkk-admin/tentang-kami/" + data.encryptid + "/edit";
-                });
             }
         });
 
@@ -106,11 +123,32 @@
                 confirmButtonText: 'Ya, Hapus',
                 cancelButtonText: 'Batal',
             }).then((result) => {
-                $('#bulk-destroy input[name="tentangs"]').val(JSON.stringify(selected));
-                $('#bulk-destroy').submit();
+                if (result.isConfirmed) {
+                    $('#bulk-destroy input[name="tentangs"]').val(JSON.stringify(selected));
+                    $('#bulk-destroy').submit();
+                }
             });
         });
     });
+
+    function deleted(url) {
+        Swal.fire({
+            title: 'Apakah anda yakin?',
+            text: "Data yang sudah dihapus tidak bisa dikembalikan?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonClass: 'btn btn-danger',
+            cancelButtonClass: 'btn btn-secondary',
+            confirmButtonText: 'Ya, Hapus!',
+            cancelButtonText: 'Batal',
+
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $('#destroy-action').attr('action', url);
+                $('#destroy-action').submit();
+            }
+        })
+    }
 </script>
 
 @if(Session::has('destroy-success'))

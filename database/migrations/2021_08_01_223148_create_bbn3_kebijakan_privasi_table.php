@@ -15,8 +15,9 @@ class CreateBbn3KebijakanPrivasiTable extends Migration
     {
         Schema::create('bbn3_kebijakan_privasi', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_kebijakan',128);
-            $table->text('deskripsi_kebijakan');
+            $table->string('nama_kebijakan', 128);
+            $table->text('deskripsi_kebijakan')->nullable();
+            $table->tinyInteger('urutan')->nullable();
             $table->timestamps();
         });
     }

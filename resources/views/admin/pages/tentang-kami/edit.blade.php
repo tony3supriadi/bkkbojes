@@ -33,13 +33,24 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <form action="{{ route('admin.tentang-kami.update', encrypt($data->id)) }}" method="post" class="card shadow-sm">
             @csrf
             @method('put')
             <div class="card-body">
+                <div class="form-group row">
+                    <label for="urutan" class="col-12">Urutan</label>
+                    <div class="col-4 col-md-2">
+                        <input type="number" name="urutan" id="urutan" value="{{ old('urutan') ? old('urutan') : $data->urutan }}" class="form-control @error('urutan') is-invalid @enderror" autocomplete="off" readonly />
+
+                        @error('urutan')
+                        <small class="text-danger d-block">{{ ucfirst($message) }}</small>
+                        @enderror
+                    </div>
+                </div>
+
                 <div class="form-group">
-                    <label for="tentang_kami">FAQ</label>
+                    <label for="tentang_kami">Judul</label>
                     <input type="text" name="tentang_kami" id="tentang_kami" value="{{ old('tentang_kami') ? old('tentang_kami') : $data->tentang_kami }}" class="form-control @error('tentang_kami') is-invalid @enderror" autocomplete="off" readonly />
 
                     @error('tentang_kami')
@@ -48,7 +59,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="deskripsi_tentang_kami">Deskripsi</label>
+                    <label for="deskripsi_tentang_kami">Konten</label>
                     <textarea id="deskripsi-disabled" disabled class="form-control">{{$data->deskripsi_tentang_kami}}</textarea>
                     <div id="deskripsi-input" class="d-none">
                         <textarea name="deskripsi_tentang_kami" id="deskripsi_tentang_kami" class="form-control tinymce">{{ old('deskripsi_tentang_kami') ? old('deskripsi_tentang_kami') : $data->deskripsi_tentang_kami }}</textarea>
@@ -73,7 +84,7 @@
 
 <form id="destroy-action" action="{{ route('admin.tentang-kami.destroy', encrypt($data->id)) }}" method="post" class="d-none">
     @csrf
-    @method(delete);
+    @method('delete');
 </form>
 @endsection
 
@@ -82,7 +93,7 @@
 @endpush
 
 @push('scripts')
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="{{ asset('vendors/tinymce/js/tinymce/tinymce.min.js') }}"></script>
 <script src="{{ asset('admin/vendor/sweetalert2/sweetalert2.all.min.js') }}"></script>
 <script type="text/javascript">
     tinymce.init({

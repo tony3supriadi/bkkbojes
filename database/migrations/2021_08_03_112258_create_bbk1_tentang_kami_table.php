@@ -15,8 +15,9 @@ class CreateBbk1TentangKamiTable extends Migration
     {
         Schema::create('bbk1_tentang_kami', function (Blueprint $table) {
             $table->id();
-            $table->string('tentang_kami',128);
+            $table->string('tentang_kami', 128);
             $table->text('deskripsi_tentang_kami');
+            $table->tinyInteger('urutan')->nullable();
             $table->timestamps();
         });
     }

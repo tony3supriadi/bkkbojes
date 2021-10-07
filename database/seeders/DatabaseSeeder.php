@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\TentangKami;
 use Database\Seeders\Wilayah\KabupatenSeeder;
 use Database\Seeders\AdminSeeder;
 use Illuminate\Database\Seeder;
@@ -20,6 +21,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             KabupatenSeeder::class,
             AdminSeeder::class,
+            TentangKamiSeeder::class,
+            ProgramstudiSeeder::class,
+            KebijakanPrivasiSeeder::class,
         ]);
     }
 }

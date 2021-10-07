@@ -18,7 +18,7 @@ class KebijakanPrivasiController extends Controller
         if (request()->get('type') == 'json') {
             $index = 0;
             $results = [];
-            foreach (KebijakanPrivasi::all() as $item) {
+            foreach (KebijakanPrivasi::orderBy('urutan', 'ASC')->get() as $item) {
                 $results[$index] = $item;
                 $results[$index]["encryptid"] = encrypt($item->id);
                 $index++;
@@ -54,7 +54,6 @@ class KebijakanPrivasiController extends Controller
         $data = KebijakanPrivasi::create($request->all());
         return redirect()->route('admin.kebijakan-privasi.edit', encrypt($data->id))
             ->with('store-success', 'Proses tambah baru Kebijakan Privasi berhasil');
-
     }
 
     /**
@@ -67,7 +66,6 @@ class KebijakanPrivasiController extends Controller
     {
         $data = KebijakanPrivasi::find(decrypt($id));
         return view('admin.pages.kebijakan-privasi.edit', compact('data'));
-
     }
 
     /**
@@ -98,6 +96,20 @@ class KebijakanPrivasiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = KebijakanPrivasi::find(decrypt($id));
+        $data->delete();
+        return redirect()->route('admin.kebijakan-privasi.index')
+            ->with('destroy-success', 'Proses hapus data admin berhasil.');
+    }
+
+    public function bulk_destroy(Request $request)
+    {
+        $ids = json_decode($request->ids);
+        foreach ($ids as $id) {
+            $data = KebijakanPrivasi::find($id->id);
+            $data->delete();
+        }
+        return redirect()->back()
+            ->with('bulk-destroy', 'Proses hapus masal tentang kami berhasil.');
     }
 }
