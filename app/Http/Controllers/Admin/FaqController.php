@@ -18,7 +18,7 @@ class FaqController extends Controller
         if (request()->get('type') == "json") {
             $index = 0;
             $results = [];
-            foreach (Faq::all() as $item) {
+            foreach (Faq::orderBy('order', 'ASC')->get() as $item) {
                 $results[$index] = $item;
                 $results[$index]["encryptid"] = encrypt($item->id);
                 $index++;
@@ -47,8 +47,9 @@ class FaqController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nama_faq' => 'required',
-            'deskripsi_faq' => 'required'
+            'order' => 'required',
+            'title' => 'required',
+            'content' => 'required'
         ]);
 
         $data = Faq::create($request->all());
@@ -78,8 +79,9 @@ class FaqController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'nama_faq' => 'required',
-            'deskripsi_faq' => 'required'
+            'order' => 'required',
+            'title' => 'required',
+            'content' => 'required'
         ]);
 
         $data = Faq::find(decrypt($id));
@@ -96,6 +98,20 @@ class FaqController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Faq::find(decrypt($id));
+        $data->delete();
+        return redirect()->route('admin.faq.index')
+            ->with('destroy-success', 'Proses hapus data admin berhasil.');
+    }
+
+    public function bulk_destroy()
+    {
+        $faqs = json_decode(request()->ids);
+        foreach ($faqs as $faq) {
+            $data = Faq::find($faq->id);
+            $data->delete();
+        }
+        return redirect()->back()
+            ->with('bulk-destroy', 'Proses hapus masal tentang kami berhasil.');
     }
 }

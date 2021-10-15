@@ -22,6 +22,17 @@
 <div class="card card-body shadow-sm">
     <table class="table datatable" width="100%"></table>
 </div>
+
+<form id="bulk-destroy" action="{{ route('admin.ketentuan-pengguna.bulk-destroy') }}" method="post" class="d-none">
+    @csrf
+    @method('delete')
+    <input type="text" name="ids">
+</form>
+
+<form id="destroy-action" method="post" class="d-none">
+    @csrf
+    @method('delete');
+</form>
 @endsection
 
 @push('styles')
@@ -36,7 +47,8 @@
 <script src="{{ asset('admin/vendor/datatables/dataTables.select.min.js') }}"></script>
 <script src="{{ asset('admin/vendor/sweetalert2/sweetalert2.all.min.js') }}"></script>
 <script type=text/javascript>
-    $(document).ready(function(){
+    $(document).ready(function() {
+        var selected = [];
         $('.datatable').DataTable({
             width: '100%',
             processing: true,
@@ -50,9 +62,7 @@
                     return data;
                 }
             },
-            order: [
-                [1, 'asc']
-            ],
+            ordering: false,
             columns: [{
                 defaultContent: '',
                 title: '',
@@ -62,9 +72,114 @@
             }, {
                 data: 'nama_ketentuan',
                 title: 'Ketentuan Penggunaan',
-                orderable: true,
+                render: (data, type, row, meta) => {
+                    return (row.urutan ? row.urutan : '00') + '. ' + row.nama_ketentuan;
+                }
+            }, {
+                defaultContent: '',
+                title: '',
+                width: '15%',
+                className: 'text-right',
+                render: (data, type, row, meta) => {
+                    return `
+                        <a href="/app/v1/bkk-admin/ketentuan-pengguna/${row.encryptid}/edit" class="mx-1 text-primary text-decoration-none">
+                            <i class="fa fa-edit"></i>
+                        </a>
+
+                        <a href="#" onclick="deleted('/app/v1/bkk-admin/ketentuan-pengguna/${row.encryptid}')" class="mx-1 text-danger text-decoration-none">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    `;
+                }
             }],
+            rowCallback: (row, data, index) => {
+                $('td:first-child', row).on('click', function() {
+                    if (!$(row).hasClass('selected')) {
+                        $(row).addClass('selected');
+                        selected.push(data);
+                    } else {
+                        $(row).removeClass('selected');
+                        selected.splice(selected.indexOf(data.id), 1);
+                    }
+
+                    if (selected.length > 0) {
+                        $('.btn-bulk-destroy').removeAttr('disabled');
+                    } else {
+                        $('.btn-bulk-destroy').attr('disabled', 'disabled');
+                    }
+                });
+            }
+        });
+
+        $('.btn-bulk-destroy').on('click', () => {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Data yang sudah dihapus tidak bisa dikembalikan?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonClass: 'btn btn-danger',
+                confirmButtonColor: '#d52a1a',
+                cancelButtonClass: 'btn btn-secondary',
+                confirmButtonText: 'Ya, Hapus',
+                cancelButtonText: 'Batal',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('#bulk-destroy input[name="ids"]').val(JSON.stringify(selected));
+                    $('#bulk-destroy').submit();
+                }
+            });
+        });
+    });
+
+    function deleted(url) {
+        Swal.fire({
+            title: 'Apakah anda yakin?',
+            text: "Data yang sudah dihapus tidak bisa dikembalikan?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonClass: 'btn btn-danger',
+            cancelButtonClass: 'btn btn-secondary',
+            confirmButtonText: 'Ya, Hapus!',
+            cancelButtonText: 'Batal',
+
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $('#destroy-action').attr('action', url);
+                $('#destroy-action').submit();
+            }
+        })
+    }
+</script>
+
+@if(Session::has('destroy-success'))
+<script type="text/javascript">
+    $(document).ready(function() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Proses hapus data ketentuan pengguna berhasil.',
+            showConfirmButton: false,
+            buttonsStyling: false,
+            timer: 1500,
+            timerProgressBar: true,
         });
     });
 </script>
+@endif
+
+@if(Session::has('bulk-destroy-success'))
+<script type="text/javascript">
+    $(document).ready(function() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Proses hapus data masal berhasil.',
+            showConfirmButton: false,
+            buttonsStyling: false,
+            timer: 1500,
+            timerProgressBar: true,
+        });
+    });
+</script>
+@endif
 @endpush

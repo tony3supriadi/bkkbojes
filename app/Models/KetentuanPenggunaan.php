@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class KetentuanPenggunaan extends Model
 {
-    protected $table="bbn2_ketentuan_penggunaan";
+    protected $table = "bbn2_ketentuan_penggunaan";
     protected $fillable = [
         'nama_ketentuan',
         'deskripsi_ketentuan',
+        'urutan'
     ];
 }

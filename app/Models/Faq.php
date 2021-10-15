@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Faq extends Model
 {
-    protected $table="bbn1_faq";
+    protected $table = "bbn1_faq";
     protected $fillable = [
-        'nama_faq',
-        'deskripsi_faq',
+        'title',
+        'content',
+        'order'
     ];
 }

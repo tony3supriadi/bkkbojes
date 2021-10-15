@@ -15,24 +15,35 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <form action="{{ route('admin.faq.store') }}" method="post" class="card shadow-sm">
             @csrf
             <div class="card-body">
-                <div class="form-group">
-                    <label for="nama_faq">FAQ</label>
-                    <input type="text" name="nama_faq" id="nama_faq" value="{{ old('nama_faq') }}" class="form-control @error('nama_faq') is-invalid @enderror" autocomplete="off" />
+                <div class="form-group row">
+                    <label for="order" class="col-12">Urutan</label>
+                    <div class="col-12">
+                        <input type="number" name="order" id="order" value="{{ old('order') }}" class="form-control @error('order') is-invalid @enderror" autocomplete="off" />
 
-                    @error('nama_faq')
+                        @error('order')
+                        <small class="text-danger d-block">{{ ucfirst($message) }}</small>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="title">FAQ</label>
+                    <input type="text" name="title" id="title" value="{{ old('title') }}" class="form-control @error('title') is-invalid @enderror" autocomplete="off" />
+
+                    @error('title')
                     <small class="text-danger d-block">{{ ucfirst($message) }}</small>
                     @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="deskripsi_faq">Deskripsi</label>
-                    <textarea name="deskripsi_faq" id="deskripsi_faq" class="form-control tinymce">{{ old('deskripsi_faq') }}</textarea>
+                    <label for="content">Deskripsi</label>
+                    <textarea name="content" id="content" class="form-control tinymce">{{ old('content') }}</textarea>
 
-                    @error('deskripsi_faq')
+                    @error('content')
                     <small class="text-danger d-block">{{ ucfirst($message) }}</small>
                     @enderror
                 </div>
@@ -51,7 +62,7 @@
 @endsection
 
 @push('scripts')
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="{{ asset('vendors/tinymce/js/tinymce/tinymce.min.js') }}"></script>
 <script type="text/javascript">
     tinymce.init({
         selector: '.tinymce',

@@ -15,14 +15,24 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <form action="{{route('admin.ketentuan-pengguna.store') }}" method="post" class="card shadow-sm">
             @csrf
             <div class="card-body">
+                <div class="form-group row">
+                    <label for="urutan" class="col-12">Urutan</label>
+                    <div class="col-12">
+                        <input type="number" name="urutan" id="urutan" value="{{ old('urutan') }}" class="form-control @error('urutan') is-invalid @enderror" autocomplete="off" />
+
+                        @error('urutan')
+                        <small class="text-danger d-block">{{ ucfirst($message) }}</small>
+                        @enderror
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label for="nama_ketentuan">Ketentuan Penggunaan</label>
-                    <input type="text" name="nama_ketentuan" id="nama_ketentuan" value="{{old('nama_ketentuan')}}" 
-                        class="form-control @error('nama_ketentuan') is-invalid @enderror" autocomplete="off" />
+                    <input type="text" name="nama_ketentuan" id="nama_ketentuan" value="{{old('nama_ketentuan')}}" class="form-control @error('nama_ketentuan') is-invalid @enderror" autocomplete="off" />
 
                     @error('nama_ketentuan')
                     <small class="text-danger d-block">{{ ucfirst($message) }}</small>
@@ -52,7 +62,7 @@
 @endsection
 
 @push('styles')
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="{{ asset('vendors/tinymce/js/tinymce/tinymce.min.js') }}"></script>
 <script type="text/javascript">
     tinymce.init({
         selector: '.tinymce',

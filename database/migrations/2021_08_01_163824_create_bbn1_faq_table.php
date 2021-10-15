@@ -15,8 +15,9 @@ class CreateBbn1FaqTable extends Migration
     {
         Schema::create('bbn1_faq', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_faq',128);
-            $table->text('deskripsi_faq');
+            $table->string('title', 128);
+            $table->text('content')->nullable();
+            $table->tinyInteger('order')->nullable();
             $table->timestamps();
         });
     }

@@ -40,7 +40,7 @@
             <div class="card-body">
                 <div class="form-group row">
                     <label for="urutan" class="col-12">Urutan</label>
-                    <div class="col-4 col-md-2">
+                    <div class="col-12">
                         <input type="number" name="urutan" id="urutan" value="{{ old('urutan') ? old('urutan') : $data->urutan }}" class="form-control @error('urutan') is-invalid @enderror" autocomplete="off" readonly />
 
                         @error('urutan')

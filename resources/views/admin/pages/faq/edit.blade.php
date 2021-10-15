@@ -33,28 +33,39 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <form action="{{ route('admin.faq.update', encrypt($data->id)) }}" method="post" class="card shadow-sm">
             @csrf
             @method('put')
             <div class="card-body">
-                <div class="form-group">
-                    <label for="nama_faq">FAQ</label>
-                    <input type="text" name="nama_faq" id="nama_faq" value="{{ old('nama_faq') ? old('nama_faq') : $data->nama_faq }}" class="form-control @error('nama_faq') is-invalid @enderror" autocomplete="off" readonly />
+                <div class="form-group row">
+                    <label for="order" class="col-12">Urutan</label>
+                    <div class="col-12">
+                        <input type="number" name="order" id="order" value="{{ old('order') ? old('order') : $data->order }}" class="form-control @error('order') is-invalid @enderror" autocomplete="off" readonly />
 
-                    @error('nama_faq')
+                        @error('order')
+                        <small class="text-danger d-block">{{ ucfirst($message) }}</small>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="title">FAQ</label>
+                    <input type="text" name="title" id="title" value="{{ old('title') ? old('title') : $data->title }}" class="form-control @error('title') is-invalid @enderror" autocomplete="off" readonly />
+
+                    @error('title')
                     <small class="text-danger d-block">{{ ucfirst($message) }}</small>
                     @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="deskripsi_faq">Deskripsi</label>
-                    <textarea id="deskripsi-disabled" disabled class="form-control">{{$data->deskripsi_faq}}</textarea>
+                    <label for="content">Deskripsi</label>
+                    <textarea id="deskripsi-disabled" disabled class="form-control">{{$data->content}}</textarea>
                     <div id="deskripsi-input" class="d-none">
-                        <textarea name="deskripsi_faq" id="deskripsi_faq" class="form-control tinymce">{{ old('deskripsi_faq') ? old('deskripsi_faq') : $data->deskripsi_faq }}</textarea>
+                        <textarea name="content" id="content" class="form-control tinymce">{{ old('content') ? old('content') : $data->content }}</textarea>
                     </div>
 
-                    @error('deskripsi_faq')
+                    @error('content')
                     <small class="text-danger d-block">{{ ucfirst($message) }}</small>
                     @enderror
                 </div>
@@ -70,6 +81,11 @@
         </form>
     </div>
 </div>
+
+<form id="destroy-action" action="{{ route('admin.faq.destroy', encrypt($data->id)) }}" method="post" class="d-none">
+    @csrf
+    @method('delete');
+</form>
 @endsection
 
 @push('styles')
@@ -77,7 +93,7 @@
 @endpush
 
 @push('scripts')
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="{{ asset('vendors/tinymce/js/tinymce/tinymce.min.js') }}"></script>
 <script src="{{ asset('admin/vendor/sweetalert2/sweetalert2.all.min.js') }}"></script>
 <script type="text/javascript">
     tinymce.init({
@@ -113,6 +129,24 @@
             $('input').attr('readonly', 'readonly');
             $('#deskripsi-disabled').removeClass('d-none');
             $('#deskripsi-input').addClass('d-none');
+        });
+
+        $('.btn-destroy').on('click', () => {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Data yang sudah dihapus tidak bisa dikembalikan?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonClass: 'btn btn-danger',
+                cancelButtonClass: 'btn btn-secondary',
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Batal',
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('#destroy-action').submit();
+                }
+            })
         });
     });
 </script>

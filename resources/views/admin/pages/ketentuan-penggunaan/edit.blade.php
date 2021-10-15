@@ -33,15 +33,25 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <form action="{{route('admin.ketentuan-pengguna.update', encrypt($data->id)) }}" method="post" class="card shadow-sm">
             @csrf
             @method('put')
             <div class="card-body">
+                <div class="form-group row">
+                    <label for="urutan" class="col-12">Urutan</label>
+                    <div class="col-12">
+                        <input type="number" name="urutan" id="urutan" value="{{ old('urutan') ? old('urutan') : $data->urutan }}" class="form-control @error('urutan') is-invalid @enderror" autocomplete="off" readonly />
+
+                        @error('urutan')
+                        <small class="text-danger d-block">{{ ucfirst($message) }}</small>
+                        @enderror
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label for="nama_ketentuan">Ketentuan Penggunaan</label>
-                    <input type="text" name="nama_ketentuan" id="nama_ketentuan" value="{{old('nama_ketentuan') ? old('nama_ketentuan'): $data->nama_ketentuan}}" 
-                        class="form-control @error('nama_ketentuan') is-invalid @enderror" autocomplete="off" readonly/>
+                    <input type="text" name="nama_ketentuan" id="nama_ketentuan" value="{{old('nama_ketentuan') ? old('nama_ketentuan'): $data->nama_ketentuan}}" class="form-control @error('nama_ketentuan') is-invalid @enderror" autocomplete="off" readonly />
 
                     @error('nama_ketentuan')
                     <small class="text-danger d-block">{{ ucfirst($message) }}</small>
@@ -71,6 +81,11 @@
         </form>
     </div>
 </div>
+
+<form id="destroy-action" action="{{ route('admin.ketentuan-pengguna.destroy', encrypt($data->id)) }}" method="post" class="d-none">
+    @csrf
+    @method('delete');
+</form>
 @endsection
 
 @push('styles')
@@ -78,7 +93,7 @@
 @endpush
 
 @push('scripts')
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="{{ asset('vendors/tinymce/js/tinymce/tinymce.min.js') }}"></script>
 <script src="{{ asset('admin/vendor/sweetalert2/sweetalert2.all.min.js') }}"></script>
 <script type="text/javascript">
     tinymce.init({
@@ -93,8 +108,8 @@
 </script>
 
 <script type="text/javascript">
-    $(document).ready(function(){
-        $('.btn-edit').on('click', function(){
+    $(document).ready(function() {
+        $('.btn-edit').on('click', function() {
             $('.btn-edit').addClass('d-none');
             $('.btn-cancel').removeClass('d-none');
             $('.btn-save').removeAttr('disabled');
@@ -114,6 +129,24 @@
             $('input').attr('readonly', 'readonly');
             $('#deskripsi-disabled').removeClass('d-none');
             $('#deskripsi-input').addClass('d-none');
+        });
+
+        $('.btn-destroy').on('click', () => {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Data yang sudah dihapus tidak bisa dikembalikan?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonClass: 'btn btn-danger',
+                cancelButtonClass: 'btn btn-secondary',
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Batal',
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('#destroy-action').submit();
+                }
+            })
         });
     });
 </script>

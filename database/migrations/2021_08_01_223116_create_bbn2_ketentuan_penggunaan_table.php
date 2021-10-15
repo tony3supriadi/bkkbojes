@@ -15,8 +15,9 @@ class CreateBbn2KetentuanPenggunaanTable extends Migration
     {
         Schema::create('bbn2_ketentuan_penggunaan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_ketentuan',128);
-            $table->text('deskripsi_ketentuan');
+            $table->string('nama_ketentuan', 128);
+            $table->text('deskripsi_ketentuan')->nullable();
+            $table->tinyInteger('urutan')->nullable();
             $table->timestamps();
         });
     }

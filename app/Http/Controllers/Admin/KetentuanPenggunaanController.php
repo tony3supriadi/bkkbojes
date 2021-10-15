@@ -19,7 +19,7 @@ class KetentuanPenggunaanController extends Controller
         if (request()->get('type') == 'json') {
             $index = 0;
             $results = [];
-            foreach (KetentuanPenggunaan::all() as $item) {
+            foreach (KetentuanPenggunaan::orderBy('urutan', 'ASC')->get() as $item) {
                 $results[$index] = $item;
                 $results[$index]["encryptid"] = encrypt($item->id);
                 $index++;
@@ -48,6 +48,7 @@ class KetentuanPenggunaanController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'urutan' => 'required',
             "nama_ketentuan" => "required",
             "deskripsi_ketentuan" => "required"
         ]);
@@ -79,6 +80,7 @@ class KetentuanPenggunaanController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
+            'urutan' => 'required',
             "nama_ketentuan" => "required",
             "deskripsi_ketentuan" => "required"
         ]);
@@ -97,6 +99,20 @@ class KetentuanPenggunaanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = KetentuanPenggunaan::find(decrypt($id));
+        $data->delete();
+        return redirect()->route('admin.ketentuan-pengguna.index')
+            ->with('destroy-success', 'Proses hapus data ketentuan pengguna berhasil.');
+    }
+
+    public function bulk_destroy(Request $request)
+    {
+        $ids = json_decode($request->ids);
+        foreach ($ids as $id) {
+            $data = KetentuanPenggunaan::find($id->id);
+            $data->delete();
+        }
+        return redirect()->back()
+            ->with('bulk-destroy', 'Proses hapus masal tentang kami berhasil.');
     }
 }

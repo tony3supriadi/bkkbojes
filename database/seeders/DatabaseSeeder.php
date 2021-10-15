@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\TentangKami;
 use Database\Seeders\Wilayah\KabupatenSeeder;
 use Database\Seeders\AdminSeeder;
 use Illuminate\Database\Seeder;
@@ -24,6 +23,8 @@ class DatabaseSeeder extends Seeder
             TentangKamiSeeder::class,
             ProgramstudiSeeder::class,
             KebijakanPrivasiSeeder::class,
+            KetentuanPenggunaSeeder::class,
+            FaqSeeder::class
         ]);
     }
 }
